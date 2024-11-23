@@ -4,6 +4,7 @@
  */
 package main;
 
+import costum.GradientPanel;
 /**
  *
  * @author User
@@ -15,6 +16,8 @@ public class MenuUtama extends javax.swing.JFrame {
      */
     public MenuUtama() {
         initComponents();
+        //panelcostum1
+
     }
 
     /**
