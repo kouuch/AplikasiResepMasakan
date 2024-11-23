@@ -32,6 +32,7 @@ public class MenuUtama extends javax.swing.JFrame {
     private void initComponents() {
 
         pnkiri = new costum.GradientPanel();
+        jTextField1 = new javax.swing.JTextField();
         pnkanan = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
 
@@ -41,15 +42,23 @@ public class MenuUtama extends javax.swing.JFrame {
         pnkiri.setColor1(new java.awt.Color(139, 69, 19));
         pnkiri.setColor2(new java.awt.Color(245, 222, 179));
 
+        jTextField1.setText("jTextField1");
+
         javax.swing.GroupLayout pnkiriLayout = new javax.swing.GroupLayout(pnkiri);
         pnkiri.setLayout(pnkiriLayout);
         pnkiriLayout.setHorizontalGroup(
             pnkiriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 304, Short.MAX_VALUE)
+            .addGroup(pnkiriLayout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(153, Short.MAX_VALUE))
         );
         pnkiriLayout.setVerticalGroup(
             pnkiriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 633, Short.MAX_VALUE)
+            .addGroup(pnkiriLayout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(555, Short.MAX_VALUE))
         );
 
         getContentPane().add(pnkiri, java.awt.BorderLayout.LINE_START);
@@ -94,6 +103,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel pnkanan;
     private costum.GradientPanel pnkiri;
     // End of variables declaration//GEN-END:variables
