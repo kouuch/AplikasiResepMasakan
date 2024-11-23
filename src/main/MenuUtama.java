@@ -5,6 +5,7 @@
 package main;
 
 import com.formdev.flatlaf.extras.FlatSVGIcon;
+import costum.CustomSVGLabel;
 import costum.GradientPanel;
 import costum.SVGUtils;
 import java.awt.BorderLayout;
@@ -27,7 +28,20 @@ public class MenuUtama extends javax.swing.JFrame {
      * Creates new form MenuUtama
      */
     public MenuUtama() {
-        initComponents();
+         initComponents(); // Panggil initComponents() terlebih dahulu
+  // Memuat SVG ke label
+// Coba memuat ikon SVG
+FlatSVGIcon icon = new FlatSVGIcon("img/logo.svg", 50, 50);
+if (icon != null) {
+    System.out.println("FlatSVGIcon berhasil dibuat");
+    jLabel2.setIcon(icon); 
+    jLabel2.setText(""); // Hilangkan teks
+} else {
+    System.out.println("FlatSVGIcon gagal dibuat");
+    jLabel2.setOpaque(true);
+    jLabel2.setBackground(Color.RED);
+    jLabel2.setText("Error");
+}
     }
 
     /**
@@ -46,6 +60,7 @@ public class MenuUtama extends javax.swing.JFrame {
         pnLine = new javax.swing.JPanel();
         btnMenuutama = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        customSVGLabel2 = new costum.CustomSVGLabel();
         pnkanan = new javax.swing.JPanel();
         pnDasar = new javax.swing.JPanel();
         pnUtama = new javax.swing.JPanel();
@@ -57,7 +72,6 @@ public class MenuUtama extends javax.swing.JFrame {
         pnkiri.setColor1(new java.awt.Color(139, 69, 19));
         pnkiri.setColor2(new java.awt.Color(139, 69, 19));
 
-        jLabel2.setIcon(new FlatSVGIcon("img/logo.svg"));
         jLabel2.setText("jLabel2");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -121,30 +135,40 @@ public class MenuUtama extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        customSVGLabel2.setText("customSVGLabel2");
+
         javax.swing.GroupLayout pnkiriLayout = new javax.swing.GroupLayout(pnkiri);
         pnkiri.setLayout(pnkiriLayout);
         pnkiriLayout.setHorizontalGroup(
             pnkiriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnkiriLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
                 .addGroup(pnkiriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnkiriLayout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel1)))
+                        .addGap(25, 25, 25)
+                        .addGroup(pnkiriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pnMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(pnkiriLayout.createSequentialGroup()
+                                .addGap(76, 76, 76)
+                                .addComponent(jLabel1))))
+                    .addGroup(pnkiriLayout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addGroup(pnkiriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(customSVGLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(25, 25, 25))
         );
         pnkiriLayout.setVerticalGroup(
             pnkiriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnkiriLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnkiriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(17, 17, 17)
+                .addComponent(jLabel1)
+                .addGap(33, 33, 33)
                 .addComponent(pnMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(515, Short.MAX_VALUE))
+                .addGap(62, 62, 62)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(customSVGLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(335, Short.MAX_VALUE))
         );
 
         getContentPane().add(pnkiri, java.awt.BorderLayout.LINE_START);
@@ -234,6 +258,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnMenuutama;
+    private costum.CustomSVGLabel customSVGLabel2;
     private costum.GradientPanelHorizontal gradientPanelHorizontal1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
