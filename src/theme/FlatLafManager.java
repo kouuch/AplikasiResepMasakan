@@ -17,7 +17,7 @@ public class FlatLafManager {
         UIManager.put("defaultFont", poppinsFont);
 
         // Tambahkan log untuk memeriksa apakah font diterapkan
-        System.out.println("Font default diterapkan: " + UIManager.get("defaultFont"));
+        //System.out.println("Font default diterapkan: " + UIManager.get("defaultFont"));
     } catch (Exception e) {
         System.err.println("Gagal mengatur tema FlatLaf atau font: " + e.getMessage());
     }

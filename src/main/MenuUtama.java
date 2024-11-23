@@ -90,6 +90,9 @@ public class MenuUtama extends javax.swing.JFrame {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel7MouseEntered(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel7MouseExited(evt);
+            }
         });
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -210,6 +213,11 @@ public class MenuUtama extends javax.swing.JFrame {
         pnMain.setBackground(Color.decode("#D2B48C"));
         pnLine.setBackground(Color.decode("#FFF5E1"));
     }//GEN-LAST:event_jLabel7MouseEntered
+
+    private void jLabel7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseExited
+        pnMain.setBackground(Color.decode("#8B4513"));
+        pnLine.setBackground(Color.decode("#000000"));
+    }//GEN-LAST:event_jLabel7MouseExited
 
     /**
      * @param args the command line arguments
