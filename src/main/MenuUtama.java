@@ -4,6 +4,7 @@
  */
 package main;
 
+import com.formdev.flatlaf.extras.FlatSVGIcon;
 import costum.GradientPanel;
 import costum.SVGUtils;
 import java.awt.BorderLayout;
@@ -27,9 +28,6 @@ public class MenuUtama extends javax.swing.JFrame {
      */
     public MenuUtama() {
         initComponents();
-        
-
-
     }
 
     /**
@@ -59,7 +57,7 @@ public class MenuUtama extends javax.swing.JFrame {
         pnkiri.setColor1(new java.awt.Color(139, 69, 19));
         pnkiri.setColor2(new java.awt.Color(139, 69, 19));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Resep Masakan (30 x 30 cm).png"))); // NOI18N
+        jLabel2.setIcon(new FlatSVGIcon("img/logo.svg"));
         jLabel2.setText("jLabel2");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -117,7 +115,7 @@ public class MenuUtama extends javax.swing.JFrame {
             .addComponent(pnLine, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
             .addGroup(pnMainLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnMenuutama)
                     .addComponent(jLabel8))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
