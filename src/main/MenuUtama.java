@@ -46,7 +46,7 @@ public class MenuUtama extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         pnMain = new javax.swing.JPanel();
         pnLine = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
+        btnMenuutama = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         pnkanan = new javax.swing.JPanel();
         pnDasar = new javax.swing.JPanel();
@@ -69,29 +69,29 @@ public class MenuUtama extends javax.swing.JFrame {
         pnMain.setBackground(new java.awt.Color(139, 69, 19));
 
         pnLine.setBackground(new java.awt.Color(0, 0, 0));
-        pnLine.setPreferredSize(new java.awt.Dimension(17, 35));
+        pnLine.setPreferredSize(new java.awt.Dimension(5, 35));
 
         javax.swing.GroupLayout pnLineLayout = new javax.swing.GroupLayout(pnLine);
         pnLine.setLayout(pnLineLayout);
         pnLineLayout.setHorizontalGroup(
             pnLineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 11, Short.MAX_VALUE)
+            .addGap(0, 6, Short.MAX_VALUE)
         );
         pnLineLayout.setVerticalGroup(
             pnLineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLabel7.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Menu Utama");
-        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnMenuutama.setBackground(new java.awt.Color(204, 204, 204));
+        btnMenuutama.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnMenuutama.setForeground(new java.awt.Color(255, 255, 255));
+        btnMenuutama.setText("Menu Utama");
+        btnMenuutama.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel7MouseEntered(evt);
+                btnMenuutamaMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel7MouseExited(evt);
+                btnMenuutamaMouseExited(evt);
             }
         });
 
@@ -105,11 +105,11 @@ public class MenuUtama extends javax.swing.JFrame {
             pnMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnMainLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnLine, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addComponent(pnLine, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel8)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                .addComponent(btnMenuutama, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnMainLayout.setVerticalGroup(
@@ -118,7 +118,7 @@ public class MenuUtama extends javax.swing.JFrame {
             .addGroup(pnMainLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
+                    .addComponent(btnMenuutama)
                     .addComponent(jLabel8))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -130,7 +130,7 @@ public class MenuUtama extends javax.swing.JFrame {
             .addGroup(pnkiriLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(pnkiriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnMain, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnkiriLayout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -146,7 +146,7 @@ public class MenuUtama extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addGap(17, 17, 17)
                 .addComponent(pnMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(547, Short.MAX_VALUE))
+                .addContainerGap(515, Short.MAX_VALUE))
         );
 
         getContentPane().add(pnkiri, java.awt.BorderLayout.LINE_START);
@@ -209,15 +209,15 @@ public class MenuUtama extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseEntered
+    private void btnMenuutamaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenuutamaMouseEntered
         pnMain.setBackground(Color.decode("#D2B48C"));
         pnLine.setBackground(Color.decode("#FFF5E1"));
-    }//GEN-LAST:event_jLabel7MouseEntered
+    }//GEN-LAST:event_btnMenuutamaMouseEntered
 
-    private void jLabel7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseExited
+    private void btnMenuutamaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenuutamaMouseExited
         pnMain.setBackground(Color.decode("#8B4513"));
         pnLine.setBackground(Color.decode("#000000"));
-    }//GEN-LAST:event_jLabel7MouseExited
+    }//GEN-LAST:event_btnMenuutamaMouseExited
 
     /**
      * @param args the command line arguments
@@ -235,10 +235,10 @@ public class MenuUtama extends javax.swing.JFrame {
 }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btnMenuutama;
     private costum.GradientPanelHorizontal gradientPanelHorizontal1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel pnDasar;
     private javax.swing.JPanel pnLine;
