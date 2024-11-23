@@ -26,18 +26,41 @@ public class MenuUtama extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        pn_kiri = new javax.swing.JPanel();
+        pn_kanan = new javax.swing.JPanel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        pn_kiri.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout pn_kiriLayout = new javax.swing.GroupLayout(pn_kiri);
+        pn_kiri.setLayout(pn_kiriLayout);
+        pn_kiriLayout.setHorizontalGroup(
+            pn_kiriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 110, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        pn_kiriLayout.setVerticalGroup(
+            pn_kiriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 630, Short.MAX_VALUE)
         );
+
+        getContentPane().add(pn_kiri, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 110, 630));
+
+        pn_kanan.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout pn_kananLayout = new javax.swing.GroupLayout(pn_kanan);
+        pn_kanan.setLayout(pn_kananLayout);
+        pn_kananLayout.setHorizontalGroup(
+            pn_kananLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1020, Short.MAX_VALUE)
+        );
+        pn_kananLayout.setVerticalGroup(
+            pn_kananLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 640, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(pn_kanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 1020, 640));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -78,5 +101,7 @@ public class MenuUtama extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel pn_kanan;
+    private javax.swing.JPanel pn_kiri;
     // End of variables declaration//GEN-END:variables
 }
