@@ -8,12 +8,12 @@ package view;
  *
  * @author User
  */
-public class FrameMenuUtama extends javax.swing.JPanel {
+public class FromMenuutama extends javax.swing.JPanel {
 
     /**
-     * Creates new form FrameMenuUtama
+     * Creates new form FromMenuutama
      */
-    public FrameMenuUtama() {
+    public FromMenuutama() {
         initComponents();
     }
 
