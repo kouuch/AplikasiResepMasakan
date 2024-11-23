@@ -32,33 +32,36 @@ public class MenuUtama extends javax.swing.JFrame {
     private void initComponents() {
 
         pnkiri = new costum.GradientPanel();
-        jTextField1 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         pnkanan = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        pnDasar = new javax.swing.JPanel();
+        pnUtama = new javax.swing.JPanel();
+        gradientPanelHorizontal1 = new costum.GradientPanelHorizontal();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         pnkiri.setForeground(new java.awt.Color(30, 32, 30));
         pnkiri.setColor1(new java.awt.Color(139, 69, 19));
-        pnkiri.setColor2(new java.awt.Color(245, 222, 179));
+        pnkiri.setColor2(new java.awt.Color(139, 69, 19));
 
-        jTextField1.setText("jTextField1");
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Logo");
 
         javax.swing.GroupLayout pnkiriLayout = new javax.swing.GroupLayout(pnkiri);
         pnkiri.setLayout(pnkiriLayout);
         pnkiriLayout.setHorizontalGroup(
             pnkiriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnkiriLayout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(153, Short.MAX_VALUE))
+                .addGap(112, 112, 112)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(155, Short.MAX_VALUE))
         );
         pnkiriLayout.setVerticalGroup(
             pnkiriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnkiriLayout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(555, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addComponent(jLabel1)
+                .addContainerGap(610, Short.MAX_VALUE))
         );
 
         getContentPane().add(pnkiri, java.awt.BorderLayout.LINE_START);
@@ -66,20 +69,55 @@ public class MenuUtama extends javax.swing.JFrame {
         pnkanan.setBackground(new java.awt.Color(255, 255, 255));
         pnkanan.setLayout(new java.awt.BorderLayout());
 
-        jPanel1.setBackground(new java.awt.Color(139, 69, 19));
+        pnDasar.setBackground(new java.awt.Color(250, 250, 250));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 826, Short.MAX_VALUE)
+        pnUtama.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout pnUtamaLayout = new javax.swing.GroupLayout(pnUtama);
+        pnUtama.setLayout(pnUtamaLayout);
+        pnUtamaLayout.setHorizontalGroup(
+            pnUtamaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 794, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 74, Short.MAX_VALUE)
+        pnUtamaLayout.setVerticalGroup(
+            pnUtamaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 526, Short.MAX_VALUE)
         );
 
-        pnkanan.add(jPanel1, java.awt.BorderLayout.PAGE_START);
+        gradientPanelHorizontal1.setColor1(new java.awt.Color(139, 69, 19));
+        gradientPanelHorizontal1.setColor2(new java.awt.Color(245, 222, 179));
+
+        javax.swing.GroupLayout gradientPanelHorizontal1Layout = new javax.swing.GroupLayout(gradientPanelHorizontal1);
+        gradientPanelHorizontal1.setLayout(gradientPanelHorizontal1Layout);
+        gradientPanelHorizontal1Layout.setHorizontalGroup(
+            gradientPanelHorizontal1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 824, Short.MAX_VALUE)
+        );
+        gradientPanelHorizontal1Layout.setVerticalGroup(
+            gradientPanelHorizontal1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout pnDasarLayout = new javax.swing.GroupLayout(pnDasar);
+        pnDasar.setLayout(pnDasarLayout);
+        pnDasarLayout.setHorizontalGroup(
+            pnDasarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnDasarLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(pnUtama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
+            .addComponent(gradientPanelHorizontal1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        pnDasarLayout.setVerticalGroup(
+            pnDasarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnDasarLayout.createSequentialGroup()
+                .addComponent(gradientPanelHorizontal1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
+                .addComponent(pnUtama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
+        );
+
+        pnkanan.add(pnDasar, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(pnkanan, java.awt.BorderLayout.CENTER);
 
@@ -102,8 +140,10 @@ public class MenuUtama extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
+    private costum.GradientPanelHorizontal gradientPanelHorizontal1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel pnDasar;
+    private javax.swing.JPanel pnUtama;
     private javax.swing.JPanel pnkanan;
     private costum.GradientPanel pnkiri;
     // End of variables declaration//GEN-END:variables
