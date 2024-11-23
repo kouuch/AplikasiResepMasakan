@@ -5,8 +5,16 @@
 package main;
 
 import costum.GradientPanel;
+import costum.SVGUtils;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Image;
+import java.io.IOException;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
+import org.apache.batik.transcoder.TranscoderException;
 import theme.FlatLafManager;
 /**
  *
@@ -19,6 +27,8 @@ public class MenuUtama extends javax.swing.JFrame {
      */
     public MenuUtama() {
         initComponents();
+        
+
 
     }
 
@@ -32,7 +42,12 @@ public class MenuUtama extends javax.swing.JFrame {
     private void initComponents() {
 
         pnkiri = new costum.GradientPanel();
+        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        pnMain = new javax.swing.JPanel();
+        pnLine = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         pnkanan = new javax.swing.JPanel();
         pnDasar = new javax.swing.JPanel();
         pnUtama = new javax.swing.JPanel();
@@ -44,24 +59,91 @@ public class MenuUtama extends javax.swing.JFrame {
         pnkiri.setColor1(new java.awt.Color(139, 69, 19));
         pnkiri.setColor2(new java.awt.Color(139, 69, 19));
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Resep Masakan (30 x 30 cm).png"))); // NOI18N
+        jLabel2.setText("jLabel2");
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Logo");
+        jLabel1.setText("Resep Masakan");
+
+        pnMain.setBackground(new java.awt.Color(139, 69, 19));
+
+        pnLine.setBackground(new java.awt.Color(0, 0, 0));
+        pnLine.setPreferredSize(new java.awt.Dimension(17, 35));
+
+        javax.swing.GroupLayout pnLineLayout = new javax.swing.GroupLayout(pnLine);
+        pnLine.setLayout(pnLineLayout);
+        pnLineLayout.setHorizontalGroup(
+            pnLineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 11, Short.MAX_VALUE)
+        );
+        pnLineLayout.setVerticalGroup(
+            pnLineLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLabel7.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Menu Utama");
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel7MouseEntered(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Home.png"))); // NOI18N
+
+        javax.swing.GroupLayout pnMainLayout = new javax.swing.GroupLayout(pnMain);
+        pnMain.setLayout(pnMainLayout);
+        pnMainLayout.setHorizontalGroup(
+            pnMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnMainLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pnLine, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(jLabel8)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pnMainLayout.setVerticalGroup(
+            pnMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnLine, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+            .addGroup(pnMainLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout pnkiriLayout = new javax.swing.GroupLayout(pnkiri);
         pnkiri.setLayout(pnkiriLayout);
         pnkiriLayout.setHorizontalGroup(
             pnkiriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnkiriLayout.createSequentialGroup()
-                .addGap(112, 112, 112)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addGap(25, 25, 25)
+                .addGroup(pnkiriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnMain, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnkiriLayout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1)))
+                .addGap(25, 25, 25))
         );
         pnkiriLayout.setVerticalGroup(
             pnkiriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnkiriLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel1)
-                .addContainerGap(610, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(pnkiriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(17, 17, 17)
+                .addComponent(pnMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(547, Short.MAX_VALUE))
         );
 
         getContentPane().add(pnkiri, java.awt.BorderLayout.LINE_START);
@@ -91,11 +173,11 @@ public class MenuUtama extends javax.swing.JFrame {
         gradientPanelHorizontal1.setLayout(gradientPanelHorizontal1Layout);
         gradientPanelHorizontal1Layout.setHorizontalGroup(
             gradientPanelHorizontal1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 824, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         gradientPanelHorizontal1Layout.setVerticalGroup(
             gradientPanelHorizontal1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 70, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout pnDasarLayout = new javax.swing.GroupLayout(pnDasar);
@@ -105,7 +187,7 @@ public class MenuUtama extends javax.swing.JFrame {
             .addGroup(pnDasarLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(pnUtama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(gradientPanelHorizontal1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pnDasarLayout.setVerticalGroup(
@@ -124,25 +206,35 @@ public class MenuUtama extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jLabel7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseEntered
+        pnMain.setBackground(Color.decode("#D2B48C"));
+        pnLine.setBackground(Color.decode("#FFF5E1"));
+    }//GEN-LAST:event_jLabel7MouseEntered
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         
-         // Terapkan tema FlatLaf
-    FlatLafManager.applyFlatLaf();
+   // Terapkan tema FlatLaf
+        FlatLafManager.applyFlatLaf();
 
-    // Jalankan aplikasi
-    SwingUtilities.invokeLater(() -> {
-        new MenuUtama().setVisible(true);
-    });
-        
-    }
+        // Jalankan aplikasi
+        SwingUtilities.invokeLater(() -> {
+;
+            new MenuUtama().setVisible(true);
+        });
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private costum.GradientPanelHorizontal gradientPanelHorizontal1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel pnDasar;
+    private javax.swing.JPanel pnLine;
+    private javax.swing.JPanel pnMain;
     private javax.swing.JPanel pnUtama;
     private javax.swing.JPanel pnkanan;
     private costum.GradientPanel pnkiri;
