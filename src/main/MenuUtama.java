@@ -31,6 +31,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
         pn_kiri = new javax.swing.JPanel();
         pn_kanan = new javax.swing.JPanel();
+        gradientPanel1 = new costum.GradientPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -52,15 +53,35 @@ public class MenuUtama extends javax.swing.JFrame {
 
         pn_kanan.setBackground(new java.awt.Color(255, 255, 255));
 
+        gradientPanel1.setColor1(new java.awt.Color(0, 142, 224));
+        gradientPanel1.setColor2(new java.awt.Color(255, 102, 0));
+
+        javax.swing.GroupLayout gradientPanel1Layout = new javax.swing.GroupLayout(gradientPanel1);
+        gradientPanel1.setLayout(gradientPanel1Layout);
+        gradientPanel1Layout.setHorizontalGroup(
+            gradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        gradientPanel1Layout.setVerticalGroup(
+            gradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout pn_kananLayout = new javax.swing.GroupLayout(pn_kanan);
         pn_kanan.setLayout(pn_kananLayout);
         pn_kananLayout.setHorizontalGroup(
             pn_kananLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1020, Short.MAX_VALUE)
+            .addGroup(pn_kananLayout.createSequentialGroup()
+                .addGap(98, 98, 98)
+                .addComponent(gradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(822, Short.MAX_VALUE))
         );
         pn_kananLayout.setVerticalGroup(
             pn_kananLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 640, Short.MAX_VALUE)
+            .addGroup(pn_kananLayout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addComponent(gradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(484, Short.MAX_VALUE))
         );
 
         getContentPane().add(pn_kanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 1020, 640));
@@ -104,6 +125,7 @@ public class MenuUtama extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private costum.GradientPanel gradientPanel1;
     private javax.swing.JPanel pn_kanan;
     private javax.swing.JPanel pn_kiri;
     // End of variables declaration//GEN-END:variables
