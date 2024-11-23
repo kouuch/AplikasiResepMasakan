@@ -11,11 +11,15 @@ import costum.SVGUtils;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Image;
+import java.io.File;
 import java.io.IOException;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import org.apache.batik.transcoder.TranscoderException;
 import theme.FlatLafManager;
 /**
@@ -29,20 +33,30 @@ public class MenuUtama extends javax.swing.JFrame {
      */
     public MenuUtama() {
          initComponents(); // Panggil initComponents() terlebih dahulu
-  // Memuat SVG ke label
-// Coba memuat ikon SVG
-FlatSVGIcon icon = new FlatSVGIcon("img/logo.svg", 50, 50);
-if (icon != null) {
-    System.out.println("FlatSVGIcon berhasil dibuat");
-    jLabel2.setIcon(icon); 
-    jLabel2.setText(""); // Hilangkan teks
-} else {
-    System.out.println("FlatSVGIcon gagal dibuat");
-    jLabel2.setOpaque(true);
-    jLabel2.setBackground(Color.RED);
-    jLabel2.setText("Error");
-}
+         //tambahkanKomponen(); // Buat metode terpisah untuk logika tambahan
     }
+    
+
+
+//private void tambahkanKomponen() {
+   // CustomSVGLabel customSVGLabel = new CustomSVGLabel("img/logo.svg", 50, 50);
+   // customSVGLabel.setBounds(20, 200, 150, 150);
+   // pnkiri.add(customSVGLabel);
+
+    //JButton btnPilihSVG = new JButton("Pilih File SVG");
+  //  btnPilihSVG.setBounds(20, 300, 150, 30);
+   // btnPilihSVG.addActionListener(e -> pilihFileSVG());
+   // pnkiri.add(btnPilihSVG);
+//}
+
+//private void pilihFileSVG() {
+   // JFileChooser fileChooser = new JFileChooser();
+   // int result = fileChooser.showOpenDialog(this);
+   // if (result == JFileChooser.APPROVE_OPTION) {
+    //    File selectedFile = fileChooser.getSelectedFile();
+      //  customSVGLabel1.setSvgPath(selectedFile.getAbsolutePath());
+   // }
+//}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -54,13 +68,11 @@ if (icon != null) {
     private void initComponents() {
 
         pnkiri = new costum.GradientPanel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         pnMain = new javax.swing.JPanel();
         pnLine = new javax.swing.JPanel();
         btnMenuutama = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        customSVGLabel2 = new costum.CustomSVGLabel();
         pnkanan = new javax.swing.JPanel();
         pnDasar = new javax.swing.JPanel();
         pnUtama = new javax.swing.JPanel();
@@ -72,9 +84,7 @@ if (icon != null) {
         pnkiri.setColor1(new java.awt.Color(139, 69, 19));
         pnkiri.setColor2(new java.awt.Color(139, 69, 19));
 
-        jLabel2.setText("jLabel2");
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Resep Masakan");
 
@@ -99,6 +109,9 @@ if (icon != null) {
         btnMenuutama.setForeground(new java.awt.Color(255, 255, 255));
         btnMenuutama.setText("Menu Utama");
         btnMenuutama.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMenuutamaMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnMenuutamaMouseEntered(evt);
             }
@@ -120,9 +133,9 @@ if (icon != null) {
                 .addComponent(pnLine, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel8)
-                .addGap(18, 18, 18)
-                .addComponent(btnMenuutama, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(btnMenuutama, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
         );
         pnMainLayout.setVerticalGroup(
             pnMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,40 +148,25 @@ if (icon != null) {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        customSVGLabel2.setText("customSVGLabel2");
-
         javax.swing.GroupLayout pnkiriLayout = new javax.swing.GroupLayout(pnkiri);
         pnkiri.setLayout(pnkiriLayout);
         pnkiriLayout.setHorizontalGroup(
             pnkiriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnkiriLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
                 .addGroup(pnkiriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnkiriLayout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(pnkiriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pnMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(pnkiriLayout.createSequentialGroup()
-                                .addGap(76, 76, 76)
-                                .addComponent(jLabel1))))
-                    .addGroup(pnkiriLayout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addGroup(pnkiriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(customSVGLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(25, 25, 25))
+                    .addComponent(pnMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         pnkiriLayout.setVerticalGroup(
             pnkiriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnkiriLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(21, 21, 21)
                 .addComponent(jLabel1)
-                .addGap(33, 33, 33)
+                .addGap(18, 18, 18)
                 .addComponent(pnMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(customSVGLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(335, Short.MAX_VALUE))
+                .addContainerGap(518, Short.MAX_VALUE))
         );
 
         getContentPane().add(pnkiri, java.awt.BorderLayout.LINE_START);
@@ -198,7 +196,7 @@ if (icon != null) {
         gradientPanelHorizontal1.setLayout(gradientPanelHorizontal1Layout);
         gradientPanelHorizontal1Layout.setHorizontalGroup(
             gradientPanelHorizontal1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 824, Short.MAX_VALUE)
         );
         gradientPanelHorizontal1Layout.setVerticalGroup(
             gradientPanelHorizontal1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,11 +207,11 @@ if (icon != null) {
         pnDasar.setLayout(pnDasarLayout);
         pnDasarLayout.setHorizontalGroup(
             pnDasarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(gradientPanelHorizontal1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pnDasarLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(pnUtama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
-            .addComponent(gradientPanelHorizontal1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         pnDasarLayout.setVerticalGroup(
             pnDasarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -240,6 +238,11 @@ if (icon != null) {
         pnMain.setBackground(Color.decode("#8B4513"));
         pnLine.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_btnMenuutamaMouseExited
+        
+    private void btnMenuutamaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenuutamaMouseClicked
+        pnMain.setBackground(Color.decode("#FDDBBB"));
+        pnLine.setBackground(Color.decode("#FFF5E1"));
+    }//GEN-LAST:event_btnMenuutamaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -258,10 +261,8 @@ if (icon != null) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnMenuutama;
-    private costum.CustomSVGLabel customSVGLabel2;
     private costum.GradientPanelHorizontal gradientPanelHorizontal1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel pnDasar;
     private javax.swing.JPanel pnLine;
