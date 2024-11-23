@@ -5,6 +5,8 @@
 package main;
 
 import costum.GradientPanel;
+import javax.swing.JFrame;
+import theme.FlatLafManager;
 /**
  *
  * @author User
@@ -16,8 +18,24 @@ public class MenuUtama extends javax.swing.JFrame {
      */
     public MenuUtama() {
         initComponents();
-        //panelcostum1
 
+    }
+    
+    private void initComponents() {
+        setTitle("Menu Utama");
+        setSize(800, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+    }
+
+    public static void main(String[] args) {
+        // Terapkan tema FlatLaf
+        FlatLafManager.applyFlatLaf();
+
+        // Jalankan aplikasi
+        java.awt.EventQueue.invokeLater(() -> {
+            new MenuUtama().setVisible(true);
+        });
     }
 
     /**
@@ -29,62 +47,48 @@ public class MenuUtama extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pn_kiri = new javax.swing.JPanel();
-        pn_kanan = new javax.swing.JPanel();
-        gradientPanel1 = new costum.GradientPanel();
+        pnkiri = new costum.GradientPanel();
+        pnkanan = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pn_kiri.setBackground(new java.awt.Color(255, 255, 255));
+        pnkiri.setForeground(new java.awt.Color(30, 32, 30));
+        pnkiri.setColor1(new java.awt.Color(139, 69, 19));
+        pnkiri.setColor2(new java.awt.Color(245, 222, 179));
 
-        javax.swing.GroupLayout pn_kiriLayout = new javax.swing.GroupLayout(pn_kiri);
-        pn_kiri.setLayout(pn_kiriLayout);
-        pn_kiriLayout.setHorizontalGroup(
-            pn_kiriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 110, Short.MAX_VALUE)
+        javax.swing.GroupLayout pnkiriLayout = new javax.swing.GroupLayout(pnkiri);
+        pnkiri.setLayout(pnkiriLayout);
+        pnkiriLayout.setHorizontalGroup(
+            pnkiriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 304, Short.MAX_VALUE)
         );
-        pn_kiriLayout.setVerticalGroup(
-            pn_kiriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 630, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(pn_kiri, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 110, 630));
-
-        pn_kanan.setBackground(new java.awt.Color(255, 255, 255));
-
-        gradientPanel1.setColor1(new java.awt.Color(0, 142, 224));
-        gradientPanel1.setColor2(new java.awt.Color(255, 102, 0));
-
-        javax.swing.GroupLayout gradientPanel1Layout = new javax.swing.GroupLayout(gradientPanel1);
-        gradientPanel1.setLayout(gradientPanel1Layout);
-        gradientPanel1Layout.setHorizontalGroup(
-            gradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        gradientPanel1Layout.setVerticalGroup(
-            gradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+        pnkiriLayout.setVerticalGroup(
+            pnkiriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 633, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout pn_kananLayout = new javax.swing.GroupLayout(pn_kanan);
-        pn_kanan.setLayout(pn_kananLayout);
-        pn_kananLayout.setHorizontalGroup(
-            pn_kananLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pn_kananLayout.createSequentialGroup()
-                .addGap(98, 98, 98)
-                .addComponent(gradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(822, Short.MAX_VALUE))
+        getContentPane().add(pnkiri, java.awt.BorderLayout.LINE_START);
+
+        pnkanan.setBackground(new java.awt.Color(255, 255, 255));
+        pnkanan.setLayout(new java.awt.BorderLayout());
+
+        jPanel1.setBackground(new java.awt.Color(139, 69, 19));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 826, Short.MAX_VALUE)
         );
-        pn_kananLayout.setVerticalGroup(
-            pn_kananLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pn_kananLayout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addComponent(gradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(484, Short.MAX_VALUE))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 74, Short.MAX_VALUE)
         );
 
-        getContentPane().add(pn_kanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 1020, 640));
+        pnkanan.add(jPanel1, java.awt.BorderLayout.PAGE_START);
+
+        getContentPane().add(pnkanan, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -125,8 +129,8 @@ public class MenuUtama extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private costum.GradientPanel gradientPanel1;
-    private javax.swing.JPanel pn_kanan;
-    private javax.swing.JPanel pn_kiri;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel pnkanan;
+    private costum.GradientPanel pnkiri;
     // End of variables declaration//GEN-END:variables
 }
