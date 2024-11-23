@@ -22,6 +22,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import org.apache.batik.transcoder.TranscoderException;
 import theme.FlatLafManager;
+import view.FromMenuutama;
 /**
  *
  * @author User
@@ -177,17 +178,7 @@ public class MenuUtama extends javax.swing.JFrame {
         pnDasar.setBackground(new java.awt.Color(250, 250, 250));
 
         pnUtama.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout pnUtamaLayout = new javax.swing.GroupLayout(pnUtama);
-        pnUtama.setLayout(pnUtamaLayout);
-        pnUtamaLayout.setHorizontalGroup(
-            pnUtamaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 794, Short.MAX_VALUE)
-        );
-        pnUtamaLayout.setVerticalGroup(
-            pnUtamaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 526, Short.MAX_VALUE)
-        );
+        pnUtama.setLayout(new java.awt.BorderLayout());
 
         gradientPanelHorizontal1.setColor1(new java.awt.Color(139, 69, 19));
         gradientPanelHorizontal1.setColor2(new java.awt.Color(245, 222, 179));
@@ -210,15 +201,15 @@ public class MenuUtama extends javax.swing.JFrame {
             .addComponent(gradientPanelHorizontal1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pnDasarLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(pnUtama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addComponent(pnUtama, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(15, 15, 15))
         );
         pnDasarLayout.setVerticalGroup(
             pnDasarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnDasarLayout.createSequentialGroup()
                 .addComponent(gradientPanelHorizontal1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
-                .addComponent(pnUtama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnUtama, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(15, 15, 15))
         );
 
@@ -242,6 +233,11 @@ public class MenuUtama extends javax.swing.JFrame {
     private void btnMenuutamaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenuutamaMouseClicked
         pnMain.setBackground(Color.decode("#FDDBBB"));
         pnLine.setBackground(Color.decode("#FFF5E1"));
+        
+        pnUtama.removeAll();
+        pnUtama.add(new FromMenuutama());
+        pnUtama.repaint();
+        pnUtama.revalidate();
     }//GEN-LAST:event_btnMenuutamaMouseClicked
 
     /**
