@@ -4,6 +4,7 @@
  */
 package view.MasakanRumahan;
 
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -145,6 +146,11 @@ public class Daftarmasakan extends javax.swing.JPanel {
         editButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Choose.png"))); // NOI18N
         editButton.setText("Edit");
         editButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        editButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
@@ -202,6 +208,31 @@ public class Daftarmasakan extends javax.swing.JPanel {
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         openFormTambahResep(evt);
     }//GEN-LAST:event_addButtonActionPerformed
+
+    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
+        // Ambil referensi ke tabel dari CustomTablePanel
+    JTable table = recipeTablePanel.getTable();
+
+    // Pastikan ada baris yang dipilih
+    int selectedRow = table.getSelectedRow();
+    if (selectedRow != -1) {
+        // Ambil data dari tabel berdasarkan kolom
+        String recipeName = (String) table.getValueAt(selectedRow, 0); // Kolom Nama Resep
+        String difficulty = (String) table.getValueAt(selectedRow, 1); // Kolom Tingkat Kesulitan
+        String cookingTime = (String) table.getValueAt(selectedRow, 2); // Kolom Waktu Memasak
+        String ratingStars = (String) table.getValueAt(selectedRow, 3); // Kolom Rating
+
+        // Pindah ke FormEditResep dengan membawa data
+        javax.swing.JPanel parentPanel = (javax.swing.JPanel) this.getParent();
+        parentPanel.removeAll();
+        parentPanel.add(new FormEditResep(recipeName, difficulty, cookingTime, ratingStars));
+        parentPanel.revalidate();
+        parentPanel.repaint();
+    } else {
+        // Tampilkan pesan jika tidak ada baris yang dipilih
+        javax.swing.JOptionPane.showMessageDialog(this, "Pilih resep yang ingin diedit!");
+    }
+    }//GEN-LAST:event_editButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
