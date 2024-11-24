@@ -24,6 +24,20 @@ public class Daftarmasakan extends javax.swing.JPanel {
 
         // Muat data ke tabel
         loadTableData();
+        // Tambahkan listener untuk tabel
+    recipeTablePanel.getTable().getSelectionModel().addListSelectionListener(e -> {
+        if (!e.getValueIsAdjusting()) { // Pastikan perubahan selesai
+            int selectedRow = recipeTablePanel.getTable().getSelectedRow(); // Dapatkan baris yang dipilih
+            if (selectedRow != -1) {
+                deleteButton.setEnabled(true); // Aktifkan tombol hapus jika ada baris dipilih
+            } else {
+                deleteButton.setEnabled(false); // Nonaktifkan tombol hapus jika tidak ada baris dipilih
+            }
+        }
+    });
+
+    // Nonaktifkan tombol hapus secara default
+    deleteButton.setEnabled(false);
         
         // Tambahkan listener untuk tabel
         recipeTablePanel.getTable().getSelectionModel().addListSelectionListener(e -> {
@@ -31,6 +45,7 @@ public class Daftarmasakan extends javax.swing.JPanel {
         selectedRow = recipeTablePanel.getTable().getSelectedRow(); // Dapatkan baris yang dipilih
         }
     });
+        
     }
     private int selectedRow = -1; // Baris yang dipilih di tabel
     private void loadTableData() {
