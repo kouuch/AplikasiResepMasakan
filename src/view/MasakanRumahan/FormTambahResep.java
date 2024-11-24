@@ -34,12 +34,9 @@ public class FormTambahResep extends javax.swing.JPanel {
         ratingSlider.setPaintTicks(true);
         ratingSlider.setPaintLabels(true);
 
-        // Set font untuk ratingLabel setelah inisialisasi
+        // Atur font untuk label rating
         if (ratingLabel != null) {
             ratingLabel.setFont(FontManager.getUnicodeCompatibleFont(Font.PLAIN, 14));
-            //System.out.println("Font Unicode Compatible berhasil dimuat: " + ratingLabel.getFont().getName());
-        } else {
-            //System.err.println("ratingLabel belum diinisialisasi!");
         }
 
         // Perbarui label rating saat aplikasi dijalankan
