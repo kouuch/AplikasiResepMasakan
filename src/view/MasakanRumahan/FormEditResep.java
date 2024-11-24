@@ -343,7 +343,7 @@ public class FormEditResep extends javax.swing.JPanel {
     }//GEN-LAST:event_ratingSliderStateChanged
 
     private void cookingTimeSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_cookingTimeSpinnerStateChanged
-        // Ambil nilai saat spinner berubah
+         // Ambil nilai saat spinner berubah
     int time = (int) cookingTimeSpinner.getValue();
     jLabel7.setText("Waktu Memasak: " + time + "m");
     }//GEN-LAST:event_cookingTimeSpinnerStateChanged
