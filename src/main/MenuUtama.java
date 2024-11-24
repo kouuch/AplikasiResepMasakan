@@ -513,7 +513,8 @@ public class MenuUtama extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMenuutama3MouseEntered
 
     private void btnMenuutama3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenuutama3MouseExited
-        // TODO add your handling code here:
+        pnMain1.setBackground(Color.decode("#8B4513"));
+        pnLine1.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_btnMenuutama3MouseExited
 
     private void btnMenuutama4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenuutama4MouseClicked

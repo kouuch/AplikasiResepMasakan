@@ -26,17 +26,17 @@ public class viewMasakanRumah extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        detailPanelPoppins1 = new costum.DetailPanelPoppins();
+        recipeDetailPanel = new costum.DetailPanelPoppins();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new java.awt.CardLayout());
 
-        detailPanelPoppins1.setBackground(new java.awt.Color(255, 255, 255));
-        add(detailPanelPoppins1, "card2");
+        recipeDetailPanel.setBackground(new java.awt.Color(255, 255, 255));
+        add(recipeDetailPanel, "card2");
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private costum.DetailPanelPoppins detailPanelPoppins1;
+    private costum.DetailPanelPoppins recipeDetailPanel;
     // End of variables declaration//GEN-END:variables
 }
