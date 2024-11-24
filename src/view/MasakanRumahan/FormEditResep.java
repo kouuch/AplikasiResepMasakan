@@ -9,53 +9,55 @@ import javax.swing.JOptionPane;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author User
  */
 public class FormEditResep extends javax.swing.JPanel {
+    private DefaultTableModel tableModel;
+    private boolean isEditMode = false;
+    private int selectedRow = -1;
 
-    /**
-     * Creates new form FormEditResep
-     */
-     public FormEditResep(String recipeName, String difficulty, String cookingTime, int servings, int initialRating, String mainIngredients, String additionalIngredients, String cookingSteps) {
-    initComponents();
+    public FormEditResep(DefaultTableModel model) {
+        initComponents();
+        this.tableModel = model;
 
-    // Atur font untuk ratingLabel
-    ratingLabel.setFont(new java.awt.Font("Segoe UI Symbol", java.awt.Font.PLAIN, 14));
+        ratingSlider.addChangeListener(evt -> {
+            int rating = ratingSlider.getValue();
+            String stars = "★".repeat(rating) + "☆".repeat(5 - rating);
+            ratingLabel.setText("Rating: " + stars);
+        });
+    }
 
-    // Konfigurasi ratingSlider
-    ratingSlider.setMinimum(0);
-    ratingSlider.setMaximum(5);
-    ratingSlider.setMajorTickSpacing(1);
-    ratingSlider.setPaintTicks(true);
-    ratingSlider.setPaintLabels(true);
-
-    // Set nilai awal rating dan label
-    ratingSlider.setValue(initialRating);
-    String initialStars = "★".repeat(initialRating) + "☆".repeat(5 - initialRating);
-    ratingLabel.setText("Rating: " + initialStars);
-
-    // Tambahkan listener ke ratingSlider
-    ratingSlider.addChangeListener(e -> {
+    private void saveData() {
+        String recipeName = recipeNameField.getText();
+        String difficulty = (String) difficultyComboBox.getSelectedItem();
+        int cookingTime = (int) cookingTimeSpinner.getValue();
+        int servings = (int) servingsSpinner.getValue();
         int rating = ratingSlider.getValue();
-        String stars = "★".repeat(rating) + "☆".repeat(5 - rating);
-        ratingLabel.setText("Rating: " + stars);
-    });
+        String mainIngredients = mainIngredientArea.getText();
+        String additionalIngredients = additionalIngredientArea.getText();
+        String cookingSteps = cookingStepsArea.getText();
 
-    // Isi field lain dengan data dari parameter
-    recipeNameField.setText(recipeName);
-    difficultyComboBox.setSelectedItem(difficulty);
-    cookingTimeSpinner.setValue(Integer.parseInt(cookingTime.replace("m", "").trim()));
-    servingsSpinner.setValue(servings);
-    mainIngredientArea.setText(mainIngredients);
-    additionalIngredientArea.setText(additionalIngredients);
-    cookingStepsArea.setText(cookingSteps);
+        if (isEditMode && selectedRow >= 0) {
+            // Update the selected row in the table
+            tableModel.setValueAt(recipeName, selectedRow, 0);
+            tableModel.setValueAt(difficulty, selectedRow, 1);
+            tableModel.setValueAt(cookingTime + "m", selectedRow, 2);
+            tableModel.setValueAt(rating, selectedRow, 3);
+            tableModel.setValueAt(mainIngredients, selectedRow, 4);
+            tableModel.setValueAt(additionalIngredients, selectedRow, 5);
+            tableModel.setValueAt(cookingSteps, selectedRow, 6);
+        } else {
+            // Add a new row to the table
+            tableModel.addRow(new Object[]{
+                recipeName, difficulty, cookingTime + "m", rating, mainIngredients, additionalIngredients, cookingSteps
+            });
+        }
 
-    // Refresh UI
-    revalidate();
-    repaint();
-}
+        isEditMode = false;
+    }
 
 
 
