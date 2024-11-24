@@ -246,7 +246,7 @@ public class Daftarmasakan extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void selectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectButtonActionPerformed
-                                                     
+                                            
     JTable table = recipeTablePanel.getTable();
     int selectedRow = table.getSelectedRow();
 
@@ -255,14 +255,14 @@ public class Daftarmasakan extends javax.swing.JPanel {
         String recipeName = (String) table.getValueAt(selectedRow, 0);
         String difficulty = (String) table.getValueAt(selectedRow, 1);
         String cookingTime = (String) table.getValueAt(selectedRow, 2);
-        String rating = (String) table.getValueAt(selectedRow, 3);
+        String rating = (String) table.getValueAt(selectedRow, 3); // Contoh: "★★★☆☆"
 
-        // Konversi rating dari string ke integer
+        // Konversi simbol bintang ke angka
         int parsedRating = 0;
         try {
-            parsedRating = Integer.parseInt(rating.trim());
-        } catch (NumberFormatException e) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Rating tidak valid. Pastikan berupa angka!");
+            parsedRating = rating.replace("★", "").length(); // Hitung jumlah ★
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Rating tidak valid. Pastikan format bintang benar!");
             return;
         }
 
