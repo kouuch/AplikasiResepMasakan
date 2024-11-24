@@ -100,16 +100,6 @@ public class viewMasakanRumah extends JPanel {
     add(ratingLabel, gbc);
 }
 
-    /**
-     * Mengatur data resep yang akan ditampilkan di panel ini.
-     *
-     * @param recipeName      Nama resep
-     * @param mainIngredients Bahan utama
-     * @param cookingSteps    Langkah memasak
-     * @param difficulty      Tingkat kesulitan
-     * @param cookingTime     Waktu memasak
-     * @param rating          Rating (bintang)
-     */
    public void setRecipeData(String recipeName, String mainIngredients, String cookingSteps,
                           String difficulty, String cookingTime, String rating) {
     nameLabel.setText(recipeName != null ? recipeName : "Nama Resep Tidak Tersedia");
