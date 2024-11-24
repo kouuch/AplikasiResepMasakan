@@ -1,0 +1,9 @@
+Nama Resep: a
+Bahan Utama: sgs
+Bahan Tambahan: dfs
+Tingkat Kesulitan: Mudah
+Waktu Memasak: 0m
+Porsi: 0
+Rating: 3
+Cara Memasak:
+sdfsf

@@ -1,0 +1,9 @@
+Nama Resep: abal
+Bahan Utama: dsad
+Bahan Tambahan: sada
+Tingkat Kesulitan: Sedang
+Waktu Memasak: 6m
+Porsi: 1
+Rating: 3
+Cara Memasak:
+sada
