@@ -23,6 +23,13 @@ public class Daftarmasakan extends javax.swing.JPanel {
 
         // Muat data ke tabel
         loadTableData();
+        
+        // Tambahkan listener untuk tabel
+        table.getSelectionModel().addListSelectionListener(e -> {
+        if (!e.getValueIsAdjusting()) { // Pastikan perubahan selesai
+        selectedRow = table.getSelectedRow(); // Dapatkan baris yang dipilih
+        }
+    });
     }
     private int selectedRow = -1; // Baris yang dipilih di tabel
     private void loadTableData() {
