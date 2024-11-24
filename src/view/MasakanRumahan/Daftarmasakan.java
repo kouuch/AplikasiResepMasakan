@@ -311,6 +311,7 @@ public class DaftarMasakan extends javax.swing.JPanel {
     javax.swing.JOptionPane.showMessageDialog(this, "Pilih resep yang ingin diedit!");
 }
 
+    
     }//GEN-LAST:event_editButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed

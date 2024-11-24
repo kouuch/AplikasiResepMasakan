@@ -5,6 +5,10 @@
 package view.MasakanRumahan;
 
 import view.MasakanRumahan.DaftarMasakan;
+import javax.swing.JOptionPane;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
 
 /**
  *
@@ -280,7 +284,7 @@ public class FormEditResep extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void saveEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveEditButtonActionPerformed
-           // Ambil data dari field di form
+       // Ambil data dari field di form
     String recipeName = recipeNameField.getText();
     String mainIngredients = mainIngredientArea.getText();
     String additionalIngredients = additionalIngredientArea.getText();
@@ -292,14 +296,19 @@ public class FormEditResep extends javax.swing.JPanel {
 
     // Validasi data jika perlu
     if (recipeName.isEmpty() || mainIngredients.isEmpty() || cookingSteps.isEmpty()) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Semua field wajib diisi!", "Peringatan", javax.swing.JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Semua field wajib diisi!", "Kesalahan", JOptionPane.WARNING_MESSAGE);
         return;
     }
 
-    // Simpan data ke sumber data (database, file, atau tabel)
     try {
-        // Contoh: Menyimpan ke file (jika Anda menggunakan file untuk menyimpan data)
-        java.nio.file.Path filePath = java.nio.file.Paths.get("data/FmasakanRumahan/" + recipeName + ".txt");
+        // Pastikan direktori ada
+        java.nio.file.Path folderPath = java.nio.file.Paths.get("data/FmasakanRumahan");
+        if (!java.nio.file.Files.exists(folderPath)) {
+            java.nio.file.Files.createDirectories(folderPath);
+        }
+
+        // Simpan data ke file
+        java.nio.file.Path filePath = folderPath.resolve(recipeName + ".txt");
         java.util.List<String> lines = new java.util.ArrayList<>();
         lines.add("Nama Resep: " + recipeName);
         lines.add("Bahan Utama: " + mainIngredients);
@@ -310,11 +319,10 @@ public class FormEditResep extends javax.swing.JPanel {
         lines.add("Porsi: " + servings);
         lines.add("Rating: " + rating);
 
-        // Tulis ke file
         java.nio.file.Files.write(filePath, lines);
 
         // Berikan notifikasi ke user
-        javax.swing.JOptionPane.showMessageDialog(this, "Resep berhasil disimpan!", "Sukses", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Resep berhasil disimpan!", "Sukses", JOptionPane.INFORMATION_MESSAGE);
 
         // Kembali ke form sebelumnya
         javax.swing.JPanel parentPanel = (javax.swing.JPanel) this.getParent();
@@ -324,7 +332,7 @@ public class FormEditResep extends javax.swing.JPanel {
         parentPanel.repaint();
     } catch (Exception e) {
         e.printStackTrace();
-        javax.swing.JOptionPane.showMessageDialog(this, "Gagal menyimpan resep: " + e.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Gagal menyimpan resep: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
     }//GEN-LAST:event_saveEditButtonActionPerformed
 
