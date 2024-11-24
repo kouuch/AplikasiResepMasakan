@@ -18,37 +18,35 @@ public class FormTambahResep extends javax.swing.JPanel {
      * Creates new form FormTambahResep
      */
     public FormTambahResep() {
-        System.out.println("Font Unicode Compatible berhasil dimuat: " + ratingLabel.getFont().getName());
-
         initComponents();
         difficultyLevelComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Mudah", "Sedang", "Sulit"}));
 
-        // Atur properti slider
+        // Set properti ratingSlider
         ratingSlider.setMinimum(0);
         ratingSlider.setMaximum(5);
-        ratingSlider.setValue(3); // Nilai awal slider
+        ratingSlider.setValue(3); // Nilai default slider
         ratingSlider.setMajorTickSpacing(1);
         ratingSlider.setPaintTicks(true);
         ratingSlider.setPaintLabels(true);
 
-        // Set font Unicode untuk rating label
-        ratingLabel.setFont(FontManager.getUnicodeCompatibleFont(Font.PLAIN, 14));
-        System.out.println("Font untuk ratingLabel: " + ratingLabel.getFont().getName());
+        // Set font untuk ratingLabel setelah inisialisasi
+        if (ratingLabel != null) {
+            ratingLabel.setFont(FontManager.getUnicodeCompatibleFont(Font.PLAIN, 14));
+            System.out.println("Font Unicode Compatible berhasil dimuat: " + ratingLabel.getFont().getName());
+        } else {
+            System.err.println("ratingLabel belum diinisialisasi!");
+        }
 
         // Perbarui label rating saat aplikasi dijalankan
-        int initialRating = ratingSlider.getValue(); // Nilai awal slider
+        int initialRating = ratingSlider.getValue();
         String initialStars = "★".repeat(initialRating) + "☆".repeat(5 - initialRating);
         ratingLabel.setText("Rating: " + initialStars);
-        System.out.println("Rating awal: " + initialStars);
 
-        // Tambahkan ChangeListener untuk memperbarui label setiap kali slider diubah
+        // Tambahkan ChangeListener untuk slider
         ratingSlider.addChangeListener(e -> {
             int rating = ratingSlider.getValue();
             String stars = "★".repeat(rating) + "☆".repeat(5 - rating);
             ratingLabel.setText("Rating: " + stars);
-
-            // Debugging untuk memverifikasi output
-            System.out.println("Rating: " + stars);
         });
          
 
