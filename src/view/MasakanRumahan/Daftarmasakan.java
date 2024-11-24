@@ -246,31 +246,23 @@ public class Daftarmasakan extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void selectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectButtonActionPerformed
-        JTable table = recipeTablePanel.getTable();
+         JTable table = recipeTablePanel.getTable();
     int selectedRow = table.getSelectedRow();
 
     if (selectedRow != -1) {
         // Ambil data dari baris yang dipilih
-        String recipeName = (String) table.getValueAt(selectedRow, 0);
-        String difficulty = (String) table.getValueAt(selectedRow, 1);
-        String cookingTime = (String) table.getValueAt(selectedRow, 2);
-        String rating = (String) table.getValueAt(selectedRow, 3);
+        String recipeName = (String) table.getValueAt(selectedRow, 0); // Nama Resep
+        String difficulty = (String) table.getValueAt(selectedRow, 1); // Tingkat Kesulitan
+        String cookingTime = (String) table.getValueAt(selectedRow, 2); // Waktu Memasak
+        String rating = (String) table.getValueAt(selectedRow, 3); // Rating
 
-        // Debugging log
-        System.out.println("Nama Resep: " + recipeName);
-        System.out.println("Tingkat Kesulitan: " + difficulty);
-        System.out.println("Waktu Memasak: " + cookingTime);
-        System.out.println("Rating: " + rating);
+        // Pastikan bahan dan langkah memasak diambil dari sumber data
+        String mainIngredients = "Isi bahan utama"; // Ambil dari file atau database
+        String cookingSteps = "Isi cara memasak"; // Ambil dari file atau database
 
-        // Pastikan data valid
-        if (recipeName == null || recipeName.isEmpty()) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Data tidak valid!");
-            return;
-        }
-
-        // Buka panel viewMasakanRumah dengan data
+        // Panggil panel detail dan kirim data
         viewMasakanRumah detailPanel = new viewMasakanRumah();
-        detailPanel.setRecipeData(recipeName, "Bahan Dummy", "Langkah Dummy", difficulty, cookingTime, rating);
+        detailPanel.setRecipeData(recipeName, mainIngredients, cookingSteps, difficulty, cookingTime, rating);
 
         // Pindah ke panel baru
         javax.swing.JPanel parentPanel = (javax.swing.JPanel) this.getParent();
@@ -281,6 +273,7 @@ public class Daftarmasakan extends javax.swing.JPanel {
     } else {
         javax.swing.JOptionPane.showMessageDialog(this, "Pilih resep yang ingin dilihat!");
     }
+
     }//GEN-LAST:event_selectButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
