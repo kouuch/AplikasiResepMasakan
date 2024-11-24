@@ -1,8 +1,0 @@
-Nama Resep: dasd
-Bahan Utama: Isi bahan utama
-Bahan Tambahan: Isi bahan tambahan
-Cara Memasak: Isi cara memasak
-Tingkat Kesulitan: Item 1
-Waktu Memasak: 3m
-Porsi: 0
-Rating: 5

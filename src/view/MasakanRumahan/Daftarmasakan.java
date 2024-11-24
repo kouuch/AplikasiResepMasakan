@@ -278,7 +278,7 @@ public class Daftarmasakan extends javax.swing.JPanel {
     parentPanel.revalidate();
     parentPanel.repaint();
 } else {
-    javax.swing.JOptionPane.showMessageDialog(this, "Pilih resep yang ingin diedit!");
+    //javax.swing.JOptionPane.showMessageDialog(this, "Pilih resep yang ingin diedit!");
 }
 
     }//GEN-LAST:event_editButtonActionPerformed
