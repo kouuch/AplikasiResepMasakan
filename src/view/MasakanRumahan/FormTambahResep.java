@@ -39,7 +39,7 @@ public class FormTambahResep extends javax.swing.JPanel {
             int rating = ratingSlider.getValue();
             String stars = "★".repeat(rating) + "☆".repeat(5 - rating);
         ratingLabel.setText("Rating: " + stars);
-        System.out.println("Rating: " + stars);
+        ratingLabel.setFont(FontManager.getPoppinsFont(Font.PLAIN, 14));;
     });
          
 
