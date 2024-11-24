@@ -13,9 +13,24 @@ public class FormEditResep extends javax.swing.JPanel {
     /**
      * Creates new form FormEditResep
      */
-    public FormEditResep() {
-        initComponents();
-    }
+    public FormEditResep(String recipeName, String difficulty, String cookingTime, int servings, int rating, String mainIngredients, String additionalIngredients, String cookingSteps) {
+    initComponents();
+
+    // Isi field dengan data dari tabel
+        recipeNameField.setText(recipeName);
+        difficultyComboBox.setSelectedItem(difficulty);
+        cookingTimeSpinner.setValue(Integer.parseInt(cookingTime.replace("m", "").trim()));
+        servingsSpinner.setValue(servings);
+        ratingSlider.setValue(rating);
+        mainIngredientArea.setText(mainIngredients);
+        mainIngredientArea.setText(additionalIngredients);
+        cookingStepsArea.setText(cookingSteps);
+
+    // Atur ulang UI jika perlu
+    revalidate();
+    repaint();
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,7 +50,7 @@ public class FormEditResep extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         servingsSpinner = new javax.swing.JSpinner();
         jScrollPane1 = new javax.swing.JScrollPane();
-        additionalIngredientArea = new javax.swing.JTextArea();
+        mainIngredientArea = new javax.swing.JTextArea();
         difficultyComboBox = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -47,7 +62,7 @@ public class FormEditResep extends javax.swing.JPanel {
         cookingTimeSpinner = new javax.swing.JSpinner();
         jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        additionalIngredientArea = new javax.swing.JTextArea();
         jButton3 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
 
@@ -72,9 +87,9 @@ public class FormEditResep extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("Tingkat Kesulitan");
 
-        additionalIngredientArea.setColumns(20);
-        additionalIngredientArea.setRows(5);
-        jScrollPane1.setViewportView(additionalIngredientArea);
+        mainIngredientArea.setColumns(20);
+        mainIngredientArea.setRows(5);
+        jScrollPane1.setViewportView(mainIngredientArea);
 
         difficultyComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -103,9 +118,9 @@ public class FormEditResep extends javax.swing.JPanel {
             }
         });
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        additionalIngredientArea.setColumns(20);
+        additionalIngredientArea.setRows(5);
+        jScrollPane2.setViewportView(additionalIngredientArea);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Choose.png"))); // NOI18N
         jButton3.setText("Simpan");
@@ -235,7 +250,7 @@ public class FormEditResep extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextArea mainIngredientArea;
     private javax.swing.JSlider ratingSlider;
     private javax.swing.JTextField recipeNameField;
     private javax.swing.JSpinner servingsSpinner;

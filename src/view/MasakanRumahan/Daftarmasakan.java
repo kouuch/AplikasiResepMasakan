@@ -216,22 +216,27 @@ public class Daftarmasakan extends javax.swing.JPanel {
     // Pastikan ada baris yang dipilih
     int selectedRow = table.getSelectedRow();
     if (selectedRow != -1) {
-        // Ambil data dari tabel berdasarkan kolom
-        String recipeName = (String) table.getValueAt(selectedRow, 0); // Kolom Nama Resep
-        String difficulty = (String) table.getValueAt(selectedRow, 1); // Kolom Tingkat Kesulitan
-        String cookingTime = (String) table.getValueAt(selectedRow, 2); // Kolom Waktu Memasak
-        String ratingStars = (String) table.getValueAt(selectedRow, 3); // Kolom Rating
+    // Ambil data dari tabel
+    String recipeName = (String) table.getValueAt(selectedRow, 0);
+    String difficulty = (String) table.getValueAt(selectedRow, 1);
+    String cookingTime = (String) table.getValueAt(selectedRow, 2);
+    int rating = ((String) table.getValueAt(selectedRow, 3)).replace("★", "").length(); // Hitung jumlah bintang
 
-        // Pindah ke FormEditResep dengan membawa data
-        javax.swing.JPanel parentPanel = (javax.swing.JPanel) this.getParent();
-        parentPanel.removeAll();
-        parentPanel.add(new FormEditResep(recipeName, difficulty, cookingTime, ratingStars));
-        parentPanel.revalidate();
-        parentPanel.repaint();
-    } else {
-        // Tampilkan pesan jika tidak ada baris yang dipilih
-        javax.swing.JOptionPane.showMessageDialog(this, "Pilih resep yang ingin diedit!");
-    }
+    // Anda perlu menyediakan data untuk kolom berikut
+    String mainIngredients = "Isi bahan utama"; // Ambil dari sumber data
+    String additionalIngredients = "Isi bahan tambahan"; // Ambil dari sumber data
+    String cookingSteps = "Isi cara memasak"; // Ambil dari sumber data
+
+    // Pindah ke FormEditResep dengan membawa data
+    javax.swing.JPanel parentPanel = (javax.swing.JPanel) this.getParent();
+    parentPanel.removeAll();
+    parentPanel.add(new FormEditResep(recipeName, difficulty, cookingTime, 0, rating, mainIngredients, additionalIngredients, cookingSteps));
+    parentPanel.revalidate();
+    parentPanel.repaint();
+} else {
+    javax.swing.JOptionPane.showMessageDialog(this, "Pilih resep yang ingin diedit!");
+}
+
     }//GEN-LAST:event_editButtonActionPerformed
 
 
