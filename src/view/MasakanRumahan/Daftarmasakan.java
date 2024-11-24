@@ -79,14 +79,18 @@ public class DaftarMasakan extends javax.swing.JPanel {
     try {
         java.nio.file.Path folderPath = java.nio.file.Paths.get("data/FmasakanRumahan");
 
+        // Log untuk memantau apakah folder ditemukan
+        System.out.println("Memeriksa folder: " + folderPath.toAbsolutePath());
+
         // Pastikan folder ada
         if (!java.nio.file.Files.exists(folderPath)) {
             System.out.println("Folder tidak ditemukan: " + folderPath);
-            return;
+            return; // Jika folder tidak ada, keluar dari metode
         }
 
         // Reset tabel sebelum memuat data baru
         recipeTablePanel.clearTableData(); // Pastikan ini hanya dipanggil sekali
+        System.out.println("Tabel direset, memuat data baru...");
 
         // Ambil file dalam folder dan muat datanya
         File folder = folderPath.toFile();
@@ -95,19 +99,31 @@ public class DaftarMasakan extends javax.swing.JPanel {
         if (files != null) {
             for (File file : files) {
                 if (file.isFile() && file.getName().endsWith(".txt")) {
-                    // Contoh: Muat data dari file dan tambahkan ke tabel
+                    // Log file yang sedang diproses
+                    System.out.println("Memproses file: " + file.getName());
+
+                    // Baca isi file
                     List<String> lines = java.nio.file.Files.readAllLines(file.toPath());
-                    // Parsing data dari lines dan tambahkan ke tabel
-                    System.out.println("Memuat data dari file: " + file.getName());
-                    // Tambahkan ke tabel di sini
+                    
+                    // Log isi file untuk debugging (opsional)
+                    for (String line : lines) {
+                        System.out.println("  " + line);
+                    }
+
+                    // Parsing data dari lines dan tambahkan ke tabel (sesuaikan dengan struktur tabel Anda)
+                    // Misalnya: Tambahkan ke model tabel
                 }
             }
+            System.out.println("Pemuatan data selesai.");
+        } else {
+            System.out.println("Tidak ada file di folder: " + folderPath);
         }
     } catch (Exception e) {
-        e.printStackTrace();
+        e.printStackTrace(); // Log lengkap error ke console
         javax.swing.JOptionPane.showMessageDialog(this, "Gagal memuat data: " + e.getMessage(), "Kesalahan", JOptionPane.ERROR_MESSAGE);
     }
 }
+
 
 
     private String extractValue(java.util.List<String> lines, String key) {
