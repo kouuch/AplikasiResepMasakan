@@ -17,14 +17,14 @@ public class FormEditResep extends javax.swing.JPanel {
     initComponents();
 
     // Isi field dengan data dari tabel
-        recipeNameField.setText(recipeName);
-        difficultyComboBox.setSelectedItem(difficulty);
-        cookingTimeSpinner.setValue(Integer.parseInt(cookingTime.replace("m", "").trim()));
-        servingsSpinner.setValue(servings);
-        ratingSlider.setValue(rating);
-        mainIngredientArea.setText(mainIngredients);
-        mainIngredientArea.setText(additionalIngredients);
-        cookingStepsArea.setText(cookingSteps);
+    recipeNameField.setText(recipeName);
+    difficultyComboBox.setSelectedItem(difficulty);
+    cookingTimeSpinner.setValue(Integer.parseInt(cookingTime.replace("m", "").trim()));
+    servingsSpinner.setValue(servings);
+    ratingSlider.setValue(rating);
+    mainIngredientArea.setText(mainIngredients);
+    additionalIngredientArea.setText(additionalIngredients);
+    cookingStepsArea.setText(cookingSteps);
 
     // Atur ulang UI jika perlu
     revalidate();
