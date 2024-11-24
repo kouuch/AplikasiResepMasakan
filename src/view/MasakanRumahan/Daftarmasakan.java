@@ -163,6 +163,11 @@ public class Daftarmasakan extends javax.swing.JPanel {
         deleteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Choose.png"))); // NOI18N
         deleteButton.setText("Hapus");
         deleteButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
 
         selectButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Choose.png"))); // NOI18N
         selectButton.setText("Pilih");
@@ -277,6 +282,36 @@ public class Daftarmasakan extends javax.swing.JPanel {
 }
 
     }//GEN-LAST:event_editButtonActionPerformed
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+         JTable table = recipeTablePanel.getTable();
+    int selectedRow = table.getSelectedRow();
+
+    if (selectedRow != -1) {
+        int confirm = javax.swing.JOptionPane.showConfirmDialog(this, 
+            "Apakah Anda yakin ingin menghapus resep ini?", 
+            "Konfirmasi Hapus", 
+            javax.swing.JOptionPane.YES_NO_OPTION);
+
+        if (confirm == javax.swing.JOptionPane.YES_OPTION) {
+            String recipeName = (String) table.getValueAt(selectedRow, 0); // Ambil nama resep
+            try {
+                // Hapus file resep dari folder
+                java.nio.file.Path filePath = java.nio.file.Paths.get("data/FmasakanRumahan/" + recipeName + ".txt");
+                java.nio.file.Files.deleteIfExists(filePath);
+
+                // Hapus baris dari tabel
+                ((DefaultTableModel) table.getModel()).removeRow(selectedRow);
+
+                javax.swing.JOptionPane.showMessageDialog(this, "Resep berhasil dihapus!");
+            } catch (Exception e) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Gagal menghapus resep: " + e.getMessage());
+            }
+        }
+    } else {
+        javax.swing.JOptionPane.showMessageDialog(this, "Pilih resep yang ingin dihapus!");
+    }
+    }//GEN-LAST:event_deleteButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
