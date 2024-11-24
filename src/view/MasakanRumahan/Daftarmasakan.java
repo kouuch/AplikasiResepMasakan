@@ -82,7 +82,10 @@ public class DaftarMasakan extends javax.swing.JPanel {
             }
 
             // Reset tabel sebelum memuat data baru
-            recipeTablePanel.clearTableData();
+            // Perubahan Dimulai
+    recipeTablePanel.clearTableData();
+    loadTableData(); // Memuat ulang data tabel setelah perubahan
+    // Perubahan Berakhir
 
             // Iterasi file di folder
             java.nio.file.DirectoryStream<java.nio.file.Path> files = java.nio.file.Files.newDirectoryStream(folderPath);
