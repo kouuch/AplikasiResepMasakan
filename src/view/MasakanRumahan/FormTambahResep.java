@@ -4,7 +4,9 @@
  */
 package view.MasakanRumahan;
 
+import java.awt.Font;
 import javax.swing.JSpinner;
+import theme.FontManager;
 
 /**
  *
@@ -18,6 +20,27 @@ public class FormTambahResep extends javax.swing.JPanel {
     public FormTambahResep() {
         initComponents();
          difficultyLevelComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mudah", "Sedang", "Sulit" }));
+        
+        ratingLabel.setFont(FontManager.getPoppinsFont(Font.PLAIN, 14));
+        ratingSlider.setMinimum(0);
+        ratingSlider.setMaximum(5);
+        ratingSlider.setValue(3); // Nilai awal
+        ratingSlider.setMajorTickSpacing(1);
+        ratingSlider.setPaintTicks(true);
+        ratingSlider.setPaintLabels(true);
+         
+         // Perbarui label rating saat pertama kali aplikasi dijalankan
+        int initialRating = ratingSlider.getValue(); // Nilai awal slider
+        String initialStars = "★".repeat(initialRating) + "☆".repeat(5 - initialRating);
+        ratingLabel.setText("Rating: " + initialStars);
+
+        // Tambahkan ChangeListener untuk memperbarui label setiap kali slider diubah
+        ratingSlider.addChangeListener(e -> {
+            int rating = ratingSlider.getValue();
+            String stars = "★".repeat(rating) + "☆".repeat(5 - rating);
+        ratingLabel.setText("Rating: " + stars);
+        System.out.println("Rating: " + stars);
+    });
          
 
     }
@@ -234,9 +257,9 @@ public class FormTambahResep extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ratingSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_ratingSliderStateChanged
-        int rating = ratingSlider.getValue();
-        String stars = "★".repeat(rating) + "☆".repeat(5 - rating);
-        ratingLabel.setText("Rating: " + stars);
+        int rating = ratingSlider.getValue(); // Ambil nilai slider
+        String stars = "★".repeat(rating) + "☆".repeat(5 - rating); // Format bintang
+        ratingLabel.setText("Rating: " + stars); // Perbarui label
     }//GEN-LAST:event_ratingSliderStateChanged
 
     private void cookingTimeSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_cookingTimeSpinnerStateChanged
