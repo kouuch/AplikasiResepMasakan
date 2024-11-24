@@ -297,13 +297,27 @@ public class FormTambahResep extends javax.swing.JPanel {
         int rating = ratingSlider.getValue();
         String instructions = instructionsTextArea.getText();
 
-        String data = String.format("Nama Resep: %s%nBahan Utama: %s%nBahan Tambahan: %s%nTingkat Kesulitan: %s%nWaktu Memasak: %dm%nPorsi: %d%nRating: %d%nCara Memasak:%n%s",
-                recipeName, mainIngredient, additionalIngredient, difficulty, cookingTime, servings, rating, instructions);
+        // Format data untuk disimpan
+        String data = String.format(
+            "Nama Resep: %s%nBahan Utama: %s%nBahan Tambahan: %s%nTingkat Kesulitan: %s%nWaktu Memasak: %dm%nPorsi: %d%nRating: %d%nCara Memasak:%n%s",
+            recipeName, mainIngredient, additionalIngredient, difficulty, cookingTime, servings, rating, instructions
+        );
 
+        // Ambil path ke folder FmasakanRumahan
+        String folderPath = System.getProperty("user.dir") + "/src/FmasakanRumahan";
+
+        // Buat folder jika belum ada
+        java.nio.file.Path path = java.nio.file.Paths.get(folderPath);
+        if (!java.nio.file.Files.exists(path)) {
+            java.nio.file.Files.createDirectories(path);
+        }
+
+        // Simpan file di folder
         java.nio.file.Files.write(
-            java.nio.file.Paths.get("FmasakanRumahan/" + recipeName + ".txt"),
+            java.nio.file.Paths.get(folderPath + "/" + recipeName + ".txt"),
             data.getBytes()
         );
+
         javax.swing.JOptionPane.showMessageDialog(this, "Resep berhasil disimpan!");
     } catch (Exception ex) {
         javax.swing.JOptionPane.showMessageDialog(this, "Gagal menyimpan resep: " + ex.getMessage());
