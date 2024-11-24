@@ -4,6 +4,9 @@
  */
 package view.MasakanRumahan;
 
+import java.io.File;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -73,42 +76,39 @@ public class DaftarMasakan extends javax.swing.JPanel {
     }
 
     private void loadTableData() {
-        try {
-            java.nio.file.Path folderPath = java.nio.file.Paths.get("data/FmasakanRumahan");
+    try {
+        java.nio.file.Path folderPath = java.nio.file.Paths.get("data/FmasakanRumahan");
 
-            if (!java.nio.file.Files.exists(folderPath)) {
-                System.out.println("Folder tidak ditemukan: " + folderPath);
-                return;
-            }
-
-            // Reset tabel sebelum memuat data baru
-            // Perubahan Dimulai
-    recipeTablePanel.clearTableData();
-    loadTableData(); // Memuat ulang data tabel setelah perubahan
-    // Perubahan Berakhir
-
-            // Iterasi file di folder
-            java.nio.file.DirectoryStream<java.nio.file.Path> files = java.nio.file.Files.newDirectoryStream(folderPath);
-            for (java.nio.file.Path file : files) {
-                java.util.List<String> lines = java.nio.file.Files.readAllLines(file);
-
-                // Ekstrak nilai-nilai dari file
-                String recipeName = extractValue(lines, "Nama Resep");
-                String difficulty = extractValue(lines, "Tingkat Kesulitan");
-                String cookingTime = extractValue(lines, "Waktu Memasak");
-                int rating = Integer.parseInt(extractValue(lines, "Rating"));
-
-                // Ubah rating menjadi bintang
-                String stars = "★".repeat(rating) + "☆".repeat(5 - rating);
-
-                // Tambahkan data ke tabel
-                recipeTablePanel.addRow(new Object[]{recipeName, difficulty, cookingTime, stars});
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            javax.swing.JOptionPane.showMessageDialog(this, "Gagal memuat data: " + e.getMessage());
+        // Pastikan folder ada
+        if (!java.nio.file.Files.exists(folderPath)) {
+            System.out.println("Folder tidak ditemukan: " + folderPath);
+            return;
         }
+
+        // Reset tabel sebelum memuat data baru
+        recipeTablePanel.clearTableData(); // Pastikan ini hanya dipanggil sekali
+
+        // Ambil file dalam folder dan muat datanya
+        File folder = folderPath.toFile();
+        File[] files = folder.listFiles();
+
+        if (files != null) {
+            for (File file : files) {
+                if (file.isFile() && file.getName().endsWith(".txt")) {
+                    // Contoh: Muat data dari file dan tambahkan ke tabel
+                    List<String> lines = java.nio.file.Files.readAllLines(file.toPath());
+                    // Parsing data dari lines dan tambahkan ke tabel
+                    System.out.println("Memuat data dari file: " + file.getName());
+                    // Tambahkan ke tabel di sini
+                }
+            }
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+        javax.swing.JOptionPane.showMessageDialog(this, "Gagal memuat data: " + e.getMessage(), "Kesalahan", JOptionPane.ERROR_MESSAGE);
     }
+}
+
 
     private String extractValue(java.util.List<String> lines, String key) {
         for (String line : lines) {
