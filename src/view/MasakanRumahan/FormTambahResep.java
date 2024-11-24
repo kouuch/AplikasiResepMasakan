@@ -49,6 +49,9 @@ public class FormTambahResep extends javax.swing.JPanel {
             int rating = ratingSlider.getValue();
             String stars = "★".repeat(rating) + "☆".repeat(5 - rating);
             ratingLabel.setText("Rating: " + stars);
+            
+            // Set nilai awal saat GUI pertama kali diload
+        cookingTimeLabel.setText("Waktu Memasak: " + cookingTimeSpinner.getValue() + "m");
         });
          
 
@@ -285,8 +288,9 @@ public class FormTambahResep extends javax.swing.JPanel {
     }//GEN-LAST:event_ratingSliderStateChanged
 
     private void cookingTimeSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_cookingTimeSpinnerStateChanged
-        int time = (int) ((JSpinner) evt.getSource()).getValue();
-        cookingTimeLabel.setText("Waktu Memasak: " + time + "m");
+         // Ambil nilai saat spinner berubah
+    int time = (int) cookingTimeSpinner.getValue();
+    cookingTimeLabel.setText("Waktu Memasak: " + time + "m");
     }//GEN-LAST:event_cookingTimeSpinnerStateChanged
 
     private void servingsSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_servingsSpinnerStateChanged
