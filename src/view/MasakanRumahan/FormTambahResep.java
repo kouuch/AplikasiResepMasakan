@@ -41,6 +41,11 @@ public class FormTambahResep extends javax.swing.JPanel {
         
         // Listener untuk slider rating
         ratingSlider.addChangeListener(e -> updateRatingLabel());
+        
+        // Atur model spinner waktu memasak (0 - 180 menit)
+        cookingTimeSpinner.setModel(new SpinnerNumberModel(0, 0, 180, 1));
+        cookingTimeSpinner.addChangeListener(e -> updateCookingTimeLabel());
+    }
         // Perbarui label rating saat aplikasi dijalankan
         int initialRating = ratingSlider.getValue();
         String initialStars = "★".repeat(initialRating) + "☆".repeat(5 - initialRating);
