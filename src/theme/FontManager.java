@@ -71,7 +71,17 @@ public class FontManager {
             return new Font("Arial", Font.PLAIN, (int) fontSize); // Fallback ke Arial
         }
     }
-
+    
+    public static Font getUnicodeCompatibleFont(int style, float fontSize) {
+    try {
+        // Gunakan font universal seperti "Segoe UI Symbol" untuk mendukung karakter Unicode
+        return new Font("Segoe UI Symbol", style, (int) fontSize);
+    } catch (Exception e) {
+        // Fallback jika font gagal dimuat
+        System.err.println("Gagal memuat font Unicode Compatible: " + e.getMessage());
+        return new Font("Arial", Font.PLAIN, (int) fontSize);
+    }
+}
     /**
      * Method untuk mendapatkan fallback font default.
      *

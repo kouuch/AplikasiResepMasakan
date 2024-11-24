@@ -18,29 +18,38 @@ public class FormTambahResep extends javax.swing.JPanel {
      * Creates new form FormTambahResep
      */
     public FormTambahResep() {
+        System.out.println("Font Unicode Compatible berhasil dimuat: " + ratingLabel.getFont().getName());
+
         initComponents();
-         difficultyLevelComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mudah", "Sedang", "Sulit" }));
-        
-        ratingLabel.setFont(FontManager.getPoppinsFont(Font.PLAIN, 14));
+        difficultyLevelComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Mudah", "Sedang", "Sulit"}));
+
+        // Atur properti slider
         ratingSlider.setMinimum(0);
         ratingSlider.setMaximum(5);
-        ratingSlider.setValue(3); // Nilai awal
+        ratingSlider.setValue(3); // Nilai awal slider
         ratingSlider.setMajorTickSpacing(1);
         ratingSlider.setPaintTicks(true);
         ratingSlider.setPaintLabels(true);
-         
-         // Perbarui label rating saat pertama kali aplikasi dijalankan
+
+        // Set font Unicode untuk rating label
+        ratingLabel.setFont(FontManager.getUnicodeCompatibleFont(Font.PLAIN, 14));
+        System.out.println("Font untuk ratingLabel: " + ratingLabel.getFont().getName());
+
+        // Perbarui label rating saat aplikasi dijalankan
         int initialRating = ratingSlider.getValue(); // Nilai awal slider
         String initialStars = "★".repeat(initialRating) + "☆".repeat(5 - initialRating);
         ratingLabel.setText("Rating: " + initialStars);
+        System.out.println("Rating awal: " + initialStars);
 
         // Tambahkan ChangeListener untuk memperbarui label setiap kali slider diubah
         ratingSlider.addChangeListener(e -> {
             int rating = ratingSlider.getValue();
             String stars = "★".repeat(rating) + "☆".repeat(5 - rating);
-        ratingLabel.setText("Rating: " + stars);
-        ratingLabel.setFont(FontManager.getPoppinsFont(Font.PLAIN, 14));;
-    });
+            ratingLabel.setText("Rating: " + stars);
+
+            // Debugging untuk memverifikasi output
+            System.out.println("Rating: " + stars);
+        });
          
 
     }
