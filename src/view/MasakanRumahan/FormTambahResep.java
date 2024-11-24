@@ -5,9 +5,11 @@
 package view.MasakanRumahan;
 
 import java.awt.Font;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import javax.swing.JSpinner;
+import javax.swing.JOptionPane;
+import javax.swing.SpinnerNumberModel;
 import theme.FontManager;
 
 /**
@@ -21,6 +23,7 @@ public class FormTambahResep extends javax.swing.JPanel {
      */
     public FormTambahResep() {
         initComponents();
+       // Mengatur pilihan tingkat kesulitan
         difficultyLevelComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Mudah", "Sedang", "Sulit"}));
 
         // Set properti ratingSlider

@@ -4,6 +4,8 @@
  */
 package view.MasakanRumahan;
 
+import view.MasakanRumahan.Daftarmasakan;
+
 /**
  *
  * @author User
@@ -86,7 +88,7 @@ public class FormEditResep extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         additionalIngredientArea = new javax.swing.JTextArea();
-        jButton3 = new javax.swing.JButton();
+        saveEditButton = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
 
         setLayout(new java.awt.CardLayout());
@@ -157,12 +159,12 @@ public class FormEditResep extends javax.swing.JPanel {
         additionalIngredientArea.setRows(5);
         jScrollPane2.setViewportView(additionalIngredientArea);
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Choose.png"))); // NOI18N
-        jButton3.setText("Simpan");
-        jButton3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        saveEditButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Choose.png"))); // NOI18N
+        saveEditButton.setText("Simpan");
+        saveEditButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        saveEditButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                saveEditButtonActionPerformed(evt);
             }
         });
 
@@ -183,7 +185,7 @@ public class FormEditResep extends javax.swing.JPanel {
                         .addComponent(jLabel4)
                         .addComponent(jLabel3)
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(saveEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createSequentialGroup()
@@ -229,7 +231,7 @@ public class FormEditResep extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(saveEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -242,7 +244,6 @@ public class FormEditResep extends javax.swing.JPanel {
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
@@ -278,8 +279,8 @@ public class FormEditResep extends javax.swing.JPanel {
     parentPanel.repaint();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // Ambil data dari field di form
+    private void saveEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveEditButtonActionPerformed
+           // Ambil data dari field di form
     String recipeName = recipeNameField.getText();
     String mainIngredients = mainIngredientArea.getText();
     String additionalIngredients = additionalIngredientArea.getText();
@@ -325,7 +326,7 @@ public class FormEditResep extends javax.swing.JPanel {
         e.printStackTrace();
         javax.swing.JOptionPane.showMessageDialog(this, "Gagal menyimpan resep: " + e.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
     }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_saveEditButtonActionPerformed
 
     private void ratingSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_ratingSliderStateChanged
         int rating = ratingSlider.getValue(); // Ambil nilai slider
@@ -346,7 +347,6 @@ public class FormEditResep extends javax.swing.JPanel {
     private javax.swing.JSpinner cookingTimeSpinner;
     private javax.swing.JComboBox<String> difficultyComboBox;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
@@ -364,6 +364,7 @@ public class FormEditResep extends javax.swing.JPanel {
     private javax.swing.JLabel ratingLabel;
     private javax.swing.JSlider ratingSlider;
     private javax.swing.JTextField recipeNameField;
+    private javax.swing.JButton saveEditButton;
     private javax.swing.JSpinner servingsSpinner;
     // End of variables declaration//GEN-END:variables
 }
