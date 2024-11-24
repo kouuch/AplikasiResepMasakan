@@ -14,52 +14,44 @@ public class FormEditResep extends javax.swing.JPanel {
      * Creates new form FormEditResep
      */
     public FormEditResep(String recipeName, String difficulty, String cookingTime, int servings, int initialRating, String mainIngredients, String additionalIngredients, String cookingSteps) {
-        initComponents();
+    initComponents();
 
-        // Set model untuk difficultyComboBox
-        difficultyComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"Mudah", "Sedang", "Sulit"}));
+    // Atur font untuk ratingLabel
+    ratingLabel.setFont(new java.awt.Font("Segoe UI Symbol", java.awt.Font.PLAIN, 14));
 
-        // Isi field dengan data dari tabel
-        recipeNameField.setText(recipeName);
-        difficultyComboBox.setSelectedItem(difficulty);
-        cookingTimeSpinner.setValue(Integer.parseInt(cookingTime.replace("m", "").trim()));
-        servingsSpinner.setValue(servings);
-        ratingSlider.setValue(initialRating); // Rating slider tetap berbentuk angka
+    // Konfigurasi ratingSlider
+    ratingSlider.setMinimum(0);
+    ratingSlider.setMaximum(5);
+    ratingSlider.setMajorTickSpacing(1);
+    ratingSlider.setPaintTicks(true);
+    ratingSlider.setPaintLabels(true);
 
-        // Konfigurasi ratingSlider
-        ratingSlider.setMinimum(0);
-        ratingSlider.setMaximum(5);
-        ratingSlider.setMajorTickSpacing(1);
-        ratingSlider.setPaintTicks(true);
-        ratingSlider.setPaintLabels(true);
+    // Set nilai awal rating dan label
+    ratingSlider.setValue(initialRating);
+    String initialStars = "★".repeat(initialRating) + "☆".repeat(5 - initialRating);
+    ratingLabel.setText("Rating: " + initialStars);
 
-        // Set font untuk ratingLabel
-        if (ratingLabel != null) {
-            ratingLabel.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 14));
-        } else {
-            System.err.println("ratingLabel belum diinisialisasi!");
-        }
+    // Tambahkan listener ke ratingSlider
+    ratingSlider.addChangeListener(e -> {
+        int rating = ratingSlider.getValue();
+        String stars = "★".repeat(rating) + "☆".repeat(5 - rating);
+        ratingLabel.setText("Rating: " + stars);
+    });
 
-        // Perbarui label rating saat aplikasi dijalankan
-        String initialStars = "★".repeat(initialRating) + "☆".repeat(5 - initialRating);
-        ratingLabel.setText("Rating: " + initialStars);
+    // Isi field lain dengan data dari parameter
+    recipeNameField.setText(recipeName);
+    difficultyComboBox.setSelectedItem(difficulty);
+    cookingTimeSpinner.setValue(Integer.parseInt(cookingTime.replace("m", "").trim()));
+    servingsSpinner.setValue(servings);
+    mainIngredientArea.setText(mainIngredients);
+    additionalIngredientArea.setText(additionalIngredients);
+    cookingStepsArea.setText(cookingSteps);
 
-        // Tambahkan ChangeListener untuk slider
-        ratingSlider.addChangeListener(e -> {
-            int currentRating = ratingSlider.getValue(); // Ambil nilai slider
-            String stars = "★".repeat(currentRating) + "☆".repeat(5 - currentRating); // Format bintang
-            ratingLabel.setText("Rating: " + stars); // Perbarui label
-        });
+    // Refresh UI
+    revalidate();
+    repaint();
+}
 
-        // Isi field lainnya
-        mainIngredientArea.setText(mainIngredients);
-        additionalIngredientArea.setText(additionalIngredients);
-        cookingStepsArea.setText(cookingSteps);
-
-        // Atur ulang UI jika perlu
-        revalidate();
-        repaint();
-    }
 
 
 
