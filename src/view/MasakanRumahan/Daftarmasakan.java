@@ -16,7 +16,20 @@ public class Daftarmasakan extends javax.swing.JPanel {
     public Daftarmasakan() {
         initComponents();
     }
+    private void openFormTambahResep(java.awt.event.ActionEvent evt) {
+    // Dapatkan parent container dari panel ini
+    javax.swing.JPanel parentPanel = (javax.swing.JPanel) this.getParent();
     
+    // Hapus semua komponen sebelumnya di parent panel
+    parentPanel.removeAll();
+    
+    // Tambahkan form FormTambahResep ke parent panel
+    parentPanel.add(new FormTambahResep());
+    
+    // Refresh tampilan
+    parentPanel.revalidate();
+    parentPanel.repaint();
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
