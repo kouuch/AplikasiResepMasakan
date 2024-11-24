@@ -23,6 +23,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import org.apache.batik.transcoder.TranscoderException;
 import theme.FlatLafManager;
 import view.FromMenuutama;
+import view.MasakanRumahan.Daftarmasakan;
 /**
  *
  * @author User
@@ -504,7 +505,13 @@ public class MenuUtama extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMenuutama2MouseExited
 
     private void btnMenuutama3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenuutama3MouseClicked
-        
+       pnMain.setBackground(Color.decode("#FDDBBB"));
+        pnLine.setBackground(Color.decode("#FFF5E1"));
+
+        pnUtama.removeAll();
+        pnUtama.add(new Daftarmasakan()); // Arahkan ke panel Daftarmasakan
+        pnUtama.repaint();
+        pnUtama.revalidate(); 
     }//GEN-LAST:event_btnMenuutama3MouseClicked
 
     private void btnMenuutama3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenuutama3MouseEntered
