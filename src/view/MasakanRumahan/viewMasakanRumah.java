@@ -15,7 +15,7 @@ import javax.swing.JTextArea;
  * @author User
  */
 public class viewMasakanRumah extends javax.swing.JPanel {
-    private JLabel nameLabel;
+     private JLabel nameLabel;
     private JTextArea ingredientsTextArea;
     private JTextArea stepsTextArea;
     private JLabel difficultyLabel;
@@ -24,6 +24,7 @@ public class viewMasakanRumah extends javax.swing.JPanel {
 
     public viewMasakanRumah() {
         initComponents();
+        initCustomComponents();
     }
 
     private void initCustomComponents() {
@@ -46,17 +47,17 @@ public class viewMasakanRumah extends javax.swing.JPanel {
         add(cookingTimeLabel);
         add(ratingLabel);
     }
-    
-    // Metode untuk mengatur data resep
-    public void setRecipeData(String recipeName, String mainIngredients, String cookingSteps,
-                          String difficulty, String cookingTime, String rating) {
-    nameLabel.setText(recipeName != null ? recipeName : "Nama Resep Tidak Tersedia");
-    ingredientsTextArea.setText(mainIngredients != null ? mainIngredients : "Bahan Tidak Tersedia");
-    stepsTextArea.setText(cookingSteps != null ? cookingSteps : "Langkah Memasak Tidak Tersedia");
-    difficultyLabel.setText(difficulty != null ? difficulty : "Tingkat Kesulitan Tidak Tersedia");
-    cookingTimeLabel.setText(cookingTime != null ? cookingTime : "Waktu Memasak Tidak Tersedia");
-    ratingLabel.setText(rating != null ? rating : "Rating Tidak Tersedia");
-}
+
+    // Gunakan `setRecipeData` untuk memperbarui komponen dengan data baru
+    public void setRecipeData(String recipeName, String mainIngredients, String cookingSteps, String difficulty, String cookingTime, String rating) {
+        nameLabel.setText(recipeName != null ? recipeName : "Nama Resep Tidak Tersedia");
+        ingredientsTextArea.setText(mainIngredients != null ? mainIngredients : "Bahan Tidak Tersedia");
+        stepsTextArea.setText(cookingSteps != null ? cookingSteps : "Langkah Memasak Tidak Tersedia");
+        difficultyLabel.setText(difficulty != null ? difficulty : "Tingkat Kesulitan Tidak Tersedia");
+        cookingTimeLabel.setText(cookingTime != null ? cookingTime : "Waktu Memasak Tidak Tersedia");
+        ratingLabel.setText(rating != null ? rating : "Rating Tidak Tersedia");
+    }
+  
 
 
     /**
