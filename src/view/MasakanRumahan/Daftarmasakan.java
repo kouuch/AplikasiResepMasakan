@@ -25,9 +25,9 @@ public class Daftarmasakan extends javax.swing.JPanel {
         loadTableData();
         
         // Tambahkan listener untuk tabel
-        table.getSelectionModel().addListSelectionListener(e -> {
-        if (!e.getValueIsAdjusting()) { // Pastikan perubahan selesai
-        selectedRow = table.getSelectedRow(); // Dapatkan baris yang dipilih
+        recipeTablePanel.getTable().getSelectionModel().addListSelectionListener(e -> {
+    if (!e.getValueIsAdjusting()) { // Pastikan perubahan selesai
+        selectedRow = recipeTablePanel.getTable().getSelectedRow(); // Dapatkan baris yang dipilih
         }
     });
     }
