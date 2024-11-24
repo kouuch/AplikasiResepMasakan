@@ -19,35 +19,59 @@ public class Daftarmasakan extends javax.swing.JPanel {
     public Daftarmasakan() {
         initComponents();
         
-         // Set header tabel
+          // Set header tabel
         recipeTablePanel.setTableHeaders(new String[]{"Nama Resep", "Tingkat Kesulitan", "Waktu Memasak", "Rating"});
 
         // Muat data ke tabel
         loadTableData();
-        // Tambahkan listener untuk tabel
-    recipeTablePanel.getTable().getSelectionModel().addListSelectionListener(e -> {
-        if (!e.getValueIsAdjusting()) { // Pastikan perubahan selesai
-            int selectedRow = recipeTablePanel.getTable().getSelectedRow(); // Dapatkan baris yang dipilih
-            if (selectedRow != -1) {
-                deleteButton.setEnabled(true); // Aktifkan tombol hapus jika ada baris dipilih
-            } else {
-                deleteButton.setEnabled(false); // Nonaktifkan tombol hapus jika tidak ada baris dipilih
-            }
-        }
-    });
 
-    // Nonaktifkan tombol hapus secara default
-    deleteButton.setEnabled(false);
-        
         // Tambahkan listener untuk tabel
         recipeTablePanel.getTable().getSelectionModel().addListSelectionListener(e -> {
-        if (!e.getValueIsAdjusting()) { // Pastikan perubahan selesai
-        selectedRow = recipeTablePanel.getTable().getSelectedRow(); // Dapatkan baris yang dipilih
-        }
-    });
-        
+            if (!e.getValueIsAdjusting()) { // Pastikan perubahan selesai
+                int selectedRow = recipeTablePanel.getTable().getSelectedRow(); // Dapatkan baris yang dipilih
+                deleteButton.setEnabled(selectedRow != -1); // Aktifkan tombol hapus jika ada baris dipilih
+            }
+        });
+
+        // Nonaktifkan tombol hapus secara default
+        deleteButton.setEnabled(false);
+
+        // Tambahkan aksi untuk tombol hapus
+        deleteButton.addActionListener(evt -> {
+            deleteSelectedRecipe();
+        });
     }
-    private int selectedRow = -1; // Baris yang dipilih di tabel
+
+    private void deleteSelectedRecipe() {
+        JTable table = recipeTablePanel.getTable();
+        int selectedRow = table.getSelectedRow();
+
+        if (selectedRow != -1) {
+            int confirm = javax.swing.JOptionPane.showConfirmDialog(this,
+                "Apakah Anda yakin ingin menghapus resep ini?",
+                "Konfirmasi Hapus",
+                javax.swing.JOptionPane.YES_NO_OPTION);
+
+            if (confirm == javax.swing.JOptionPane.YES_OPTION) {
+                String recipeName = (String) table.getValueAt(selectedRow, 0); // Ambil nama resep
+                try {
+                    // Hapus file resep dari folder
+                    java.nio.file.Path filePath = java.nio.file.Paths.get("data/FmasakanRumahan/" + recipeName + ".txt");
+                    java.nio.file.Files.deleteIfExists(filePath);
+
+                    // Hapus baris dari tabel
+                    ((DefaultTableModel) table.getModel()).removeRow(selectedRow);
+
+                    javax.swing.JOptionPane.showMessageDialog(this, "Resep berhasil dihapus!");
+                } catch (Exception e) {
+                    javax.swing.JOptionPane.showMessageDialog(this, "Gagal menghapus resep: " + e.getMessage());
+                }
+            }
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Pilih resep yang ingin dihapus!");
+        }
+    }
+
     private void loadTableData() {
         try {
             java.nio.file.Path folderPath = java.nio.file.Paths.get("data/FmasakanRumahan");
@@ -93,19 +117,19 @@ public class Daftarmasakan extends javax.swing.JPanel {
     }
 
     private void openFormTambahResep(java.awt.event.ActionEvent evt) {
-    // Dapatkan parent container dari panel ini
-    javax.swing.JPanel parentPanel = (javax.swing.JPanel) this.getParent();
-    
-    // Hapus semua komponen sebelumnya di parent panel
-    parentPanel.removeAll();
-    
-    // Tambahkan form FormTambahResep ke parent panel
-    parentPanel.add(new FormTambahResep());
-    
-    // Refresh tampilan
-    parentPanel.revalidate();
-    parentPanel.repaint();
-}
+        // Dapatkan parent container dari panel ini
+        javax.swing.JPanel parentPanel = (javax.swing.JPanel) this.getParent();
+
+        // Hapus semua komponen sebelumnya di parent panel
+        parentPanel.removeAll();
+
+        // Tambahkan form FormTambahResep ke parent panel
+        parentPanel.add(new FormTambahResep());
+
+        // Refresh tampilan
+        parentPanel.revalidate();
+        parentPanel.repaint();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
