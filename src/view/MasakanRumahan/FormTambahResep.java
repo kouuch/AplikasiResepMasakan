@@ -288,6 +288,7 @@ public class FormTambahResep extends javax.swing.JPanel {
 
     private void addRecipeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRecipeButtonActionPerformed
         try {
+        // Ambil nilai dari field
         String recipeName = recipeNameField.getText();
         String mainIngredient = mainIngredientTextArea.getText();
         String additionalIngredient = additionalIngredientTextArea.getText();
@@ -299,29 +300,37 @@ public class FormTambahResep extends javax.swing.JPanel {
 
         // Format data untuk disimpan
         String data = String.format(
-            "Nama Resep: %s%nBahan Utama: %s%nBahan Tambahan: %s%nTingkat Kesulitan: %s%nWaktu Memasak: %dm%nPorsi: %d%nRating: %d%nCara Memasak:%n%s",
-            recipeName, mainIngredient, additionalIngredient, difficulty, cookingTime, servings, rating, instructions
-        );
+                "Nama Resep: %s%nBahan Utama: %s%nBahan Tambahan: %s%nTingkat Kesulitan: %s%nWaktu Memasak: %dm%nPorsi: %d%nRating: %d%nCara Memasak:%n%s",
+                recipeName, mainIngredient, additionalIngredient, difficulty, cookingTime, servings, rating, instructions);
 
-        // Ambil path ke folder FmasakanRumahan
-        String folderPath = System.getProperty("user.dir") + "/src/FmasakanRumahan";
-
-        // Buat folder jika belum ada
-        java.nio.file.Path path = java.nio.file.Paths.get(folderPath);
-        if (!java.nio.file.Files.exists(path)) {
-            java.nio.file.Files.createDirectories(path);
-        }
-
-        // Simpan file di folder
+        // Simpan ke file
         java.nio.file.Files.write(
-            java.nio.file.Paths.get(folderPath + "/" + recipeName + ".txt"),
+            java.nio.file.Paths.get("FmasakanRumahan/" + recipeName + ".txt"),
             data.getBytes()
         );
 
+        // Tampilkan pesan sukses
         javax.swing.JOptionPane.showMessageDialog(this, "Resep berhasil disimpan!");
+
+        // Kosongkan semua input
+        clearFormFields();
+
     } catch (Exception ex) {
+        // Tampilkan pesan error jika gagal
         javax.swing.JOptionPane.showMessageDialog(this, "Gagal menyimpan resep: " + ex.getMessage());
     }
+}                                               
+
+// Metode untuk mengosongkan semua input di form
+private void clearFormFields() {
+    recipeNameField.setText(""); // Kosongkan nama resep
+    mainIngredientTextArea.setText(""); // Kosongkan bahan utama
+    additionalIngredientTextArea.setText(""); // Kosongkan bahan tambahan
+    difficultyLevelComboBox.setSelectedIndex(0); // Reset tingkat kesulitan ke indeks pertama
+    cookingTimeSpinner.setValue(0); // Reset waktu memasak ke 0
+    servingsSpinner.setValue(0); // Reset porsi ke 0
+    ratingSlider.setValue(3); // Reset rating slider ke nilai default
+    instructionsTextArea.setText(""); // Kosongkan cara memasak
     }//GEN-LAST:event_addRecipeButtonActionPerformed
 
 
