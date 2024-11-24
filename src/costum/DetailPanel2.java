@@ -3,14 +3,14 @@ package costum;
 import javax.swing.*;
 import java.awt.*;
 
-public class DetailPanel extends JPanel {
+public class DetailPanel2 extends JPanel {
     private JLabel namaResepLabel;
     private JTextArea bahanTextArea;
     private JTextArea caraMemasakTextArea;
     private JLabel ratingLabel;
     private JLabel gambarLabel;
 
-    public DetailPanel() {
+    public DetailPanel2() {
         setLayout(new BorderLayout(10, 10));
 
         // Panel atas untuk nama resep
@@ -31,6 +31,8 @@ public class DetailPanel extends JPanel {
         bahanTextArea.setWrapStyleWord(true);
         bahanTextArea.setLineWrap(true);
         bahanTextArea.setEditable(false);
+        bahanTextArea.setFont(new Font("Serif", Font.PLAIN, 16));
+        bahanTextArea.setMargin(new Insets(10, 10, 10, 10)); // Tambahkan margin untuk teks
         JScrollPane bahanScrollPane = new JScrollPane(bahanTextArea);
         bahanPanel.add(bahanLabel, BorderLayout.NORTH);
         bahanPanel.add(bahanScrollPane, BorderLayout.CENTER);
@@ -43,6 +45,8 @@ public class DetailPanel extends JPanel {
         caraMemasakTextArea.setWrapStyleWord(true);
         caraMemasakTextArea.setLineWrap(true);
         caraMemasakTextArea.setEditable(false);
+        caraMemasakTextArea.setFont(new Font("Serif", Font.PLAIN, 16));
+        caraMemasakTextArea.setMargin(new Insets(10, 10, 10, 10)); // Tambahkan margin untuk teks
         JScrollPane caraScrollPane = new JScrollPane(caraMemasakTextArea);
         caraPanel.add(caraLabel, BorderLayout.NORTH);
         caraPanel.add(caraScrollPane, BorderLayout.CENTER);
@@ -56,6 +60,7 @@ public class DetailPanel extends JPanel {
         // Rating
         ratingLabel = new JLabel("Rating: ⭐⭐⭐⭐");
         ratingLabel.setFont(new Font("Serif", Font.BOLD, 18));
+        ratingLabel.setHorizontalAlignment(SwingConstants.CENTER);
         footerPanel.add(ratingLabel, BorderLayout.NORTH);
 
         // Gambar
