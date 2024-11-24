@@ -261,7 +261,7 @@ public class Daftarmasakan extends javax.swing.JPanel {
         String cookingSteps = "Isi cara memasak"; // Ambil dari file atau database
 
         // Panggil panel detail dan kirim data
-        viewMasakanRumah detailPanel = new viewMasakanRumah();
+        ViewMasakanRumah detailPanel = new ViewMasakanRumah();
         detailPanel.setRecipeData(recipeName, mainIngredients, cookingSteps, difficulty, cookingTime, rating);
 
         // Pindah ke panel baru
