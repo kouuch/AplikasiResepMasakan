@@ -59,6 +59,11 @@ public class FormTambahResep extends javax.swing.JPanel {
         int time = (int) cookingTimeSpinner.getValue();
         cookingTimeLabel.setText("Waktu Memasak: " + time + " menit");
     }
+
+        // Metode untuk menyimpan resep
+        private void saveRecipe() {
+        try {
+            Path folderPath = Paths.get("data/FmasakanRumahan");
         // Perbarui label rating saat aplikasi dijalankan
         int initialRating = ratingSlider.getValue();
         String initialStars = "★".repeat(initialRating) + "☆".repeat(5 - initialRating);
