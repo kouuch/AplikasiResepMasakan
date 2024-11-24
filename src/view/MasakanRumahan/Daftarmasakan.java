@@ -256,14 +256,21 @@ public class Daftarmasakan extends javax.swing.JPanel {
         String cookingTime = (String) table.getValueAt(selectedRow, 2);
         String rating = (String) table.getValueAt(selectedRow, 3);
 
-        // Detail tambahan dari file (bahan, cara memasak, dll.)
-        String mainIngredients = "Isi bahan utama"; // Ambil dari file atau database
-        String cookingSteps = "Isi cara memasak";  // Ambil dari file atau database
-        String image = "path/gambar/masakan.jpg"; // Ambil lokasi gambar
+        // Debugging log
+        System.out.println("Nama Resep: " + recipeName);
+        System.out.println("Tingkat Kesulitan: " + difficulty);
+        System.out.println("Waktu Memasak: " + cookingTime);
+        System.out.println("Rating: " + rating);
+
+        // Pastikan data valid
+        if (recipeName == null || recipeName.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Data tidak valid!");
+            return;
+        }
 
         // Buka panel viewMasakanRumah dengan data
         viewMasakanRumah detailPanel = new viewMasakanRumah();
-        detailPanel.setRecipeData(recipeName, mainIngredients, cookingSteps, difficulty, cookingTime, rating, image);
+        detailPanel.setRecipeData(recipeName, "Bahan Dummy", "Langkah Dummy", difficulty, cookingTime, rating);
 
         // Pindah ke panel baru
         javax.swing.JPanel parentPanel = (javax.swing.JPanel) this.getParent();

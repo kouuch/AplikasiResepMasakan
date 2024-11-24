@@ -4,18 +4,60 @@
  */
 package view.MasakanRumahan;
 
+import java.awt.GridLayout;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
+
 /**
  *
  * @author User
  */
 public class viewMasakanRumah extends javax.swing.JPanel {
+    private JLabel nameLabel;
+    private JTextArea ingredientsTextArea;
+    private JTextArea stepsTextArea;
+    private JLabel difficultyLabel;
+    private JLabel cookingTimeLabel;
+    private JLabel ratingLabel;
 
-    /**
-     * Creates new form viewMasakanRumah
-     */
     public viewMasakanRumah() {
         initComponents();
     }
+
+    private void initCustomComponents() {
+        // Inisialisasi komponen
+        nameLabel = new JLabel("Nama Resep Tidak Tersedia");
+        ingredientsTextArea = new JTextArea("Bahan Tidak Tersedia");
+        ingredientsTextArea.setEditable(false);
+        stepsTextArea = new JTextArea("Langkah Memasak Tidak Tersedia");
+        stepsTextArea.setEditable(false);
+        difficultyLabel = new JLabel("Tingkat Kesulitan Tidak Tersedia");
+        cookingTimeLabel = new JLabel("Waktu Memasak Tidak Tersedia");
+        ratingLabel = new JLabel("Rating Tidak Tersedia");
+
+        // Atur layout dan tambahkan komponen
+        setLayout(new GridLayout(6, 1)); // Layout sederhana untuk demonstrasi
+        add(nameLabel);
+        add(new JScrollPane(ingredientsTextArea));
+        add(new JScrollPane(stepsTextArea));
+        add(difficultyLabel);
+        add(cookingTimeLabel);
+        add(ratingLabel);
+    }
+    
+    // Metode untuk mengatur data resep
+    public void setRecipeData(String recipeName, String mainIngredients, String cookingSteps,
+                          String difficulty, String cookingTime, String rating) {
+    nameLabel.setText(recipeName != null ? recipeName : "Nama Resep Tidak Tersedia");
+    ingredientsTextArea.setText(mainIngredients != null ? mainIngredients : "Bahan Tidak Tersedia");
+    stepsTextArea.setText(cookingSteps != null ? cookingSteps : "Langkah Memasak Tidak Tersedia");
+    difficultyLabel.setText(difficulty != null ? difficulty : "Tingkat Kesulitan Tidak Tersedia");
+    cookingTimeLabel.setText(cookingTime != null ? cookingTime : "Waktu Memasak Tidak Tersedia");
+    ratingLabel.setText(rating != null ? rating : "Rating Tidak Tersedia");
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
