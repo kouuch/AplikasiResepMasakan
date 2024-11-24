@@ -53,6 +53,12 @@ public class FormTambahResep extends javax.swing.JPanel {
         String stars = "★".repeat(rating) + "☆".repeat(5 - rating);
         ratingLabel.setText("Rating: " + stars);
     }
+
+        // Metode untuk memperbarui label waktu memasak
+        private void updateCookingTimeLabel() {
+        int time = (int) cookingTimeSpinner.getValue();
+        cookingTimeLabel.setText("Waktu Memasak: " + time + " menit");
+    }
         // Perbarui label rating saat aplikasi dijalankan
         int initialRating = ratingSlider.getValue();
         String initialStars = "★".repeat(initialRating) + "☆".repeat(5 - initialRating);
