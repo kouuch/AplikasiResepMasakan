@@ -15,6 +15,7 @@ public class FormTambahResep extends javax.swing.JPanel {
      */
     public FormTambahResep() {
         initComponents();
+         difficultyLevelComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mudah", "Sedang", "Sulit" }));
     }
     
 
