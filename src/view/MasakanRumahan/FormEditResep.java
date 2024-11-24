@@ -13,23 +13,54 @@ public class FormEditResep extends javax.swing.JPanel {
     /**
      * Creates new form FormEditResep
      */
-    public FormEditResep(String recipeName, String difficulty, String cookingTime, int servings, int rating, String mainIngredients, String additionalIngredients, String cookingSteps) {
-    initComponents();
+    public FormEditResep(String recipeName, String difficulty, String cookingTime, int servings, int initialRating, String mainIngredients, String additionalIngredients, String cookingSteps) {
+        initComponents();
 
-    // Isi field dengan data dari tabel
-    recipeNameField.setText(recipeName);
-    difficultyComboBox.setSelectedItem(difficulty);
-    cookingTimeSpinner.setValue(Integer.parseInt(cookingTime.replace("m", "").trim()));
-    servingsSpinner.setValue(servings);
-    ratingSlider.setValue(rating);
-    mainIngredientArea.setText(mainIngredients);
-    additionalIngredientArea.setText(additionalIngredients);
-    cookingStepsArea.setText(cookingSteps);
+        // Set model untuk difficultyComboBox
+        difficultyComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"Mudah", "Sedang", "Sulit"}));
 
-    // Atur ulang UI jika perlu
-    revalidate();
-    repaint();
-}
+        // Isi field dengan data dari tabel
+        recipeNameField.setText(recipeName);
+        difficultyComboBox.setSelectedItem(difficulty);
+        cookingTimeSpinner.setValue(Integer.parseInt(cookingTime.replace("m", "").trim()));
+        servingsSpinner.setValue(servings);
+        ratingSlider.setValue(initialRating); // Rating slider tetap berbentuk angka
+
+        // Konfigurasi ratingSlider
+        ratingSlider.setMinimum(0);
+        ratingSlider.setMaximum(5);
+        ratingSlider.setMajorTickSpacing(1);
+        ratingSlider.setPaintTicks(true);
+        ratingSlider.setPaintLabels(true);
+
+        // Set font untuk ratingLabel
+        if (ratingLabel != null) {
+            ratingLabel.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 14));
+        } else {
+            System.err.println("ratingLabel belum diinisialisasi!");
+        }
+
+        // Perbarui label rating saat aplikasi dijalankan
+        String initialStars = "★".repeat(initialRating) + "☆".repeat(5 - initialRating);
+        ratingLabel.setText("Rating: " + initialStars);
+
+        // Tambahkan ChangeListener untuk slider
+        ratingSlider.addChangeListener(e -> {
+            int currentRating = ratingSlider.getValue(); // Ambil nilai slider
+            String stars = "★".repeat(currentRating) + "☆".repeat(5 - currentRating); // Format bintang
+            ratingLabel.setText("Rating: " + stars); // Perbarui label
+        });
+
+        // Isi field lainnya
+        mainIngredientArea.setText(mainIngredients);
+        additionalIngredientArea.setText(additionalIngredients);
+        cookingStepsArea.setText(cookingSteps);
+
+        // Atur ulang UI jika perlu
+        revalidate();
+        repaint();
+    }
+
 
 
     /**
@@ -52,7 +83,7 @@ public class FormEditResep extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         mainIngredientArea = new javax.swing.JTextArea();
         difficultyComboBox = new javax.swing.JComboBox<>();
-        jLabel10 = new javax.swing.JLabel();
+        ratingLabel = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         recipeNameField = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -93,8 +124,8 @@ public class FormEditResep extends javax.swing.JPanel {
 
         difficultyComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel10.setText("Rating");
+        ratingLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        ratingLabel.setText("Rating");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("logo");
@@ -106,8 +137,20 @@ public class FormEditResep extends javax.swing.JPanel {
         jLabel2.setForeground(new java.awt.Color(222, 170, 121));
         jLabel2.setText("Edit Resep Masakan Rumahan");
 
+        ratingSlider.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                ratingSliderStateChanged(evt);
+            }
+        });
+
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("Bahan Utama");
+
+        cookingTimeSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                cookingTimeSpinnerStateChanged(evt);
+            }
+        });
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Choose.png"))); // NOI18N
         jButton1.setText("Batal");
@@ -172,13 +215,12 @@ public class FormEditResep extends javax.swing.JPanel {
                                 .addComponent(jLabel11))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(165, 165, 165)
-                                    .addComponent(jLabel10)
-                                    .addGap(84, 84, 84))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(ratingSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(9, 9, 9))))
+                                    .addGap(65, 65, 65)
+                                    .addComponent(ratingSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(155, 155, 155)
+                                    .addComponent(ratingLabel)))
+                            .addGap(9, 9, 9))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(recipeNameField, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 754, Short.MAX_VALUE))))
@@ -210,14 +252,14 @@ public class FormEditResep extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(22, 22, 22)
                         .addComponent(ratingSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(jLabel7)
-                            .addComponent(jLabel9))
+                            .addComponent(jLabel9)
+                            .addComponent(ratingLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(difficultyComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -292,6 +334,18 @@ public class FormEditResep extends javax.swing.JPanel {
     }
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void ratingSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_ratingSliderStateChanged
+        int rating = ratingSlider.getValue(); // Ambil nilai slider
+        String stars = "★".repeat(rating) + "☆".repeat(5 - rating); // Format bintang
+        ratingLabel.setText("Rating: " + stars); // Perbarui label
+    }//GEN-LAST:event_ratingSliderStateChanged
+
+    private void cookingTimeSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_cookingTimeSpinnerStateChanged
+        // Ambil nilai saat spinner berubah
+    int time = (int) cookingTimeSpinner.getValue();
+    jLabel7.setText("Waktu Memasak: " + time + "m");
+    }//GEN-LAST:event_cookingTimeSpinnerStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea additionalIngredientArea;
@@ -301,7 +355,6 @@ public class FormEditResep extends javax.swing.JPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -315,6 +368,7 @@ public class FormEditResep extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextArea mainIngredientArea;
+    private javax.swing.JLabel ratingLabel;
     private javax.swing.JSlider ratingSlider;
     private javax.swing.JTextField recipeNameField;
     private javax.swing.JSpinner servingsSpinner;
