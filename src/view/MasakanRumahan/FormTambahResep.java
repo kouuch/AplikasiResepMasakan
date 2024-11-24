@@ -102,6 +102,11 @@ public class FormTambahResep extends javax.swing.JPanel {
         backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Choose.png"))); // NOI18N
         backButton.setText("Kembali");
         backButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
 
         addRecipeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Choose.png"))); // NOI18N
         addRecipeButton.setText("Tambah");
@@ -341,6 +346,14 @@ private void clearFormFields() {
     ratingSlider.setValue(3); // Reset rating slider ke nilai default
     instructionsTextArea.setText(""); // Kosongkan cara memasak
     }//GEN-LAST:event_addRecipeButtonActionPerformed
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+    javax.swing.JPanel parentPanel = (javax.swing.JPanel) this.getParent();
+    parentPanel.removeAll();
+    parentPanel.add(new Daftarmasakan());
+    parentPanel.repaint();
+    parentPanel.revalidate();
+    }//GEN-LAST:event_backButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
