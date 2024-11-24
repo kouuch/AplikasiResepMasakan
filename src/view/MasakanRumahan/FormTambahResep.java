@@ -38,7 +38,9 @@ public class FormTambahResep extends javax.swing.JPanel {
         if (ratingLabel != null) {
             ratingLabel.setFont(FontManager.getUnicodeCompatibleFont(Font.PLAIN, 14));
         }
-
+        
+        // Listener untuk slider rating
+        ratingSlider.addChangeListener(e -> updateRatingLabel());
         // Perbarui label rating saat aplikasi dijalankan
         int initialRating = ratingSlider.getValue();
         String initialStars = "★".repeat(initialRating) + "☆".repeat(5 - initialRating);
