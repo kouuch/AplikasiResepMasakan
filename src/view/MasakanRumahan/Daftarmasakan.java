@@ -85,11 +85,12 @@ public class DaftarMasakan extends javax.swing.JPanel {
         // Pastikan folder ada
         if (!java.nio.file.Files.exists(folderPath)) {
             System.out.println("Folder tidak ditemukan: " + folderPath);
-            return; // Jika folder tidak ada, keluar dari metode
+            return;
         }
 
         // Reset tabel sebelum memuat data baru
-        recipeTablePanel.clearTableData(); // Pastikan ini hanya dipanggil sekali
+        javax.swing.table.DefaultTableModel tableModel = (javax.swing.table.DefaultTableModel) recipeTablePanel.getTable().getModel();
+        tableModel.setRowCount(0); // Membersihkan semua baris dari tabel
         System.out.println("Tabel direset, memuat data baru...");
 
         // Ambil file dalam folder dan muat datanya
@@ -105,13 +106,26 @@ public class DaftarMasakan extends javax.swing.JPanel {
                     // Baca isi file
                     List<String> lines = java.nio.file.Files.readAllLines(file.toPath());
                     
-                    // Log isi file untuk debugging (opsional)
+                    // Parsing data dari file
+                    String recipeName = "";
+                    String difficulty = "";
+                    String cookingTime = "";
+                    String rating = "";
+
                     for (String line : lines) {
-                        System.out.println("  " + line);
+                        if (line.startsWith("Nama Resep:")) {
+                            recipeName = line.replace("Nama Resep:", "").trim();
+                        } else if (line.startsWith("Tingkat Kesulitan:")) {
+                            difficulty = line.replace("Tingkat Kesulitan:", "").trim();
+                        } else if (line.startsWith("Waktu Memasak:")) {
+                            cookingTime = line.replace("Waktu Memasak:", "").trim();
+                        } else if (line.startsWith("Rating:")) {
+                            rating = line.replace("Rating:", "").trim();
+                        }
                     }
 
-                    // Parsing data dari lines dan tambahkan ke tabel (sesuaikan dengan struktur tabel Anda)
-                    // Misalnya: Tambahkan ke model tabel
+                    // Tambahkan data ke tabel model
+                    tableModel.addRow(new Object[]{recipeName, difficulty, cookingTime, rating});
                 }
             }
             System.out.println("Pemuatan data selesai.");
@@ -119,10 +133,12 @@ public class DaftarMasakan extends javax.swing.JPanel {
             System.out.println("Tidak ada file di folder: " + folderPath);
         }
     } catch (Exception e) {
-        e.printStackTrace(); // Log lengkap error ke console
+        e.printStackTrace();
         javax.swing.JOptionPane.showMessageDialog(this, "Gagal memuat data: " + e.getMessage(), "Kesalahan", JOptionPane.ERROR_MESSAGE);
     }
 }
+
+
 
 
 
