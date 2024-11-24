@@ -275,7 +275,7 @@ public class FormEditResep extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // Kembali ke form Daftarmasakan
+    // Kembali ke form Daftarmasakan
     javax.swing.JPanel parentPanel = (javax.swing.JPanel) this.getParent();
     parentPanel.removeAll();
     parentPanel.add(new DaftarMasakan());
@@ -284,7 +284,7 @@ public class FormEditResep extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void saveEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveEditButtonActionPerformed
-       // Ambil data dari field di form
+        // Ambil data dari field di form
     String recipeName = recipeNameField.getText();
     String mainIngredients = mainIngredientArea.getText();
     String additionalIngredients = additionalIngredientArea.getText();
@@ -334,6 +334,7 @@ public class FormEditResep extends javax.swing.JPanel {
         e.printStackTrace();
         JOptionPane.showMessageDialog(this, "Gagal menyimpan resep: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
+    
     }//GEN-LAST:event_saveEditButtonActionPerformed
 
     private void ratingSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_ratingSliderStateChanged
@@ -343,7 +344,7 @@ public class FormEditResep extends javax.swing.JPanel {
     }//GEN-LAST:event_ratingSliderStateChanged
 
     private void cookingTimeSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_cookingTimeSpinnerStateChanged
-         // Ambil nilai saat spinner berubah
+     // Ambil nilai saat spinner berubah
     int time = (int) cookingTimeSpinner.getValue();
     jLabel7.setText("Waktu Memasak: " + time + "m");
     }//GEN-LAST:event_cookingTimeSpinnerStateChanged

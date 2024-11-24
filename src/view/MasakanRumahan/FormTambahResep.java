@@ -381,7 +381,7 @@ public class FormTambahResep extends javax.swing.JPanel {
     }//GEN-LAST:event_ratingSliderStateChanged
 
     private void cookingTimeSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_cookingTimeSpinnerStateChanged
-         // Ambil nilai saat spinner berubah
+    // Ambil nilai saat spinner berubah
     int time = (int) cookingTimeSpinner.getValue();
     cookingTimeLabel.setText("Waktu Memasak: " + time + "m");
     }//GEN-LAST:event_cookingTimeSpinnerStateChanged
@@ -391,8 +391,7 @@ public class FormTambahResep extends javax.swing.JPanel {
     }//GEN-LAST:event_servingsSpinnerStateChanged
 
     private void addRecipeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRecipeButtonActionPerformed
-
-    try {
+        try {
         // Jalur folder penyimpanan
         Path folderPath = Paths.get("data/FmasakanRumahan");
 
