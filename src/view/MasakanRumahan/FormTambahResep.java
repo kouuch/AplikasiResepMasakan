@@ -287,7 +287,8 @@ public class FormTambahResep extends javax.swing.JPanel {
     }//GEN-LAST:event_servingsSpinnerStateChanged
 
     private void addRecipeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRecipeButtonActionPerformed
-        try {
+                                               
+    try {
         // Ambil nilai dari field
         String recipeName = recipeNameField.getText();
         String mainIngredient = mainIngredientTextArea.getText();
@@ -303,23 +304,31 @@ public class FormTambahResep extends javax.swing.JPanel {
                 "Nama Resep: %s%nBahan Utama: %s%nBahan Tambahan: %s%nTingkat Kesulitan: %s%nWaktu Memasak: %dm%nPorsi: %d%nRating: %d%nCara Memasak:%n%s",
                 recipeName, mainIngredient, additionalIngredient, difficulty, cookingTime, servings, rating, instructions);
 
+        // Lokasi folder
+        java.nio.file.Path folderPath = java.nio.file.Paths.get("FmasakanRumahan");
+        
+        // Cek apakah folder ada, jika tidak buat folder baru
+        if (!java.nio.file.Files.exists(folderPath)) {
+            java.nio.file.Files.createDirectories(folderPath);
+        }
+
         // Simpan ke file
         java.nio.file.Files.write(
-            java.nio.file.Paths.get("FmasakanRumahan/" + recipeName + ".txt"),
+            java.nio.file.Paths.get(folderPath.toString(), recipeName + ".txt"),
             data.getBytes()
         );
 
         // Tampilkan pesan sukses
         javax.swing.JOptionPane.showMessageDialog(this, "Resep berhasil disimpan!");
 
-        // Kosongkan semua input
+        // Kosongkan form
         clearFormFields();
 
     } catch (Exception ex) {
         // Tampilkan pesan error jika gagal
         javax.swing.JOptionPane.showMessageDialog(this, "Gagal menyimpan resep: " + ex.getMessage());
     }
-}                                               
+}                                                                                              
 
 // Metode untuk mengosongkan semua input di form
 private void clearFormFields() {
