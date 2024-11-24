@@ -4,11 +4,13 @@
  */
 package view.MasakanRumahan;
 
-import java.awt.GridLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-
 
 /**
  *
@@ -23,102 +25,107 @@ public class viewMasakanRumah extends javax.swing.JPanel {
     private JLabel ratingLabel;
 
     public viewMasakanRumah() {
-        initComponents();
         initCustomComponents();
     }
 
     private void initCustomComponents() {
-        setLayout(new java.awt.GridBagLayout());
-    java.awt.GridBagConstraints gbc = new java.awt.GridBagConstraints();
-    gbc.fill = java.awt.GridBagConstraints.HORIZONTAL;
-    gbc.insets = new java.awt.Insets(10, 10, 10, 10);
+        // Inisialisasi komponen
+        nameLabel = new JLabel("Nama Resep Tidak Tersedia");
+        nameLabel.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 20)); // Font untuk nama resep
+        
+        ingredientsTextArea = new JTextArea("Bahan Tidak Tersedia");
+        ingredientsTextArea.setEditable(false);
+        ingredientsTextArea.setLineWrap(true);
+        ingredientsTextArea.setWrapStyleWord(true);
 
-    // Nama Resep
-    gbc.gridx = 0;
-    gbc.gridy = 0;
-    gbc.gridwidth = 2;
-    nameLabel = new JLabel("Nama Resep Tidak Tersedia", JLabel.CENTER);
-    nameLabel.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 18));
-    add(nameLabel, gbc);
+        stepsTextArea = new JTextArea("Langkah Memasak Tidak Tersedia");
+        stepsTextArea.setEditable(false);
+        stepsTextArea.setLineWrap(true);
+        stepsTextArea.setWrapStyleWord(true);
 
-    // Bahan
-    gbc.gridy++;
-    gbc.gridwidth = 1;
-    JLabel ingredientsLabel = new JLabel("Bahan:");
-    ingredientsLabel.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 14));
-    add(ingredientsLabel, gbc);
+        difficultyLabel = new JLabel("Tingkat Kesulitan Tidak Tersedia");
+        cookingTimeLabel = new JLabel("Waktu Memasak Tidak Tersedia");
+        ratingLabel = new JLabel("Rating Tidak Tersedia");
 
-    gbc.gridx = 1;
-    ingredientsTextArea = new JTextArea("Bahan Tidak Tersedia");
-    ingredientsTextArea.setEditable(false);
-    ingredientsTextArea.setLineWrap(true);
-    ingredientsTextArea.setWrapStyleWord(true);
-    add(new JScrollPane(ingredientsTextArea), gbc);
+        // Layout untuk pengaturan komponen
+        setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
 
-    // Langkah Memasak
-    gbc.gridx = 0;
-    gbc.gridy++;
-    JLabel stepsLabel = new JLabel("Langkah Memasak:");
-    stepsLabel.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 14));
-    add(stepsLabel, gbc);
+        // Tambahkan label nama resep
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        gbc.insets = new Insets(10, 10, 10, 10);
+        gbc.anchor = GridBagConstraints.CENTER;
+        add(nameLabel, gbc);
 
-    gbc.gridx = 1;
-    stepsTextArea = new JTextArea("Langkah Memasak Tidak Tersedia");
-    stepsTextArea.setEditable(false);
-    stepsTextArea.setLineWrap(true);
-    stepsTextArea.setWrapStyleWord(true);
-    add(new JScrollPane(stepsTextArea), gbc);
+        // Tambahkan label bahan
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.gridwidth = 1;
+        gbc.anchor = GridBagConstraints.WEST;
+        add(new JLabel("Bahan:"), gbc);
 
-    // Tingkat Kesulitan
-    gbc.gridx = 0;
-    gbc.gridy++;
-    JLabel difficultyTextLabel = new JLabel("Tingkat Kesulitan:");
-    difficultyTextLabel.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 14));
-    add(difficultyTextLabel, gbc);
+        // Tambahkan area scroll untuk bahan
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.weightx = 1.0;
+        gbc.weighty = 0.2;
+        add(new JScrollPane(ingredientsTextArea), gbc);
 
-    gbc.gridx = 1;
-    difficultyLabel = new JLabel("Tidak Tersedia");
-    add(difficultyLabel, gbc);
+        // Tambahkan label langkah memasak
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.weighty = 0;
+        add(new JLabel("Langkah Memasak:"), gbc);
 
-    // Waktu Memasak
-    gbc.gridx = 0;
-    gbc.gridy++;
-    JLabel timeLabel = new JLabel("Waktu Memasak:");
-    timeLabel.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 14));
-    add(timeLabel, gbc);
+        // Tambahkan area scroll untuk langkah memasak
+        gbc.gridx = 1;
+        gbc.gridy = 2;
+        gbc.weighty = 0.5;
+        add(new JScrollPane(stepsTextArea), gbc);
 
-    gbc.gridx = 1;
-    cookingTimeLabel = new JLabel("Tidak Tersedia");
-    add(cookingTimeLabel, gbc);
+        // Tambahkan label tingkat kesulitan
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.weighty = 0;
+        add(new JLabel("Tingkat Kesulitan:"), gbc);
 
-    // Rating
-    gbc.gridx = 0;
-    gbc.gridy++;
-    JLabel ratingTextLabel = new JLabel("Rating:");
-    ratingTextLabel.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 14));
-    add(ratingTextLabel, gbc);
+        gbc.gridx = 1;
+        gbc.gridy = 3;
+        add(difficultyLabel, gbc);
 
-    gbc.gridx = 1;
-    ratingLabel = new JLabel("Tidak Tersedia");
-    add(ratingLabel, gbc);
+        // Tambahkan label waktu memasak
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        add(new JLabel("Waktu Memasak:"), gbc);
 
+        gbc.gridx = 1;
+        gbc.gridy = 4;
+        add(cookingTimeLabel, gbc);
+
+        // Tambahkan label rating
+        gbc.gridx = 0;
+        gbc.gridy = 5;
+        add(new JLabel("Rating:"), gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 5;
+        add(ratingLabel, gbc);
     }
 
-   public void setRecipeData(String recipeName, String mainIngredients, String cookingSteps, String difficulty, String cookingTime, String rating) {
-    System.out.println("Nama Resep: " + recipeName);
-    System.out.println("Bahan: " + mainIngredients);
-    System.out.println("Langkah Memasak: " + cookingSteps);
-    System.out.println("Tingkat Kesulitan: " + difficulty);
-    System.out.println("Waktu Memasak: " + cookingTime);
-    System.out.println("Rating: " + rating);
+    // Gunakan metode ini untuk mengatur data resep
+    public void setRecipeData(String recipeName, String mainIngredients, String cookingSteps,
+                              String difficulty, String cookingTime, String rating) {
+        nameLabel.setText(recipeName != null ? recipeName : "Nama Resep Tidak Tersedia");
+        ingredientsTextArea.setText(mainIngredients != null ? mainIngredients : "Bahan Tidak Tersedia");
+        stepsTextArea.setText(cookingSteps != null ? cookingSteps : "Langkah Memasak Tidak Tersedia");
+        difficultyLabel.setText(difficulty != null ? difficulty : "Tingkat Kesulitan Tidak Tersedia");
+        cookingTimeLabel.setText(cookingTime != null ? cookingTime : "Waktu Memasak Tidak Tersedia");
+        ratingLabel.setText(rating != null ? rating : "Rating Tidak Tersedia");
+    }
 
-    nameLabel.setText(recipeName != null ? recipeName : "Nama Resep Tidak Tersedia");
-    ingredientsTextArea.setText(mainIngredients != null ? mainIngredients : "Bahan Tidak Tersedia");
-    stepsTextArea.setText(cookingSteps != null ? cookingSteps : "Langkah Memasak Tidak Tersedia");
-    difficultyLabel.setText(difficulty != null ? difficulty : "Tingkat Kesulitan Tidak Tersedia");
-    cookingTimeLabel.setText(cookingTime != null ? cookingTime : "Waktu Memasak Tidak Tersedia");
-    ratingLabel.setText(rating != null ? rating : "Rating Tidak Tersedia");
-}
   
 
 
