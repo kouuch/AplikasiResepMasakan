@@ -1,9 +1,8 @@
 Nama Resep: ada
-Bahan Utama: ad
+Bahan Utama: sada
 Bahan Tambahan: asda
-Tingkat Kesulitan: Mudah
+Cara Memasak: Isi cara memasak
+Tingkat Kesulitan: Item 1
 Waktu Memasak: 0m
 Porsi: 0
-Rating: 3
-Cara Memasak:
-asdas
+Rating: 1

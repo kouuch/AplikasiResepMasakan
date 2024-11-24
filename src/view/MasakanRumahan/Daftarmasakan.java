@@ -19,6 +19,7 @@ public class DaftarMasakan extends javax.swing.JPanel {
     /**
      * Creates new form Daftarmasakan
      */
+    private DefaultTableModel tableModel;
     public DaftarMasakan() {
         initComponents();
 
@@ -307,7 +308,7 @@ public class DaftarMasakan extends javax.swing.JPanel {
     }//GEN-LAST:event_selectButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        openFormTambahResep(evt);
+        openFormTambahResep();
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
@@ -365,7 +366,7 @@ public class DaftarMasakan extends javax.swing.JPanel {
         parentPanel.revalidate();
         parentPanel.repaint();
     } else {
-        javax.swing.JOptionPane.showMessageDialog(this, "Pilih resep yang ingin dilihat!");
+        //javax.swing.JOptionPane.showMessageDialog(this, "Pilih resep yang ingin dilihat!");
     }
 
     
