@@ -292,10 +292,13 @@ public class FormTambahResep extends javax.swing.JPanel {
     }//GEN-LAST:event_servingsSpinnerStateChanged
 
     private void addRecipeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRecipeButtonActionPerformed
-                                               
     try {
-        // Ambil nilai dari field
-        String recipeName = recipeNameField.getText();
+        String recipeName = recipeNameField.getText().trim(); // Trim untuk menghindari spasi tidak sengaja
+        if (recipeName.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Nama resep tidak boleh kosong!", "Peringatan", javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
         String mainIngredient = mainIngredientTextArea.getText();
         String additionalIngredient = additionalIngredientTextArea.getText();
         String difficulty = (String) difficultyLevelComboBox.getSelectedItem();
@@ -304,34 +307,31 @@ public class FormTambahResep extends javax.swing.JPanel {
         int rating = ratingSlider.getValue();
         String instructions = instructionsTextArea.getText();
 
-        // Format data untuk disimpan
-        String data = String.format(
-                "Nama Resep: %s%nBahan Utama: %s%nBahan Tambahan: %s%nTingkat Kesulitan: %s%nWaktu Memasak: %dm%nPorsi: %d%nRating: %d%nCara Memasak:%n%s",
-                recipeName, mainIngredient, additionalIngredient, difficulty, cookingTime, servings, rating, instructions);
+        java.nio.file.Path filePath = java.nio.file.Paths.get("FmasakanRumahan/" + recipeName + ".txt");
 
-        // Lokasi folder
-        java.nio.file.Path folderPath = java.nio.file.Paths.get("FmasakanRumahan");
-        
-        // Cek apakah folder ada, jika tidak buat folder baru
-        if (!java.nio.file.Files.exists(folderPath)) {
-            java.nio.file.Files.createDirectories(folderPath);
+        // Periksa apakah file sudah ada
+        if (java.nio.file.Files.exists(filePath)) {
+            int response = javax.swing.JOptionPane.showConfirmDialog(this, 
+                    "Resep dengan nama yang sama sudah ada. Apakah Anda ingin menimpa?", 
+                    "Konfirmasi", javax.swing.JOptionPane.YES_NO_OPTION, 
+                    javax.swing.JOptionPane.WARNING_MESSAGE);
+            if (response != javax.swing.JOptionPane.YES_OPTION) {
+                return; // Batalkan jika pengguna memilih "No"
+            }
         }
 
-        // Simpan ke file
-        java.nio.file.Files.write(
-            java.nio.file.Paths.get(folderPath.toString(), recipeName + ".txt"),
-            data.getBytes()
-        );
+        String data = String.format("Nama Resep: %s%nBahan Utama: %s%nBahan Tambahan: %s%nTingkat Kesulitan: %s%nWaktu Memasak: %dm%nPorsi: %d%nRating: %d%nCara Memasak:%n%s",
+                recipeName, mainIngredient, additionalIngredient, difficulty, cookingTime, servings, rating, instructions);
 
-        // Tampilkan pesan sukses
+        // Tulis ke file
+        java.nio.file.Files.write(filePath, data.getBytes());
+
         javax.swing.JOptionPane.showMessageDialog(this, "Resep berhasil disimpan!");
 
-        // Kosongkan form
+        // Kosongkan semua input setelah berhasil menyimpan
         clearFormFields();
-
     } catch (Exception ex) {
-        // Tampilkan pesan error jika gagal
-        javax.swing.JOptionPane.showMessageDialog(this, "Gagal menyimpan resep: " + ex.getMessage());
+        javax.swing.JOptionPane.showMessageDialog(this, "Gagal menyimpan resep: " + ex.getMessage(), "Kesalahan", javax.swing.JOptionPane.ERROR_MESSAGE);
     }
 }                                                                                              
 
