@@ -106,6 +106,11 @@ public class FormTambahResep extends javax.swing.JPanel {
         addRecipeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Choose.png"))); // NOI18N
         addRecipeButton.setText("Tambah");
         addRecipeButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        addRecipeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addRecipeButtonActionPerformed(evt);
+            }
+        });
 
         recipeNameLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         recipeNameLabel.setText("Nama Resep");
@@ -280,6 +285,30 @@ public class FormTambahResep extends javax.swing.JPanel {
     private void servingsSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_servingsSpinnerStateChanged
         
     }//GEN-LAST:event_servingsSpinnerStateChanged
+
+    private void addRecipeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRecipeButtonActionPerformed
+        try {
+        String recipeName = recipeNameField.getText();
+        String mainIngredient = mainIngredientTextArea.getText();
+        String additionalIngredient = additionalIngredientTextArea.getText();
+        String difficulty = (String) difficultyLevelComboBox.getSelectedItem();
+        int cookingTime = (int) cookingTimeSpinner.getValue();
+        int servings = (int) servingsSpinner.getValue();
+        int rating = ratingSlider.getValue();
+        String instructions = instructionsTextArea.getText();
+
+        String data = String.format("Nama Resep: %s%nBahan Utama: %s%nBahan Tambahan: %s%nTingkat Kesulitan: %s%nWaktu Memasak: %dm%nPorsi: %d%nRating: %d%nCara Memasak:%n%s",
+                recipeName, mainIngredient, additionalIngredient, difficulty, cookingTime, servings, rating, instructions);
+
+        java.nio.file.Files.write(
+            java.nio.file.Paths.get("FmasakanRumahan/" + recipeName + ".txt"),
+            data.getBytes()
+        );
+        javax.swing.JOptionPane.showMessageDialog(this, "Resep berhasil disimpan!");
+    } catch (Exception ex) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Gagal menyimpan resep: " + ex.getMessage());
+    }
+    }//GEN-LAST:event_addRecipeButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
