@@ -21,128 +21,80 @@ public class DaftarMasakan extends javax.swing.JPanel {
      */
     public DaftarMasakan() {
         initComponents();
-        
-          // Set header tabel
-        recipeTablePanel.setTableHeaders(new String[]{"Nama Resep", "Tingkat Kesulitan", "Waktu Memasak", "Rating"});
 
-        // Muat data ke tabel
+        // Define the table model with complete columns
+        tableModel = new DefaultTableModel(new Object[]{
+            "Nama Resep", "Tingkat Kesulitan", "Waktu Memasak", "Rating", "Bahan Utama", "Bahan Tambahan", "Cara Memasak"
+        }, 0);
+
+        recipeTablePanel.getTable().setModel(tableModel);
+
+        // Load data into the table
         loadTableData();
 
-        // Tambahkan listener untuk tabel
+        // Add listener for table selection
         recipeTablePanel.getTable().getSelectionModel().addListSelectionListener(e -> {
-            if (!e.getValueIsAdjusting()) { // Pastikan perubahan selesai
-                int selectedRow = recipeTablePanel.getTable().getSelectedRow(); // Dapatkan baris yang dipilih
-                deleteButton.setEnabled(selectedRow != -1); // Aktifkan tombol hapus jika ada baris dipilih
+            if (!e.getValueIsAdjusting()) {
+                int selectedRow = recipeTablePanel.getTable().getSelectedRow();
+                deleteButton.setEnabled(selectedRow != -1); // Enable delete button if a row is selected
             }
         });
 
-        // Nonaktifkan tombol hapus secara default
+        // Disable delete button by default
         deleteButton.setEnabled(false);
 
-        // Tambahkan aksi untuk tombol hapus
+        // Add action for delete button
         deleteButton.addActionListener(evt -> {
             deleteSelectedRecipe();
         });
     }
 
-    private void deleteSelectedRecipe() {
-        JTable table = recipeTablePanel.getTable();
-        int selectedRow = table.getSelectedRow();
-
-        if (selectedRow != -1) {
-            int confirm = javax.swing.JOptionPane.showConfirmDialog(this,
-                "Apakah Anda yakin ingin menghapus resep ini?",
-                "Konfirmasi Hapus",
-                javax.swing.JOptionPane.YES_NO_OPTION);
-
-            if (confirm == javax.swing.JOptionPane.YES_OPTION) {
-                String recipeName = (String) table.getValueAt(selectedRow, 0); // Ambil nama resep
-                try {
-                    // Hapus file resep dari folder
-                    java.nio.file.Path filePath = java.nio.file.Paths.get("data/FmasakanRumahan/" + recipeName + ".txt");
-                    java.nio.file.Files.deleteIfExists(filePath);
-
-                    // Hapus baris dari tabel
-                    ((DefaultTableModel) table.getModel()).removeRow(selectedRow);
-
-                    javax.swing.JOptionPane.showMessageDialog(this, "Resep berhasil dihapus!");
-                } catch (Exception e) {
-                    javax.swing.JOptionPane.showMessageDialog(this, "Gagal menghapus resep: " + e.getMessage());
-                }
-            }
-        } else {
-            //javax.swing.JOptionPane.showMessageDialog(this, "Pilih resep yang ingin dihapus!");
-        }
-    }
-
     private void loadTableData() {
-    try {
-        java.nio.file.Path folderPath = java.nio.file.Paths.get("data/FmasakanRumahan");
+        try {
+            java.nio.file.Path folderPath = java.nio.file.Paths.get("data/FmasakanRumahan");
 
-        // Log untuk memantau apakah folder ditemukan
-        System.out.println("Memeriksa folder: " + folderPath.toAbsolutePath());
+            // Check if the folder exists
+            if (!java.nio.file.Files.exists(folderPath)) {
+                System.out.println("Folder not found: " + folderPath);
+                return;
+            }
 
-        // Pastikan folder ada
-        if (!java.nio.file.Files.exists(folderPath)) {
-            System.out.println("Folder tidak ditemukan: " + folderPath);
-            return;
-        }
+            // Clear the table before loading new data
+            tableModel.setRowCount(0);
 
-        // Reset tabel sebelum memuat data baru
-        javax.swing.table.DefaultTableModel tableModel = (javax.swing.table.DefaultTableModel) recipeTablePanel.getTable().getModel();
-        tableModel.setRowCount(0); // Membersihkan semua baris dari tabel
-        System.out.println("Tabel direset, memuat data baru...");
+            // Read files in the folder
+            File folder = folderPath.toFile();
+            File[] files = folder.listFiles();
 
-        // Ambil file dalam folder dan muat datanya
-        File folder = folderPath.toFile();
-        File[] files = folder.listFiles();
+            if (files != null) {
+                for (File file : files) {
+                    if (file.isFile() && file.getName().endsWith(".txt")) {
+                        // Read file contents
+                        List<String> lines = java.nio.file.Files.readAllLines(file.toPath());
 
-        if (files != null) {
-            for (File file : files) {
-                if (file.isFile() && file.getName().endsWith(".txt")) {
-                    // Log file yang sedang diproses
-                    System.out.println("Memproses file: " + file.getName());
+                        // Extract data
+                        String recipeName = extractValue(lines, "Nama Resep");
+                        String difficulty = extractValue(lines, "Tingkat Kesulitan");
+                        String cookingTime = extractValue(lines, "Waktu Memasak");
+                        String rating = extractValue(lines, "Rating");
+                        String mainIngredients = extractValue(lines, "Bahan Utama");
+                        String additionalIngredients = extractValue(lines, "Bahan Tambahan");
+                        String cookingSteps = extractValue(lines, "Cara Memasak");
 
-                    // Baca isi file
-                    List<String> lines = java.nio.file.Files.readAllLines(file.toPath());
-                    
-                    // Parsing data dari file
-                    String recipeName = "";
-                    String difficulty = "";
-                    String cookingTime = "";
-                    String rating = "";
-
-                    for (String line : lines) {
-                        if (line.startsWith("Nama Resep:")) {
-                            recipeName = line.replace("Nama Resep:", "").trim();
-                        } else if (line.startsWith("Tingkat Kesulitan:")) {
-                            difficulty = line.replace("Tingkat Kesulitan:", "").trim();
-                        } else if (line.startsWith("Waktu Memasak:")) {
-                            cookingTime = line.replace("Waktu Memasak:", "").trim();
-                        } else if (line.startsWith("Rating:")) {
-                            rating = line.replace("Rating:", "").trim();
-                        }
+                        // Add data to table
+                        tableModel.addRow(new Object[]{
+                            recipeName, difficulty, cookingTime, rating, mainIngredients, additionalIngredients, cookingSteps
+                        });
                     }
-
-                    // Tambahkan data ke tabel model
-                    tableModel.addRow(new Object[]{recipeName, difficulty, cookingTime, rating});
                 }
             }
-            System.out.println("Pemuatan data selesai.");
-        } else {
-            System.out.println("Tidak ada file di folder: " + folderPath);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Gagal memuat data: " + e.getMessage(), "Kesalahan", JOptionPane.ERROR_MESSAGE);
         }
-    } catch (Exception e) {
-        e.printStackTrace();
-        javax.swing.JOptionPane.showMessageDialog(this, "Gagal memuat data: " + e.getMessage(), "Kesalahan", JOptionPane.ERROR_MESSAGE);
     }
-}
 
-
-
-
-
-    private String extractValue(java.util.List<String> lines, String key) {
+    private String extractValue(List<String> lines, String key) {
         for (String line : lines) {
             if (line.startsWith(key + ":")) {
                 return line.split(":", 2)[1].trim();
@@ -151,19 +103,63 @@ public class DaftarMasakan extends javax.swing.JPanel {
         return "";
     }
 
-    private void openFormTambahResep(java.awt.event.ActionEvent evt) {
-        // Dapatkan parent container dari panel ini
+    private void deleteSelectedRecipe() {
+        JTable table = recipeTablePanel.getTable();
+        int selectedRow = table.getSelectedRow();
+
+        if (selectedRow != -1) {
+            int confirm = JOptionPane.showConfirmDialog(this,
+                "Apakah Anda yakin ingin menghapus resep ini?",
+                "Konfirmasi Hapus",
+                JOptionPane.YES_NO_OPTION);
+
+            if (confirm == JOptionPane.YES_OPTION) {
+                String recipeName = (String) table.getValueAt(selectedRow, 0); // Get recipe name
+                try {
+                    // Delete recipe file
+                    java.nio.file.Path filePath = java.nio.file.Paths.get("data/FmasakanRumahan/" + recipeName + ".txt");
+                    java.nio.file.Files.deleteIfExists(filePath);
+
+                    // Remove row from table
+                    tableModel.removeRow(selectedRow);
+
+                    JOptionPane.showMessageDialog(this, "Resep berhasil dihapus!");
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, "Gagal menghapus resep: " + e.getMessage());
+                }
+            }
+        }
+    }
+
+    private void openFormTambahResep() {
         javax.swing.JPanel parentPanel = (javax.swing.JPanel) this.getParent();
-
-        // Hapus semua komponen sebelumnya di parent panel
         parentPanel.removeAll();
-
-        // Tambahkan form FormTambahResep ke parent panel
         parentPanel.add(new FormTambahResep());
-
-        // Refresh tampilan
         parentPanel.revalidate();
         parentPanel.repaint();
+    }
+
+    private void openFormEditResep() {
+        JTable table = recipeTablePanel.getTable();
+        int selectedRow = table.getSelectedRow();
+
+        if (selectedRow != -1) {
+            // Get selected row data
+            String recipeName = (String) table.getValueAt(selectedRow, 0);
+            String difficulty = (String) table.getValueAt(selectedRow, 1);
+            String cookingTime = (String) table.getValueAt(selectedRow, 2);
+            String rating = (String) table.getValueAt(selectedRow, 3);
+            String mainIngredients = (String) table.getValueAt(selectedRow, 4);
+            String additionalIngredients = (String) table.getValueAt(selectedRow, 5);
+            String cookingSteps = (String) table.getValueAt(selectedRow, 6);
+
+            // Open edit form
+            javax.swing.JPanel parentPanel = (javax.swing.JPanel) this.getParent();
+            parentPanel.removeAll();
+            parentPanel.add(new FormEditResep(recipeName, difficulty, cookingTime, 0, Integer.parseInt(rating), mainIngredients, additionalIngredients, cookingSteps));
+            parentPanel.revalidate();
+            parentPanel.repaint();
+        }
     }
 
     /**
@@ -281,7 +277,7 @@ public class DaftarMasakan extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void selectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectButtonActionPerformed
-     JTable table = recipeTablePanel.getTable();
+    JTable table = recipeTablePanel.getTable();
     int selectedRow = table.getSelectedRow();
 
     if (selectedRow != -1) {
@@ -308,7 +304,6 @@ public class DaftarMasakan extends javax.swing.JPanel {
     } else {
         javax.swing.JOptionPane.showMessageDialog(this, "Pilih resep yang ingin dilihat!");
     }
-
     }//GEN-LAST:event_selectButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
@@ -341,10 +336,7 @@ public class DaftarMasakan extends javax.swing.JPanel {
     parentPanel.repaint();
 } else {
     javax.swing.JOptionPane.showMessageDialog(this, "Pilih resep yang ingin diedit!");
-}
-
-    
-      
+}      
     }//GEN-LAST:event_editButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed

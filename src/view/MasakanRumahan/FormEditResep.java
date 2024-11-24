@@ -9,7 +9,6 @@ import javax.swing.JOptionPane;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-
 /**
  *
  * @author User
@@ -19,7 +18,7 @@ public class FormEditResep extends javax.swing.JPanel {
     /**
      * Creates new form FormEditResep
      */
-    public FormEditResep(String recipeName, String difficulty, String cookingTime, int servings, int initialRating, String mainIngredients, String additionalIngredients, String cookingSteps) {
+     public FormEditResep(String recipeName, String difficulty, String cookingTime, int servings, int initialRating, String mainIngredients, String additionalIngredients, String cookingSteps) {
     initComponents();
 
     // Atur font untuk ratingLabel
@@ -57,7 +56,6 @@ public class FormEditResep extends javax.swing.JPanel {
     revalidate();
     repaint();
 }
-
 
 
 
@@ -284,7 +282,7 @@ public class FormEditResep extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void saveEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveEditButtonActionPerformed
-        // Ambil data dari field di form
+    // Ambil data dari field di form
     String recipeName = recipeNameField.getText();
     String mainIngredients = mainIngredientArea.getText();
     String additionalIngredients = additionalIngredientArea.getText();
@@ -334,7 +332,6 @@ public class FormEditResep extends javax.swing.JPanel {
         e.printStackTrace();
         JOptionPane.showMessageDialog(this, "Gagal menyimpan resep: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
-    
     }//GEN-LAST:event_saveEditButtonActionPerformed
 
     private void ratingSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_ratingSliderStateChanged

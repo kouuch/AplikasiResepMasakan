@@ -1,8 +1,8 @@
-Nama Resep: abal
-Bahan Utama: Isi bahan saa
+Nama Resep: sapiaasa
+Bahan Utama: aaIsi bahan utama
 Bahan Tambahan: Isi bahan tambahan
 Cara Memasak: Isi cara memasak
 Tingkat Kesulitan: Item 1
-Waktu Memasak: 6m
+Waktu Memasak: 0m
 Porsi: 0
 Rating: 1

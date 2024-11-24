@@ -22,7 +22,7 @@ public class FormTambahResep extends javax.swing.JPanel {
     /**
      * Creates new form FormTambahResep
      */
-    public FormTambahResep() {
+     public FormTambahResep() {
         initComponents();
 
         // Mengatur pilihan tingkat kesulitan
