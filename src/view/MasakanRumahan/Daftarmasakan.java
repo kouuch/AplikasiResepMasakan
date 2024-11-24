@@ -351,29 +351,31 @@ public class DaftarMasakan extends javax.swing.JPanel {
     int selectedRow = table.getSelectedRow();
 
     if (selectedRow != -1) {
-        int confirm = javax.swing.JOptionPane.showConfirmDialog(this, 
-            "Apakah Anda yakin ingin menghapus resep ini?", 
-            "Konfirmasi Hapus", 
-            javax.swing.JOptionPane.YES_NO_OPTION);
+        // Ambil data dari baris yang dipilih
+        String recipeName = (String) table.getValueAt(selectedRow, 0); // Nama Resep
+        String difficulty = (String) table.getValueAt(selectedRow, 1); // Tingkat Kesulitan
+        String cookingTime = (String) table.getValueAt(selectedRow, 2); // Waktu Memasak
+        String rating = (String) table.getValueAt(selectedRow, 3); // Rating
 
-        if (confirm == javax.swing.JOptionPane.YES_OPTION) {
-            String recipeName = (String) table.getValueAt(selectedRow, 0); // Ambil nama resep
-            try {
-                // Hapus file resep dari folder
-                java.nio.file.Path filePath = java.nio.file.Paths.get("data/FmasakanRumahan/" + recipeName + ".txt");
-                java.nio.file.Files.deleteIfExists(filePath);
+        // Pastikan bahan dan langkah memasak diambil dari sumber data
+        String mainIngredients = "Isi bahan utama"; // Ambil dari file atau database
+        String cookingSteps = "Isi cara memasak"; // Ambil dari file atau database
 
-                // Hapus baris dari tabel
-                ((DefaultTableModel) table.getModel()).removeRow(selectedRow);
+        // Panggil panel detail dan kirim data
+        ViewMasakanRumah detailPanel = new ViewMasakanRumah();
+        detailPanel.setRecipeData(recipeName, mainIngredients, cookingSteps, difficulty, cookingTime, rating);
 
-                javax.swing.JOptionPane.showMessageDialog(this, "Resep berhasil dihapus!");
-            } catch (Exception e) {
-                javax.swing.JOptionPane.showMessageDialog(this, "Gagal menghapus resep: " + e.getMessage());
-            }
-        }
+        // Pindah ke panel baru
+        javax.swing.JPanel parentPanel = (javax.swing.JPanel) this.getParent();
+        parentPanel.removeAll();
+        parentPanel.add(detailPanel);
+        parentPanel.revalidate();
+        parentPanel.repaint();
     } else {
-        //javax.swing.JOptionPane.showMessageDialog(this, "Pilih resep yang ingin dihapus!");
+        javax.swing.JOptionPane.showMessageDialog(this, "Pilih resep yang ingin dilihat!");
     }
+
+    
     }//GEN-LAST:event_deleteButtonActionPerformed
 
 
