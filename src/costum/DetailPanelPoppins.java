@@ -63,7 +63,7 @@ public class DetailPanelPoppins extends JPanel {
         footerPanel.add(ratingLabel, BorderLayout.NORTH);
 
         // Gambar
-        gambarLabel = new JLabel("Ini adalah gambar masakan", SwingConstants.CENTER);
+        gambarLabel = new JLabel("", SwingConstants.CENTER); // Kosongkan teks awal
         gambarLabel.setFont(FontManager.getPoppinsFont(Font.ITALIC, 16));
         gambarLabel.setBorder(BorderFactory.createLineBorder(Color.GRAY));
         gambarLabel.setPreferredSize(new Dimension(300, 200));
