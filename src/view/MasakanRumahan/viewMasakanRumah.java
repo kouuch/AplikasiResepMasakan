@@ -15,7 +15,7 @@ import javax.swing.JTextArea;
  * @author User
  */
 public class viewMasakanRumah extends javax.swing.JPanel {
-     private JLabel nameLabel;
+    private JLabel nameLabel;
     private JTextArea ingredientsTextArea;
     private JTextArea stepsTextArea;
     private JLabel difficultyLabel;
