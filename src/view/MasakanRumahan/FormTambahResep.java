@@ -4,6 +4,8 @@
  */
 package view.MasakanRumahan;
 
+import javax.swing.JSpinner;
+
 /**
  *
  * @author User
@@ -16,6 +18,8 @@ public class FormTambahResep extends javax.swing.JPanel {
     public FormTambahResep() {
         initComponents();
          difficultyLevelComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mudah", "Sedang", "Sulit" }));
+         
+
     }
     
 
@@ -50,8 +54,8 @@ public class FormTambahResep extends javax.swing.JPanel {
         instructionsScrollPane = new javax.swing.JScrollPane();
         instructionsTextArea = new javax.swing.JTextArea();
         instructionsLabel = new javax.swing.JLabel();
-        cookingTimeSpinner = new com.toedter.components.JSpinField();
         servingsSpinner = new com.toedter.components.JSpinField();
+        cookingTimeSpinner = new javax.swing.JSpinner();
 
         setLayout(new java.awt.CardLayout());
 
@@ -96,6 +100,7 @@ public class FormTambahResep extends javax.swing.JPanel {
         difficultyLevelComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         cookingTimeLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        cookingTimeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cookingTimeLabel.setText("Waktu Memasak");
 
         servingsLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -106,12 +111,24 @@ public class FormTambahResep extends javax.swing.JPanel {
         ratingLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ratingLabel.setText("Rating");
 
+        ratingSlider.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                ratingSliderStateChanged(evt);
+            }
+        });
+
         instructionsTextArea.setColumns(20);
         instructionsTextArea.setRows(5);
         instructionsScrollPane.setViewportView(instructionsTextArea);
 
         instructionsLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         instructionsLabel.setText("Cara Memasak");
+
+        cookingTimeSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                cookingTimeSpinnerStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
@@ -120,8 +137,8 @@ public class FormTambahResep extends javax.swing.JPanel {
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(additionalIngredientScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 754, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(instructionsLabel)
-                    .addComponent(instructionsScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 754, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(additionalIngredientLabel)
                     .addComponent(mainIngredientLabel)
                     .addComponent(recipeNameLabel)
@@ -137,24 +154,27 @@ public class FormTambahResep extends javax.swing.JPanel {
                         .addComponent(recipeNameField, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(mainIngredientScrollPane, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 754, Short.MAX_VALUE))
                     .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(instructionsScrollPane, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 754, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(mainPanelLayout.createSequentialGroup()
-                            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(difficultyLevelComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(difficultyLevelLabel, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addGap(93, 93, 93)
+                            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                                    .addComponent(cookingTimeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(278, 278, 278))
+                                .addGroup(mainPanelLayout.createSequentialGroup()
+                                    .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(difficultyLevelComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(difficultyLevelLabel, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addGap(70, 70, 70)
+                                    .addComponent(cookingTimeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(60, 60, 60)
+                                    .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(servingsSpinner, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                                        .addComponent(servingsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(cookingTimeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cookingTimeSpinner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGap(90, 90, 90)
-                            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(servingsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
-                                .addComponent(servingsSpinner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGap(86, 86, 86)
-                            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(ratingLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(ratingSlider, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)))
-                        .addComponent(additionalIngredientScrollPane, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 754, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                                .addComponent(ratingSlider, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                                .addComponent(ratingLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addGap(20, 20, 20))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,15 +204,17 @@ public class FormTambahResep extends javax.swing.JPanel {
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(difficultyLevelLabel)
-                            .addComponent(cookingTimeLabel)
-                            .addComponent(servingsLabel))
+                            .addComponent(cookingTimeLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(difficultyLevelComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cookingTimeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(difficultyLevelComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cookingTimeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(servingsSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addComponent(ratingLabel)
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ratingLabel)
+                            .addComponent(servingsLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ratingSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -205,6 +227,15 @@ public class FormTambahResep extends javax.swing.JPanel {
         add(mainPanel, "card2");
     }// </editor-fold>//GEN-END:initComponents
 
+    private void ratingSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_ratingSliderStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ratingSliderStateChanged
+
+    private void cookingTimeSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_cookingTimeSpinnerStateChanged
+        int time = (int) ((JSpinner) evt.getSource()).getValue();
+        cookingTimeLabel.setText("Waktu Memasak: " + time + "m");
+    }//GEN-LAST:event_cookingTimeSpinnerStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addRecipeButton;
@@ -213,7 +244,7 @@ public class FormTambahResep extends javax.swing.JPanel {
     private javax.swing.JTextArea additionalIngredientTextArea;
     private javax.swing.JButton backButton;
     private javax.swing.JLabel cookingTimeLabel;
-    private com.toedter.components.JSpinField cookingTimeSpinner;
+    private javax.swing.JSpinner cookingTimeSpinner;
     private javax.swing.JComboBox<String> difficultyLevelComboBox;
     private javax.swing.JLabel difficultyLevelLabel;
     private javax.swing.JLabel formTitleLabel;
