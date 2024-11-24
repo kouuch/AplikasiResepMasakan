@@ -246,7 +246,34 @@ public class Daftarmasakan extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void selectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectButtonActionPerformed
-        // TODO add your handling code here:
+        JTable table = recipeTablePanel.getTable();
+    int selectedRow = table.getSelectedRow();
+
+    if (selectedRow != -1) {
+        // Ambil data dari baris yang dipilih
+        String recipeName = (String) table.getValueAt(selectedRow, 0);
+        String difficulty = (String) table.getValueAt(selectedRow, 1);
+        String cookingTime = (String) table.getValueAt(selectedRow, 2);
+        String rating = (String) table.getValueAt(selectedRow, 3);
+
+        // Detail tambahan dari file (bahan, cara memasak, dll.)
+        String mainIngredients = "Isi bahan utama"; // Ambil dari file atau database
+        String cookingSteps = "Isi cara memasak";  // Ambil dari file atau database
+        String image = "path/gambar/masakan.jpg"; // Ambil lokasi gambar
+
+        // Buka panel viewMasakanRumah dengan data
+        viewMasakanRumah detailPanel = new viewMasakanRumah();
+        detailPanel.setRecipeData(recipeName, mainIngredients, cookingSteps, difficulty, cookingTime, rating, image);
+
+        // Pindah ke panel baru
+        javax.swing.JPanel parentPanel = (javax.swing.JPanel) this.getParent();
+        parentPanel.removeAll();
+        parentPanel.add(detailPanel);
+        parentPanel.revalidate();
+        parentPanel.repaint();
+    } else {
+        javax.swing.JOptionPane.showMessageDialog(this, "Pilih resep yang ingin dilihat!");
+    }
     }//GEN-LAST:event_selectButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
