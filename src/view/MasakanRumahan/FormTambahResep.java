@@ -452,7 +452,7 @@ private void clearFormFields() {
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
     javax.swing.JPanel parentPanel = (javax.swing.JPanel) this.getParent();
     parentPanel.removeAll();
-    parentPanel.add(new Daftarmasakan());
+    parentPanel.add(new DaftarMasakan());
     parentPanel.repaint();
     parentPanel.revalidate();
     }//GEN-LAST:event_backButtonActionPerformed

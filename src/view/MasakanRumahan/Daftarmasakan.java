@@ -11,12 +11,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author User
  */
-public class Daftarmasakan extends javax.swing.JPanel {
+public class DaftarMasakan extends javax.swing.JPanel {
 
     /**
      * Creates new form Daftarmasakan
      */
-    public Daftarmasakan() {
+    public DaftarMasakan() {
         initComponents();
         
           // Set header tabel

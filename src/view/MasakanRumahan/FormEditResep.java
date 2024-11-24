@@ -4,7 +4,7 @@
  */
 package view.MasakanRumahan;
 
-import view.MasakanRumahan.Daftarmasakan;
+import view.MasakanRumahan.DaftarMasakan;
 
 /**
  *
@@ -274,7 +274,7 @@ public class FormEditResep extends javax.swing.JPanel {
         // Kembali ke form Daftarmasakan
     javax.swing.JPanel parentPanel = (javax.swing.JPanel) this.getParent();
     parentPanel.removeAll();
-    parentPanel.add(new Daftarmasakan());
+    parentPanel.add(new DaftarMasakan());
     parentPanel.revalidate();
     parentPanel.repaint();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -319,7 +319,7 @@ public class FormEditResep extends javax.swing.JPanel {
         // Kembali ke form sebelumnya
         javax.swing.JPanel parentPanel = (javax.swing.JPanel) this.getParent();
         parentPanel.removeAll();
-        parentPanel.add(new Daftarmasakan());
+        parentPanel.add(new DaftarMasakan());
         parentPanel.revalidate();
         parentPanel.repaint();
     } catch (Exception e) {
