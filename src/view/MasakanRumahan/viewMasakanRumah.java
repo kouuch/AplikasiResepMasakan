@@ -123,21 +123,19 @@ public class viewMasakanRumah extends JPanel {
      * @param cookingTime     Waktu memasak
      * @param rating          Rating (bintang)
      */
-    public void setRecipeData(String recipeName, String mainIngredients, String cookingSteps,
-                              String difficulty, String cookingTime, int rating) {
-        nameLabel.setText(recipeName != null ? recipeName : "Nama Resep Tidak Tersedia");
-        ingredientsTextArea.setText(mainIngredients != null ? mainIngredients : "Bahan Tidak Tersedia");
-        stepsTextArea.setText(cookingSteps != null ? cookingSteps : "Langkah Memasak Tidak Tersedia");
-        difficultyLabel.setText(difficulty != null ? difficulty : "Tingkat Kesulitan Tidak Tersedia");
-        cookingTimeLabel.setText(cookingTime != null ? cookingTime : "Waktu Memasak Tidak Tersedia");
+   public void setRecipeData(String recipeName, String mainIngredients, String cookingSteps,
+                          String difficulty, String cookingTime, int rating) {
+    nameLabel.setText(recipeName != null ? recipeName : "Nama Resep Tidak Tersedia");
+    ingredientsTextArea.setText(mainIngredients != null ? mainIngredients : "Bahan Tidak Tersedia");
+    stepsTextArea.setText(cookingSteps != null ? cookingSteps : "Langkah Memasak Tidak Tersedia");
+    difficultyLabel.setText(difficulty != null ? difficulty : "Tingkat Kesulitan Tidak Tersedia");
+    cookingTimeLabel.setText(cookingTime != null ? cookingTime : "Waktu Memasak Tidak Tersedia");
 
-        // Menampilkan bintang sesuai rating
-        StringBuilder stars = new StringBuilder("Rating: ");
-        for (int i = 0; i < 5; i++) {
-            stars.append(i < rating ? "★" : "☆");
-        }
-        ratingLabel.setText(stars.toString());
-    }
+    // Konversi angka rating menjadi simbol bintang
+    String stars = "★".repeat(rating) + "☆".repeat(5 - rating); // Total 5 bintang
+    ratingLabel.setText("Rating: " + stars);
+}
+
 
 
 
