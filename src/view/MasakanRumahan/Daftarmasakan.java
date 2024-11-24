@@ -61,10 +61,10 @@ public class Daftarmasakan extends javax.swing.JPanel {
     }
 }
 
-    private String extractValue(java.util.List<String> lines, String key) {
-        for (String line : lines) {
-            if (line.startsWith(key + ":")) {
-                return line.split(":", 2)[1].trim();
+        private String extractValue(java.util.List<String> lines, String key) {
+            for (String line : lines) {
+                if (line.startsWith(key + ":")) {
+                    return line.split(":", 2)[1].trim();
         }
     }
     return "";
