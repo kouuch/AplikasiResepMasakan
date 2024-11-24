@@ -246,7 +246,8 @@ public class Daftarmasakan extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void selectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectButtonActionPerformed
-        JTable table = recipeTablePanel.getTable();
+                                                     
+    JTable table = recipeTablePanel.getTable();
     int selectedRow = table.getSelectedRow();
 
     if (selectedRow != -1) {
@@ -256,21 +257,22 @@ public class Daftarmasakan extends javax.swing.JPanel {
         String cookingTime = (String) table.getValueAt(selectedRow, 2);
         String rating = (String) table.getValueAt(selectedRow, 3);
 
-        // Debugging log
-        System.out.println("Nama Resep: " + recipeName);
-        System.out.println("Tingkat Kesulitan: " + difficulty);
-        System.out.println("Waktu Memasak: " + cookingTime);
-        System.out.println("Rating: " + rating);
-
-        // Pastikan data valid
-        if (recipeName == null || recipeName.isEmpty()) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Data tidak valid!");
+        // Konversi rating dari string ke integer
+        int parsedRating = 0;
+        try {
+            parsedRating = Integer.parseInt(rating.trim());
+        } catch (NumberFormatException e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Rating tidak valid. Pastikan berupa angka!");
             return;
         }
 
+        // Detail tambahan dari file (bahan, cara memasak, dll.)
+        String mainIngredients = "Isi bahan utama"; // Ambil dari file atau database
+        String cookingSteps = "Isi cara memasak";  // Ambil dari file atau database
+
         // Buka panel viewMasakanRumah dengan data
         viewMasakanRumah detailPanel = new viewMasakanRumah();
-        detailPanel.setRecipeData(recipeName, "Bahan Dummy", "Langkah Dummy", difficulty, cookingTime, rating);
+        detailPanel.setRecipeData(recipeName, mainIngredients, cookingSteps, difficulty, cookingTime, parsedRating);
 
         // Pindah ke panel baru
         javax.swing.JPanel parentPanel = (javax.swing.JPanel) this.getParent();
