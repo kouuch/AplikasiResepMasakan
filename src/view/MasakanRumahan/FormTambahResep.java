@@ -26,10 +26,10 @@ public class FormTambahResep extends javax.swing.JPanel {
        // Mengatur pilihan tingkat kesulitan
         difficultyLevelComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Mudah", "Sedang", "Sulit"}));
 
-        // Set properti ratingSlider
+        // Konfigurasi slider untuk rating
         ratingSlider.setMinimum(0);
         ratingSlider.setMaximum(5);
-        ratingSlider.setValue(3); // Nilai default slider
+        ratingSlider.setValue(3); // Nilai default
         ratingSlider.setMajorTickSpacing(1);
         ratingSlider.setPaintTicks(true);
         ratingSlider.setPaintLabels(true);
