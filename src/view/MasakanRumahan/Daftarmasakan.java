@@ -18,24 +18,13 @@ public class Daftarmasakan extends javax.swing.JPanel {
     public Daftarmasakan() {
         initComponents();
         
-        String[] columnNames = {"Nama Resep", "Tingkat Kesulitan", "Waktu Memasak", "Rating"};
-    DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
-    yourTable.setModel(tableModel); // Atur header tabel
-    
-    loadTableData(); // Panggil method untuk memuat data
-    }
-    
-    public class Daftarmasakan extends javax.swing.JPanel {
-    public Daftarmasakan() {
-        initComponents();
-
-        // Set header tabel
+         // Set header tabel
         recipeTablePanel.setTableHeaders(new String[]{"Nama Resep", "Tingkat Kesulitan", "Waktu Memasak", "Rating"});
 
         // Muat data ke tabel
         loadTableData();
     }
-
+    
     private void loadTableData() {
         try {
             java.nio.file.Path folderPath = java.nio.file.Paths.get("data/FmasakanRumahan");
@@ -79,54 +68,7 @@ public class Daftarmasakan extends javax.swing.JPanel {
         }
         return "";
     }
-}
-    
-    private void loadTableData() {
-    try {
-        // Path folder tempat file disimpan
-        java.nio.file.Path folderPath = java.nio.file.Paths.get("data/FmasakanRumahan");
 
-        // Pastikan folder ada
-        if (!java.nio.file.Files.exists(folderPath)) {
-            System.out.println("Folder tidak ditemukan: " + folderPath);
-            return;
-        }
-
-        // Ambil model tabel
-        DefaultTableModel tableModel = (DefaultTableModel) recipeTablePanel.getTable().getModel();
-        tableModel.setRowCount(0); // Reset tabel sebelum menambah data baru
-
-        // Iterasi setiap file di folder
-        java.nio.file.DirectoryStream<java.nio.file.Path> files = java.nio.file.Files.newDirectoryStream(folderPath);
-        for (java.nio.file.Path file : files) {
-            java.util.List<String> lines = java.nio.file.Files.readAllLines(file);
-
-            // Ekstrak nilai-nilai dari file
-            String recipeName = extractValue(lines, "Nama Resep");
-            String difficulty = extractValue(lines, "Tingkat Kesulitan");
-            String cookingTime = extractValue(lines, "Waktu Memasak");
-            int rating = Integer.parseInt(extractValue(lines, "Rating"));
-
-            // Ubah rating menjadi bintang
-            String stars = "★".repeat(rating) + "☆".repeat(5 - rating);
-
-            // Tambahkan data ke tabel
-            tableModel.addRow(new Object[]{recipeName, difficulty, cookingTime, stars});
-        }
-    } catch (Exception e) {
-        e.printStackTrace();
-        javax.swing.JOptionPane.showMessageDialog(this, "Gagal memuat data: " + e.getMessage());
-    }
-}
-
-        private String extractValue(java.util.List<String> lines, String key) {
-            for (String line : lines) {
-                if (line.startsWith(key + ":")) {
-                    return line.split(":", 2)[1].trim();
-        }
-    }
-    return "";
-}
     private void openFormTambahResep(java.awt.event.ActionEvent evt) {
     // Dapatkan parent container dari panel ini
     javax.swing.JPanel parentPanel = (javax.swing.JPanel) this.getParent();
