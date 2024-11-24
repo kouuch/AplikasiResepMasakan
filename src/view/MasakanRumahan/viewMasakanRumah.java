@@ -24,100 +24,92 @@ public class viewMasakanRumah extends javax.swing.JPanel {
     }
 
     private void initCustomComponents() {
-        // Inisialisasi komponen
-        nameLabel = new JLabel("Nama Resep Tidak Tersedia");
-        nameLabel.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 20));
-        
-        ingredientsTextArea = new JTextArea("Bahan Tidak Tersedia");
-        ingredientsTextArea.setEditable(false);
-        ingredientsTextArea.setLineWrap(true);
-        ingredientsTextArea.setWrapStyleWord(true);
+    setLayout(new GridBagLayout());
+    GridBagConstraints gbc = new GridBagConstraints();
+    gbc.insets = new Insets(10, 10, 10, 10); // Margin antar elemen
 
-        stepsTextArea = new JTextArea("Langkah Memasak Tidak Tersedia");
-        stepsTextArea.setEditable(false);
-        stepsTextArea.setLineWrap(true);
-        stepsTextArea.setWrapStyleWord(true);
+    // Nama Resep
+    gbc.gridx = 0;
+    gbc.gridy = 0;
+    gbc.gridwidth = 2;
+    gbc.anchor = GridBagConstraints.CENTER;
+    nameLabel = new JLabel("Nama Resep Tidak Tersedia");
+    nameLabel.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 24));
+    add(nameLabel, gbc);
 
-        difficultyLabel = new JLabel("Tingkat Kesulitan Tidak Tersedia");
-        cookingTimeLabel = new JLabel("Waktu Memasak Tidak Tersedia");
-        ratingLabel = new JLabel("Rating Tidak Tersedia");
-        ratingLabel.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 16));
+    // Bahan
+    gbc.gridx = 0;
+    gbc.gridy = 1;
+    gbc.gridwidth = 1;
+    gbc.anchor = GridBagConstraints.WEST;
+    add(new JLabel("Bahan:"), gbc);
 
-        // Layout untuk komponen
-        setLayout(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
+    gbc.gridx = 1;
+    gbc.gridy = 1;
+    ingredientsTextArea = new JTextArea(5, 20);
+    ingredientsTextArea.setEditable(false);
+    ingredientsTextArea.setLineWrap(true);
+    ingredientsTextArea.setWrapStyleWord(true);
+    add(new JScrollPane(ingredientsTextArea), gbc);
 
-        // Nama Resep
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.gridwidth = 2;
-        gbc.insets = new Insets(10, 10, 10, 10);
-        gbc.anchor = GridBagConstraints.CENTER;
-        add(nameLabel, gbc);
+    // Langkah Memasak
+    gbc.gridx = 0;
+    gbc.gridy = 2;
+    add(new JLabel("Langkah Memasak:"), gbc);
 
-        // Bahan
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        gbc.gridwidth = 1;
-        gbc.anchor = GridBagConstraints.WEST;
-        add(new JLabel("Bahan:"), gbc);
+    gbc.gridx = 1;
+    gbc.gridy = 2;
+    stepsTextArea = new JTextArea(5, 20);
+    stepsTextArea.setEditable(false);
+    stepsTextArea.setLineWrap(true);
+    stepsTextArea.setWrapStyleWord(true);
+    add(new JScrollPane(stepsTextArea), gbc);
 
-        gbc.gridx = 1;
-        gbc.gridy = 1;
-        gbc.fill = GridBagConstraints.BOTH;
-        gbc.weightx = 1.0;
-        gbc.weighty = 0.3;
-        add(new JScrollPane(ingredientsTextArea), gbc);
+    // Tingkat Kesulitan
+    gbc.gridx = 0;
+    gbc.gridy = 3;
+    add(new JLabel("Tingkat Kesulitan:"), gbc);
 
-        // Langkah Memasak
-        gbc.gridx = 0;
-        gbc.gridy = 2;
-        gbc.weighty = 0;
-        add(new JLabel("Langkah Memasak:"), gbc);
+    gbc.gridx = 1;
+    gbc.gridy = 3;
+    difficultyLabel = new JLabel("Tingkat Kesulitan Tidak Tersedia");
+    add(difficultyLabel, gbc);
 
-        gbc.gridx = 1;
-        gbc.gridy = 2;
-        gbc.weighty = 0.3;
-        add(new JScrollPane(stepsTextArea), gbc);
+    // Waktu Memasak
+    gbc.gridx = 0;
+    gbc.gridy = 4;
+    add(new JLabel("Waktu Memasak:"), gbc);
 
-        // Tingkat Kesulitan
-        gbc.gridx = 0;
-        gbc.gridy = 3;
-        gbc.weighty = 0;
-        add(new JLabel("Tingkat Kesulitan:"), gbc);
+    gbc.gridx = 1;
+    gbc.gridy = 4;
+    cookingTimeLabel = new JLabel("Waktu Memasak Tidak Tersedia");
+    add(cookingTimeLabel, gbc);
 
-        gbc.gridx = 1;
-        gbc.gridy = 3;
-        add(difficultyLabel, gbc);
+    // Rating
+    gbc.gridx = 0;
+    gbc.gridy = 5;
+    add(new JLabel("Rating:"), gbc);
 
-        // Waktu Memasak
-        gbc.gridx = 0;
-        gbc.gridy = 4;
-        add(new JLabel("Waktu Memasak:"), gbc);
+    gbc.gridx = 1;
+    gbc.gridy = 5;
+    ratingLabel = new JLabel("Rating Tidak Tersedia");
+    ratingLabel.setFont(new java.awt.Font("Segoe UI Symbol", java.awt.Font.PLAIN, 16));
+    add(ratingLabel, gbc);
+}
 
-        gbc.gridx = 1;
-        gbc.gridy = 4;
-        add(cookingTimeLabel, gbc);
-
-        // Rating
-        gbc.gridx = 0;
-        gbc.gridy = 5;
-        add(new JLabel("Rating:"), gbc);
-
-        gbc.gridx = 1;
-        gbc.gridy = 5;
-        add(ratingLabel, gbc);
-    }
 
     public void setRecipeData(String recipeName, String mainIngredients, String cookingSteps,
-                              String difficulty, String cookingTime, String rating) {
-        nameLabel.setText(recipeName != null ? recipeName : "Nama Resep Tidak Tersedia");
-        ingredientsTextArea.setText(mainIngredients != null ? mainIngredients : "Bahan Tidak Tersedia");
-        stepsTextArea.setText(cookingSteps != null ? cookingSteps : "Langkah Memasak Tidak Tersedia");
-        difficultyLabel.setText(difficulty != null ? difficulty : "Tingkat Kesulitan Tidak Tersedia");
-        cookingTimeLabel.setText(cookingTime != null ? cookingTime : "Waktu Memasak Tidak Tersedia");
-        ratingLabel.setText(rating != null ? rating : "Rating Tidak Tersedia");
-    }
+                          String difficulty, String cookingTime, String rating) {
+    nameLabel.setText(recipeName != null ? recipeName : "Nama Resep Tidak Tersedia");
+    ingredientsTextArea.setText(mainIngredients != null ? mainIngredients : "Bahan Tidak Tersedia");
+    stepsTextArea.setText(cookingSteps != null ? cookingSteps : "Langkah Memasak Tidak Tersedia");
+    difficultyLabel.setText(difficulty != null ? difficulty : "Tingkat Kesulitan Tidak Tersedia");
+    cookingTimeLabel.setText(cookingTime != null ? cookingTime : "Waktu Memasak Tidak Tersedia");
+    ratingLabel.setText(rating != null ? "Rating: " + rating.replace("?", "★") : "Rating Tidak Tersedia");
+}
+
+
+
 
 
 
