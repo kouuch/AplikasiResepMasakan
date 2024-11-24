@@ -8,14 +8,9 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-/**
- *
- * @author User
- */
 public class viewMasakanRumah extends javax.swing.JPanel {
     private JLabel nameLabel;
     private JTextArea ingredientsTextArea;
@@ -31,7 +26,7 @@ public class viewMasakanRumah extends javax.swing.JPanel {
     private void initCustomComponents() {
         // Inisialisasi komponen
         nameLabel = new JLabel("Nama Resep Tidak Tersedia");
-        nameLabel.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 20)); // Font untuk nama resep
+        nameLabel.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 20));
         
         ingredientsTextArea = new JTextArea("Bahan Tidak Tersedia");
         ingredientsTextArea.setEditable(false);
@@ -46,12 +41,13 @@ public class viewMasakanRumah extends javax.swing.JPanel {
         difficultyLabel = new JLabel("Tingkat Kesulitan Tidak Tersedia");
         cookingTimeLabel = new JLabel("Waktu Memasak Tidak Tersedia");
         ratingLabel = new JLabel("Rating Tidak Tersedia");
+        ratingLabel.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 16));
 
-        // Layout untuk pengaturan komponen
+        // Layout untuk komponen
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
-        // Tambahkan label nama resep
+        // Nama Resep
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.gridwidth = 2;
@@ -59,34 +55,32 @@ public class viewMasakanRumah extends javax.swing.JPanel {
         gbc.anchor = GridBagConstraints.CENTER;
         add(nameLabel, gbc);
 
-        // Tambahkan label bahan
+        // Bahan
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.gridwidth = 1;
         gbc.anchor = GridBagConstraints.WEST;
         add(new JLabel("Bahan:"), gbc);
 
-        // Tambahkan area scroll untuk bahan
         gbc.gridx = 1;
         gbc.gridy = 1;
         gbc.fill = GridBagConstraints.BOTH;
         gbc.weightx = 1.0;
-        gbc.weighty = 0.2;
+        gbc.weighty = 0.3;
         add(new JScrollPane(ingredientsTextArea), gbc);
 
-        // Tambahkan label langkah memasak
+        // Langkah Memasak
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.weighty = 0;
         add(new JLabel("Langkah Memasak:"), gbc);
 
-        // Tambahkan area scroll untuk langkah memasak
         gbc.gridx = 1;
         gbc.gridy = 2;
-        gbc.weighty = 0.5;
+        gbc.weighty = 0.3;
         add(new JScrollPane(stepsTextArea), gbc);
 
-        // Tambahkan label tingkat kesulitan
+        // Tingkat Kesulitan
         gbc.gridx = 0;
         gbc.gridy = 3;
         gbc.weighty = 0;
@@ -96,7 +90,7 @@ public class viewMasakanRumah extends javax.swing.JPanel {
         gbc.gridy = 3;
         add(difficultyLabel, gbc);
 
-        // Tambahkan label waktu memasak
+        // Waktu Memasak
         gbc.gridx = 0;
         gbc.gridy = 4;
         add(new JLabel("Waktu Memasak:"), gbc);
@@ -105,7 +99,7 @@ public class viewMasakanRumah extends javax.swing.JPanel {
         gbc.gridy = 4;
         add(cookingTimeLabel, gbc);
 
-        // Tambahkan label rating
+        // Rating
         gbc.gridx = 0;
         gbc.gridy = 5;
         add(new JLabel("Rating:"), gbc);
@@ -115,7 +109,6 @@ public class viewMasakanRumah extends javax.swing.JPanel {
         add(ratingLabel, gbc);
     }
 
-    // Gunakan metode ini untuk mengatur data resep
     public void setRecipeData(String recipeName, String mainIngredients, String cookingSteps,
                               String difficulty, String cookingTime, String rating) {
         nameLabel.setText(recipeName != null ? recipeName : "Nama Resep Tidak Tersedia");
@@ -125,6 +118,8 @@ public class viewMasakanRumah extends javax.swing.JPanel {
         cookingTimeLabel.setText(cookingTime != null ? cookingTime : "Waktu Memasak Tidak Tersedia");
         ratingLabel.setText(rating != null ? rating : "Rating Tidak Tersedia");
     }
+
+
 
   
 
