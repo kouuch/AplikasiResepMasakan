@@ -18,36 +18,27 @@ public class Daftarmasakan extends javax.swing.JPanel {
      */
     public Daftarmasakan() {
         initComponents();
-        
-          // Set header tabel
         recipeTablePanel.setTableHeaders(new String[]{"Nama Resep", "Tingkat Kesulitan", "Waktu Memasak", "Rating"});
 
-        // Muat data ke tabel
-        loadTableData();
-        // Tambahkan Listener pada SelectionModel untuk menyesuaikan status tombol
-        recipeTablePanel.getTable().getSelectionModel().addListSelectionListener(e -> {
-            if (!e.getValueIsAdjusting()) { // Pastikan perubahan selesai
-                int selectedRow = recipeTablePanel.getTable().getSelectedRow(); // Dapatkan baris yang dipilih
-                deleteButton.setEnabled(selectedRow != -1); // Aktifkan tombol hapus hanya jika ada baris dipilih
-            }
-        });
+    // Muat data ke tabel
+    loadTableData();
 
-        // Tambahkan listener untuk tabel
-        recipeTablePanel.getTable().getSelectionModel().addListSelectionListener(e -> {
-            if (!e.getValueIsAdjusting()) { // Pastikan perubahan selesai
-                int selectedRow = recipeTablePanel.getTable().getSelectedRow(); // Dapatkan baris yang dipilih
-                deleteButton.setEnabled(selectedRow != -1); // Aktifkan tombol hapus jika ada baris dipilih
-            }
-        });
+    // Tambahkan Listener pada SelectionModel
+    recipeTablePanel.getTable().getSelectionModel().addListSelectionListener(e -> {
+        if (!e.getValueIsAdjusting()) { 
+            int selectedRow = recipeTablePanel.getTable().getSelectedRow(); 
+            deleteButton.setEnabled(selectedRow != -1); 
+        }
+    });
 
-        // Nonaktifkan tombol hapus secara default
-        deleteButton.setEnabled(false);
+    // Nonaktifkan tombol hapus secara default
+    deleteButton.setEnabled(false);
 
-        // Tambahkan aksi untuk tombol hapus
-        deleteButton.addActionListener(evt -> {
-            deleteSelectedRecipe();
-        });
-    }
+    // Tambahkan aksi untuk tombol hapus
+    deleteButton.addActionListener(evt -> {
+        deleteSelectedRecipe();
+    });
+}
 
     private void deleteSelectedRecipe() {
         JTable table = recipeTablePanel.getTable();

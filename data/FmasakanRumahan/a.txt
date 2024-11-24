@@ -1,9 +1,0 @@
-Nama Resep: a
-Bahan Utama: a
-Bahan Tambahan: a
-Tingkat Kesulitan: Mudah
-Waktu Memasak: 0m
-Porsi: 0
-Rating: 3
-Cara Memasak:
-a
