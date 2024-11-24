@@ -23,10 +23,18 @@ public class FormTambahResep extends javax.swing.JPanel {
      */
     public FormTambahResep() {
         initComponents();
-       // Mengatur pilihan tingkat kesulitan
+
+        // Mengatur pilihan tingkat kesulitan
         difficultyLevelComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Mudah", "Sedang", "Sulit"}));
 
         // Konfigurasi slider untuk rating
+        configureRatingSlider();
+
+        // Konfigurasi spinner waktu memasak
+        configureCookingTimeSpinner();
+    }
+
+    private void configureRatingSlider() {
         ratingSlider.setMinimum(0);
         ratingSlider.setMaximum(5);
         ratingSlider.setValue(3); // Nilai default
@@ -34,52 +42,105 @@ public class FormTambahResep extends javax.swing.JPanel {
         ratingSlider.setPaintTicks(true);
         ratingSlider.setPaintLabels(true);
 
-        // Atur font untuk label rating
-        if (ratingLabel != null) {
-            ratingLabel.setFont(FontManager.getUnicodeCompatibleFont(Font.PLAIN, 14));
-        }
-        
+        ratingLabel.setFont(FontManager.getUnicodeCompatibleFont(Font.PLAIN, 14));
+        updateRatingLabel();
+
         // Listener untuk slider rating
         ratingSlider.addChangeListener(e -> updateRatingLabel());
-        
-        // Atur model spinner waktu memasak (0 - 180 menit)
-        cookingTimeSpinner.setModel(new SpinnerNumberModel(0, 0, 180, 1));
-        cookingTimeSpinner.addChangeListener(e -> updateCookingTimeLabel());
     }
-        
-        // Metode untuk memperbarui label rating
-        private void updateRatingLabel() {
+
+    private void configureCookingTimeSpinner() {
+        cookingTimeSpinner.setModel(new SpinnerNumberModel(0, 0, 180, 1)); // Maksimal 180 menit
+        cookingTimeSpinner.addChangeListener(e -> updateCookingTimeLabel());
+        updateCookingTimeLabel();
+    }
+
+    private void updateRatingLabel() {
         int rating = ratingSlider.getValue();
         String stars = "★".repeat(rating) + "☆".repeat(5 - rating);
         ratingLabel.setText("Rating: " + stars);
     }
 
-        // Metode untuk memperbarui label waktu memasak
-        private void updateCookingTimeLabel() {
+    private void updateCookingTimeLabel() {
         int time = (int) cookingTimeSpinner.getValue();
         cookingTimeLabel.setText("Waktu Memasak: " + time + " menit");
     }
 
-        // Metode untuk menyimpan resep
-        private void saveRecipe() {
+    private void saveRecipe() {
         try {
             Path folderPath = Paths.get("data/FmasakanRumahan");
-        // Perbarui label rating saat aplikasi dijalankan
-        int initialRating = ratingSlider.getValue();
-        String initialStars = "★".repeat(initialRating) + "☆".repeat(5 - initialRating);
-        ratingLabel.setText("Rating: " + initialStars);
 
-        // Tambahkan ChangeListener untuk slider
-        ratingSlider.addChangeListener(e -> {
+            // Pastikan folder penyimpanan ada
+            if (!Files.exists(folderPath)) {
+                Files.createDirectories(folderPath);
+            }
+
+            // Validasi input
+            String recipeName = recipeNameField.getText().trim();
+            if (recipeName.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Nama resep tidak boleh kosong!", "Kesalahan", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            if ((int) cookingTimeSpinner.getValue() <= 0) {
+                JOptionPane.showMessageDialog(this, "Waktu memasak harus lebih dari 0 menit!", "Kesalahan", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            if ((int) servingsSpinner.getValue() <= 0) {
+                JOptionPane.showMessageDialog(this, "Jumlah porsi harus lebih dari 0!", "Kesalahan", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Jalur file
+            Path filePath = folderPath.resolve(recipeName + ".txt");
+
+            // Cek apakah file sudah ada
+            if (Files.exists(filePath)) {
+                int response = JOptionPane.showConfirmDialog(this,
+                        "Resep dengan nama yang sama sudah ada. Apakah Anda ingin menimpa?",
+                        "Konfirmasi",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.WARNING_MESSAGE);
+                if (response != JOptionPane.YES_OPTION) {
+                    return; // Batalkan jika pengguna memilih "Tidak"
+                }
+            }
+
+            // Ambil data dari form
+            String mainIngredient = mainIngredientTextArea.getText().trim();
+            String additionalIngredient = additionalIngredientTextArea.getText().trim();
+            String difficulty = (String) difficultyLevelComboBox.getSelectedItem();
+            int cookingTime = (int) cookingTimeSpinner.getValue();
+            int servings = (int) servingsSpinner.getValue();
             int rating = ratingSlider.getValue();
-            String stars = "★".repeat(rating) + "☆".repeat(5 - rating);
-            ratingLabel.setText("Rating: " + stars);
-            
-            // Set nilai awal saat GUI pertama kali diload
-        cookingTimeLabel.setText("Waktu Memasak: " + cookingTimeSpinner.getValue() + "m");
-        });
-         
+            String instructions = instructionsTextArea.getText().trim();
 
+            // Format data untuk disimpan
+            String data = String.format(
+                    "Nama Resep: %s%nBahan Utama: %s%nBahan Tambahan: %s%nTingkat Kesulitan: %s%nWaktu Memasak: %dm%nPorsi: %d%nRating: %d%nCara Memasak:%n%s",
+                    recipeName, mainIngredient, additionalIngredient, difficulty, cookingTime, servings, rating, instructions);
+
+            // Tulis data ke file
+            Files.write(filePath, data.getBytes());
+            JOptionPane.showMessageDialog(this, "Resep berhasil disimpan!");
+
+            // Bersihkan form setelah penyimpanan
+            clearForm();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Gagal menyimpan resep: " + ex.getMessage(), "Kesalahan", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void clearForm() {
+        recipeNameField.setText("");
+        mainIngredientTextArea.setText("");
+        additionalIngredientTextArea.setText("");
+        difficultyLevelComboBox.setSelectedIndex(0);
+        cookingTimeSpinner.setValue(0);
+        servingsSpinner.setValue(0);
+        ratingSlider.setValue(3); // Reset ke nilai default
+        instructionsTextArea.setText("");
     }
     
 
@@ -374,17 +435,6 @@ public class FormTambahResep extends javax.swing.JPanel {
     }
 }
 
-        // Method untuk mengosongkan form
-        private void clearForm() {
-            recipeNameField.setText("");
-            mainIngredientTextArea.setText("");
-            additionalIngredientTextArea.setText("");
-            difficultyLevelComboBox.setSelectedIndex(0);
-            cookingTimeSpinner.setValue(0);
-            servingsSpinner.setValue(0);
-            ratingSlider.setValue(3); // Reset ke nilai default
-            instructionsTextArea.setText("");
-}
                                                                                              
 
 // Metode untuk mengosongkan semua input di form
