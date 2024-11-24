@@ -16,6 +16,7 @@ public class FormTambahResep extends javax.swing.JPanel {
     public FormTambahResep() {
         initComponents();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
