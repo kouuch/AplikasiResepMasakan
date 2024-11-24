@@ -505,8 +505,8 @@ public class MenuUtama extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMenuutama2MouseExited
 
     private void btnMenuutama3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenuutama3MouseClicked
-       pnMain.setBackground(Color.decode("#FDDBBB"));
-        pnLine.setBackground(Color.decode("#FFF5E1"));
+       pnMain1.setBackground(Color.decode("#FDDBBB"));
+        pnLine1.setBackground(Color.decode("#FFF5E1"));
 
         pnUtama.removeAll();
         pnUtama.add(new Daftarmasakan()); // Arahkan ke panel Daftarmasakan
