@@ -210,8 +210,8 @@ public class Daftarmasakan extends javax.swing.JPanel {
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
-        // Ambil referensi ke tabel dari CustomTablePanel
-    JTable table = recipeTablePanel.getTable();
+    // Ambil referensi ke tabel dari CustomTablePanel
+    JTable table = recipeTablePanel.getTable(); // Menggunakan getTable()
 
     // Pastikan ada baris yang dipilih
     int selectedRow = table.getSelectedRow();
