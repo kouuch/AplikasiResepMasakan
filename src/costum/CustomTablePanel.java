@@ -37,18 +37,24 @@ public class CustomTablePanel extends JPanel {
 
         // Warna latar alternatif untuk baris
         table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
-            @Override
-            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-                if (row % 2 == 0) {
-                    c.setBackground(Color.WHITE); // Baris genap putih
-                } else {
-                    c.setBackground(new Color(245, 222, 179)); // Baris ganjil cokelat terang
-                }
-                c.setForeground(new Color(85, 60, 40)); // Teks cokelat tua
-                return c;
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+            // Set font untuk memastikan simbol bintang tampil
+            c.setFont(theme.FontManager.getUnicodeCompatibleFont(Font.PLAIN, 14));
+
+            // Warna alternatif untuk baris
+            if (row % 2 == 0) {
+                c.setBackground(Color.WHITE); // Baris genap putih
+            } else {
+                c.setBackground(new Color(245, 222, 179)); // Baris ganjil cokelat terang
             }
-        });
+
+            c.setForeground(new Color(85, 60, 40)); // Teks cokelat tua
+            return c;
+        }
+    });
 
         // ScrollPane untuk tabel
         JScrollPane scrollPane = new JScrollPane(table);
