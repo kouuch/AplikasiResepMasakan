@@ -18,27 +18,29 @@ public class Daftarmasakan extends javax.swing.JPanel {
      */
     public Daftarmasakan() {
         initComponents();
+        
+          // Set header tabel
         recipeTablePanel.setTableHeaders(new String[]{"Nama Resep", "Tingkat Kesulitan", "Waktu Memasak", "Rating"});
 
-    // Muat data ke tabel
-    loadTableData();
+        // Muat data ke tabel
+        loadTableData();
 
-    // Tambahkan Listener pada SelectionModel
-    recipeTablePanel.getTable().getSelectionModel().addListSelectionListener(e -> {
-        if (!e.getValueIsAdjusting()) { 
-            int selectedRow = recipeTablePanel.getTable().getSelectedRow(); 
-            deleteButton.setEnabled(selectedRow != -1); 
-        }
-    });
+        // Tambahkan listener untuk tabel
+        recipeTablePanel.getTable().getSelectionModel().addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) { // Pastikan perubahan selesai
+                int selectedRow = recipeTablePanel.getTable().getSelectedRow(); // Dapatkan baris yang dipilih
+                deleteButton.setEnabled(selectedRow != -1); // Aktifkan tombol hapus jika ada baris dipilih
+            }
+        });
 
-    // Nonaktifkan tombol hapus secara default
-    deleteButton.setEnabled(false);
+        // Nonaktifkan tombol hapus secara default
+        deleteButton.setEnabled(false);
 
-    // Tambahkan aksi untuk tombol hapus
-    deleteButton.addActionListener(evt -> {
-        deleteSelectedRecipe();
-    });
-}
+        // Tambahkan aksi untuk tombol hapus
+        deleteButton.addActionListener(evt -> {
+            deleteSelectedRecipe();
+        });
+    }
 
     private void deleteSelectedRecipe() {
         JTable table = recipeTablePanel.getTable();
@@ -276,7 +278,7 @@ public class Daftarmasakan extends javax.swing.JPanel {
     parentPanel.revalidate();
     parentPanel.repaint();
 } else {
-    //javax.swing.JOptionPane.showMessageDialog(this, "Pilih resep yang ingin diedit!");
+    javax.swing.JOptionPane.showMessageDialog(this, "Pilih resep yang ingin diedit!");
 }
 
     }//GEN-LAST:event_editButtonActionPerformed
@@ -285,26 +287,29 @@ public class Daftarmasakan extends javax.swing.JPanel {
          JTable table = recipeTablePanel.getTable();
     int selectedRow = table.getSelectedRow();
 
-    // Tidak perlu validasi tambahan di sini karena tombol tidak bisa ditekan jika tidak ada seleksi
-    int confirm = javax.swing.JOptionPane.showConfirmDialog(this, 
-        "Apakah Anda yakin ingin menghapus resep ini?", 
-        "Konfirmasi Hapus", 
-        javax.swing.JOptionPane.YES_NO_OPTION);
+    if (selectedRow != -1) {
+        int confirm = javax.swing.JOptionPane.showConfirmDialog(this, 
+            "Apakah Anda yakin ingin menghapus resep ini?", 
+            "Konfirmasi Hapus", 
+            javax.swing.JOptionPane.YES_NO_OPTION);
 
-    if (confirm == javax.swing.JOptionPane.YES_OPTION) {
-        String recipeName = (String) table.getValueAt(selectedRow, 0); // Ambil nama resep
-        try {
-            // Hapus file resep dari folder
-            java.nio.file.Path filePath = java.nio.file.Paths.get("data/FmasakanRumahan/" + recipeName + ".txt");
-            java.nio.file.Files.deleteIfExists(filePath);
+        if (confirm == javax.swing.JOptionPane.YES_OPTION) {
+            String recipeName = (String) table.getValueAt(selectedRow, 0); // Ambil nama resep
+            try {
+                // Hapus file resep dari folder
+                java.nio.file.Path filePath = java.nio.file.Paths.get("data/FmasakanRumahan/" + recipeName + ".txt");
+                java.nio.file.Files.deleteIfExists(filePath);
 
-            // Hapus baris dari tabel
-            ((DefaultTableModel) table.getModel()).removeRow(selectedRow);
+                // Hapus baris dari tabel
+                ((DefaultTableModel) table.getModel()).removeRow(selectedRow);
 
-            javax.swing.JOptionPane.showMessageDialog(this, "Resep berhasil dihapus!");
-        } catch (Exception e) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Gagal menghapus resep: " + e.getMessage());
+                javax.swing.JOptionPane.showMessageDialog(this, "Resep berhasil dihapus!");
+            } catch (Exception e) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Gagal menghapus resep: " + e.getMessage());
+            }
         }
+    } else {
+        //javax.swing.JOptionPane.showMessageDialog(this, "Pilih resep yang ingin dihapus!");
     }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
