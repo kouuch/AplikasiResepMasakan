@@ -9,10 +9,12 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-public class viewMasakanRumah extends javax.swing.JPanel {
+public class viewMasakanRumah extends JPanel {
+
     private JLabel nameLabel;
     private JTextArea ingredientsTextArea;
     private JTextArea stepsTextArea;
@@ -34,7 +36,7 @@ public class viewMasakanRumah extends javax.swing.JPanel {
         gbc.gridy = 0;
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
-        nameLabel = new JLabel("Nama Resep");
+        nameLabel = new JLabel("Nama Resep Tidak Tersedia");
         nameLabel.setFont(new Font("Segoe UI", Font.BOLD, 24));
         add(nameLabel, gbc);
 
@@ -106,21 +108,37 @@ public class viewMasakanRumah extends javax.swing.JPanel {
         gbc.gridx = 1;
         gbc.gridy = 5;
         gbc.anchor = GridBagConstraints.WEST;
-        ratingLabel = new JLabel("Tidak Tersedia");
+        ratingLabel = new JLabel("Rating: ★★★★★");
         ratingLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         add(ratingLabel, gbc);
     }
 
-
+    /**
+     * Mengatur data resep yang akan ditampilkan di panel ini.
+     *
+     * @param recipeName      Nama resep
+     * @param mainIngredients Bahan utama
+     * @param cookingSteps    Langkah memasak
+     * @param difficulty      Tingkat kesulitan
+     * @param cookingTime     Waktu memasak
+     * @param rating          Rating (bintang)
+     */
     public void setRecipeData(String recipeName, String mainIngredients, String cookingSteps,
-                              String difficulty, String cookingTime, String rating) {
+                              String difficulty, String cookingTime, int rating) {
         nameLabel.setText(recipeName != null ? recipeName : "Nama Resep Tidak Tersedia");
         ingredientsTextArea.setText(mainIngredients != null ? mainIngredients : "Bahan Tidak Tersedia");
         stepsTextArea.setText(cookingSteps != null ? cookingSteps : "Langkah Memasak Tidak Tersedia");
         difficultyLabel.setText(difficulty != null ? difficulty : "Tingkat Kesulitan Tidak Tersedia");
         cookingTimeLabel.setText(cookingTime != null ? cookingTime : "Waktu Memasak Tidak Tersedia");
-        ratingLabel.setText(rating != null ? rating : "Rating Tidak Tersedia");
+
+        // Menampilkan bintang sesuai rating
+        StringBuilder stars = new StringBuilder("Rating: ");
+        for (int i = 0; i < 5; i++) {
+            stars.append(i < rating ? "★" : "☆");
+        }
+        ratingLabel.setText(stars.toString());
     }
+
 
 
 
