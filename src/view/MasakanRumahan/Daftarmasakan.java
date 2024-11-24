@@ -19,8 +19,10 @@ public class Daftarmasakan extends javax.swing.JPanel {
         initComponents();
         
         String[] columnNames = {"Nama Resep", "Tingkat Kesulitan", "Waktu Memasak", "Rating"};
-        DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
-        yourTable.setModel(tableModel);
+    DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
+    yourTable.setModel(tableModel); // Atur header tabel
+    
+    loadTableData(); // Panggil method untuk memuat data
     }
     
     private void loadTableData() {
