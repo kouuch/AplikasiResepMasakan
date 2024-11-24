@@ -24,7 +24,7 @@ public class Daftarmasakan extends javax.swing.JPanel {
         // Muat data ke tabel
         loadTableData();
     }
-    
+    private int selectedRow = -1; // Baris yang dipilih di tabel
     private void loadTableData() {
         try {
             java.nio.file.Path folderPath = java.nio.file.Paths.get("data/FmasakanRumahan");
