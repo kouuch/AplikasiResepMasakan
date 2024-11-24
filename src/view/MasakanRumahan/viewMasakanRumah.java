@@ -104,7 +104,10 @@ public class ViewMasakanRumah extends JPanel {
     public void setRecipeData(String recipeName, String mainIngredients, String cookingSteps,
                               String difficulty, String cookingTime, String rating) {
         nameLabel.setText(recipeName != null ? recipeName : "Nama Resep Tidak Tersedia");
-        ingredientsTextArea.setText(mainIngredients != null ? mainIngredients : "Bahan Tidak Tersedia");
+        // Perubahan Dimulai
+    ingredientsTextArea.setText(mainIngredients != null ? mainIngredients : "Bahan Tidak Tersedia");
+    stepsTextArea.setText(cookingSteps != null ? cookingSteps : "Langkah Memasak Tidak Tersedia");
+    // Perubahan Berakhir
         stepsTextArea.setText(cookingSteps != null ? cookingSteps : "Langkah Memasak Tidak Tersedia");
         difficultyLabel.setText(difficulty != null ? difficulty : "Tingkat Kesulitan Tidak Tersedia");
         cookingTimeLabel.setText(cookingTime != null ? cookingTime : "Waktu Memasak Tidak Tersedia");

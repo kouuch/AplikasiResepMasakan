@@ -391,6 +391,7 @@ public class FormTambahResep extends javax.swing.JPanel {
     }//GEN-LAST:event_servingsSpinnerStateChanged
 
     private void addRecipeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRecipeButtonActionPerformed
+
     try {
         // Jalur folder penyimpanan
         Path folderPath = Paths.get("data/FmasakanRumahan");
@@ -440,7 +441,8 @@ public class FormTambahResep extends javax.swing.JPanel {
     } catch (Exception ex) {
         javax.swing.JOptionPane.showMessageDialog(this, "Gagal menyimpan resep: " + ex.getMessage());
     }
-}
+
+    }
 
                                                                                              
 
