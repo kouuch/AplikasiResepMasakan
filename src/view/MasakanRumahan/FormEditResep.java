@@ -9,6 +9,9 @@ import javax.swing.JOptionPane;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 /**
  *
@@ -19,47 +22,39 @@ public class FormEditResep extends javax.swing.JPanel {
     private boolean isEditMode = false;
     private int selectedRow = -1;
 
-    public FormEditResep(DefaultTableModel model) {
-        initComponents();
-        this.tableModel = model;
+    public FormEditResep(DefaultTableModel model, String recipeName, String difficulty, 
+                     String cookingTime, int servings, int rating, String mainIngredients, 
+                     String additionalIngredients, String cookingSteps, int selectedRow) {
+    this.tableModel = model;
+    this.selectedRow = selectedRow;
+    System.out.printf("Memuat data ke FormEditResep:%nNama Resep: %s%nBahan Utama: %s%nBahan Tambahan: %s%nCara Memasak: %s%n",
+    recipeName, mainIngredients, additionalIngredients, cookingSteps);
 
-        ratingSlider.addChangeListener(evt -> {
-            int rating = ratingSlider.getValue();
-            String stars = "★".repeat(rating) + "☆".repeat(5 - rating);
-            ratingLabel.setText("Rating: " + stars);
-        });
+    initComponents();
+
+    // Atur nilai slider rating
+    ratingSlider.setMinimum(0);
+    ratingSlider.setMaximum(5);
+    ratingSlider.setMajorTickSpacing(1);
+    ratingSlider.setPaintTicks(true);
+    ratingSlider.setPaintLabels(true);
+
+    // Set data berdasarkan input
+    recipeNameField.setText(recipeName != null ? recipeName : "");
+    difficultyComboBox.setSelectedItem(difficulty != null ? difficulty : "Mudah");
+
+    try {
+        cookingTimeSpinner.setValue(Integer.parseInt(cookingTime.replace("m", "").trim()));
+    } catch (NumberFormatException e) {
+        cookingTimeSpinner.setValue(0); // Set nilai default jika parsing gagal
     }
 
-    private void saveData() {
-        String recipeName = recipeNameField.getText();
-        String difficulty = (String) difficultyComboBox.getSelectedItem();
-        int cookingTime = (int) cookingTimeSpinner.getValue();
-        int servings = (int) servingsSpinner.getValue();
-        int rating = ratingSlider.getValue();
-        String mainIngredients = mainIngredientArea.getText();
-        String additionalIngredients = additionalIngredientArea.getText();
-        String cookingSteps = cookingStepsArea.getText();
-
-        if (isEditMode && selectedRow >= 0) {
-            // Update the selected row in the table
-            tableModel.setValueAt(recipeName, selectedRow, 0);
-            tableModel.setValueAt(difficulty, selectedRow, 1);
-            tableModel.setValueAt(cookingTime + "m", selectedRow, 2);
-            tableModel.setValueAt(rating, selectedRow, 3);
-            tableModel.setValueAt(mainIngredients, selectedRow, 4);
-            tableModel.setValueAt(additionalIngredients, selectedRow, 5);
-            tableModel.setValueAt(cookingSteps, selectedRow, 6);
-        } else {
-            // Add a new row to the table
-            tableModel.addRow(new Object[]{
-                recipeName, difficulty, cookingTime + "m", rating, mainIngredients, additionalIngredients, cookingSteps
-            });
-        }
-
-        isEditMode = false;
-    }
-
-
+    servingsSpinner.setValue(servings);
+    ratingSlider.setValue((rating >= 0 && rating <= 5) ? rating : 3);
+    mainIngredientArea.setText(mainIngredients != null && !mainIngredients.isEmpty() ? mainIngredients : "Data tidak tersedia");
+    additionalIngredientArea.setText(additionalIngredients != null && !additionalIngredients.isEmpty() ? additionalIngredients : "Data tidak tersedia");
+    cookingStepsArea.setText(cookingSteps != null && !cookingSteps.isEmpty() ? cookingSteps : "Data tidak tersedia");
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -284,56 +279,81 @@ public class FormEditResep extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void saveEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveEditButtonActionPerformed
-    // Ambil data dari field di form
-    String recipeName = recipeNameField.getText();
-    String mainIngredients = mainIngredientArea.getText();
-    String additionalIngredients = additionalIngredientArea.getText();
-    String cookingSteps = cookingStepsArea.getText();
-    String difficulty = difficultyComboBox.getSelectedItem().toString();
-    int cookingTime = (int) cookingTimeSpinner.getValue();
-    int servings = (int) servingsSpinner.getValue();
-    int rating = ratingSlider.getValue();
 
-    // Validasi data jika perlu
-    if (recipeName.isEmpty() || mainIngredients.isEmpty() || cookingSteps.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Semua field wajib diisi!", "Kesalahan", JOptionPane.WARNING_MESSAGE);
-        return;
-    }
+    System.out.println("Tombol Simpan ditekan."); // Log saat tombol ditekan
 
-    try {
-        // Pastikan direktori ada
-        java.nio.file.Path folderPath = java.nio.file.Paths.get("data/FmasakanRumahan");
-        if (!java.nio.file.Files.exists(folderPath)) {
-            java.nio.file.Files.createDirectories(folderPath);
+    if (selectedRow != -1) {
+        String recipeName = recipeNameField.getText().trim();
+        String mainIngredient = mainIngredientArea.getText().trim();
+        String additionalIngredient = additionalIngredientArea.getText().trim();
+        String instructions = cookingStepsArea.getText().trim();
+        String difficulty = (String) difficultyComboBox.getSelectedItem();
+        int cookingTime = (int) cookingTimeSpinner.getValue();
+        int servings = (int) servingsSpinner.getValue();
+        int rating = ratingSlider.getValue();
+
+        // Log data sebelum menyimpan
+        System.out.printf("Data yang akan disimpan:%nNama Resep: %s%nBahan Utama: %s%nBahan Tambahan: %s%nCara Memasak: %s%nTingkat Kesulitan: %s%nWaktu Memasak: %d%nRating: %d%n",
+            recipeName, mainIngredient, additionalIngredient, instructions, difficulty, cookingTime, rating);
+
+        // Validasi input
+        if (recipeName.isEmpty() || mainIngredient.isEmpty() || instructions.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Semua field wajib diisi!", "Kesalahan", JOptionPane.ERROR_MESSAGE);
+            System.out.println("Gagal menyimpan: Field wajib kosong."); // Log jika validasi gagal
+            return;
         }
 
-        // Simpan data ke file
-        java.nio.file.Path filePath = folderPath.resolve(recipeName + ".txt");
-        java.util.List<String> lines = new java.util.ArrayList<>();
-        lines.add("Nama Resep: " + recipeName);
-        lines.add("Bahan Utama: " + mainIngredients);
-        lines.add("Bahan Tambahan: " + additionalIngredients);
-        lines.add("Cara Memasak: " + cookingSteps);
-        lines.add("Tingkat Kesulitan: " + difficulty);
-        lines.add("Waktu Memasak: " + cookingTime + "m");
-        lines.add("Porsi: " + servings);
-        lines.add("Rating: " + rating);
+        try {
+            // Perbarui file
+            Path folderPath = Paths.get("data/FmasakanRumahan");
+            if (!Files.exists(folderPath)) {
+                Files.createDirectories(folderPath);
+                System.out.println("Folder data/FmasakanRumahan dibuat."); // Log jika folder baru dibuat
+            }
 
-        java.nio.file.Files.write(filePath, lines);
+            Path filePath = folderPath.resolve(recipeName + ".txt");
+            List<String> lines = new ArrayList<>();
+            lines.add("Nama Resep: " + recipeName);
+            lines.add("Tingkat Kesulitan: " + difficulty);
+            lines.add("Waktu Memasak: " + cookingTime + "m");
+            lines.add("Rating: " + rating + "★");
+            lines.add("Bahan Utama: " + mainIngredient);
+            lines.add("Bahan Tambahan: " + additionalIngredient);
+            lines.add("Cara Memasak: " + instructions);
 
-        // Berikan notifikasi ke user
-        JOptionPane.showMessageDialog(this, "Resep berhasil disimpan!", "Sukses", JOptionPane.INFORMATION_MESSAGE);
+            // Tulis ulang file
+            Files.write(filePath, lines);
+            System.out.println("Data berhasil disimpan ke file: " + filePath); // Log jika data berhasil disimpan
 
-        // Kembali ke form sebelumnya
-        javax.swing.JPanel parentPanel = (javax.swing.JPanel) this.getParent();
-        parentPanel.removeAll();
-        parentPanel.add(new DaftarMasakan());
-        parentPanel.revalidate();
-        parentPanel.repaint();
-    } catch (Exception e) {
-        e.printStackTrace();
-        JOptionPane.showMessageDialog(this, "Gagal menyimpan resep: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            // Perbarui baris di tabel
+            tableModel.setValueAt(recipeName, selectedRow, 0);
+            tableModel.setValueAt(difficulty, selectedRow, 1);
+            tableModel.setValueAt(cookingTime + "m", selectedRow, 2);
+            tableModel.setValueAt(rating + "★", selectedRow, 3);
+            tableModel.setValueAt(mainIngredient, selectedRow, 4);
+            tableModel.setValueAt(additionalIngredient, selectedRow, 5);
+            tableModel.setValueAt(instructions, selectedRow, 6);
+
+            JOptionPane.showMessageDialog(this, "Resep berhasil diperbarui dan disimpan ke file!", "Sukses", JOptionPane.INFORMATION_MESSAGE);
+
+            // Log setelah semua berhasil
+            System.out.println("Resep berhasil diperbarui di tabel dan file.");
+            
+            // Kembali ke daftar masakan
+            JPanel parentPanel = (JPanel) this.getParent();
+            parentPanel.removeAll();
+            parentPanel.add(new DaftarMasakan());
+            parentPanel.revalidate();
+            parentPanel.repaint();
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Gagal menyimpan perubahan ke file: " + e.getMessage(), "Kesalahan", JOptionPane.ERROR_MESSAGE);
+            System.out.println("Error saat menyimpan ke file: " + e.getMessage()); // Log jika ada kesalahan
+        }
+    } else {
+        JOptionPane.showMessageDialog(this, "Tidak ada baris yang dipilih!", "Kesalahan", JOptionPane.ERROR_MESSAGE);
+        System.out.println("Gagal menyimpan: Tidak ada baris yang dipilih."); // Log jika tidak ada baris dipilih
     }
+
     }//GEN-LAST:event_saveEditButtonActionPerformed
 
     private void ratingSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_ratingSliderStateChanged

@@ -1,0 +1,8 @@
+Nama Resep: aku
+Bahan Utama: anak
+Bahan Tambahan: anak
+Tingkat Kesulitan: Item 1
+Waktu Memasak: 0m
+Porsi: 0
+Rating: 3
+Cara Memasak: anak

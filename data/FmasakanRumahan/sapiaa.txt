@@ -1,8 +1,0 @@
-Nama Resep: sapiaa
-Bahan Utama: Isi bahan utama
-Bahan Tambahan: Isi bahan tambahan
-Cara Memasak: Isi cara memasak
-Tingkat Kesulitan: Item 1
-Waktu Memasak: 0m
-Porsi: 0
-Rating: 1
