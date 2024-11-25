@@ -92,6 +92,8 @@ public class MenuUtama extends javax.swing.JFrame {
         pnkanan = new javax.swing.JPanel();
         pnDasar = new javax.swing.JPanel();
         pnUtama = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         gradientPanelHorizontal1 = new costum.GradientPanelHorizontal();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -419,6 +421,10 @@ public class MenuUtama extends javax.swing.JFrame {
 
         pnUtama.setBackground(new java.awt.Color(255, 255, 255));
         pnUtama.setLayout(new java.awt.BorderLayout());
+        pnUtama.add(jLabel2, java.awt.BorderLayout.CENTER);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/intro.png"))); // NOI18N
+        pnUtama.add(jLabel3, java.awt.BorderLayout.PAGE_START);
 
         gradientPanelHorizontal1.setColor1(new java.awt.Color(139, 69, 19));
         gradientPanelHorizontal1.setColor2(new java.awt.Color(245, 222, 179));
@@ -427,7 +433,7 @@ public class MenuUtama extends javax.swing.JFrame {
         gradientPanelHorizontal1.setLayout(gradientPanelHorizontal1Layout);
         gradientPanelHorizontal1Layout.setHorizontalGroup(
             gradientPanelHorizontal1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 829, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         gradientPanelHorizontal1Layout.setVerticalGroup(
             gradientPanelHorizontal1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -574,6 +580,8 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel pnDasar;

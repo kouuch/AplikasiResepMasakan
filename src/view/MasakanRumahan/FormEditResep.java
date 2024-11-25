@@ -119,7 +119,7 @@ public class FormEditResep extends javax.swing.JPanel {
         mainIngredientArea.setRows(5);
         jScrollPane1.setViewportView(mainIngredientArea);
 
-        difficultyComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        difficultyComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mudah", "Sedang", "Sulit" }));
 
         ratingLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         ratingLabel.setText("Rating");

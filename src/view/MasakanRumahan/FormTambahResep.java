@@ -216,7 +216,7 @@ public class FormTambahResep extends javax.swing.JPanel {
         difficultyLevelLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         difficultyLevelLabel.setText("Tingkat Kesulitan");
 
-        difficultyLevelComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        difficultyLevelComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mudah", "Sedang", "Sulit" }));
 
         cookingTimeLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         cookingTimeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
