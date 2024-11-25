@@ -4,6 +4,7 @@
  */
 package view.MasakanRumahan;
 
+import java.awt.Font;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.nio.file.Files;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import theme.FontManager;
 /**
  *
  * @author User
@@ -21,15 +23,16 @@ public class FormEditResep extends javax.swing.JPanel {
     private DefaultTableModel tableModel;
     private boolean isEditMode = false;
     private int selectedRow = -1;
-    private String originalRecipeName; // Variabel untuk menyimpan nama resep asli
+    private String originalRecipeName; // Untuk menyimpan nama resep asli
 
     public FormEditResep(DefaultTableModel model, String recipeName, String difficulty, 
                      String cookingTime, int servings, int rating, String mainIngredients, 
                      String additionalIngredients, String cookingSteps, int selectedRow) {
     this.tableModel = model;
     this.selectedRow = selectedRow;
+    this.originalRecipeName = recipeName; // Simpan nama resep asli
     System.out.printf("Memuat data ke FormEditResep:%nNama Resep: %s%nBahan Utama: %s%nBahan Tambahan: %s%nCara Memasak: %s%n",
-    recipeName, mainIngredients, additionalIngredients, cookingSteps);
+        recipeName, mainIngredients, additionalIngredients, cookingSteps);
 
     initComponents();
 
@@ -280,7 +283,7 @@ public class FormEditResep extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void saveEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveEditButtonActionPerformed
-    System.out.println("Tombol Simpan ditekan."); // Log saat tombol ditekan
+      System.out.println("Tombol Simpan ditekan."); // Log saat tombol ditekan
 
     if (selectedRow != -1) {
         String recipeName = recipeNameField.getText().trim();
@@ -299,28 +302,21 @@ public class FormEditResep extends javax.swing.JPanel {
         }
 
         try {
-            // Lokasi folder
             Path folderPath = Paths.get("data/FmasakanRumahan");
             if (!Files.exists(folderPath)) {
                 Files.createDirectories(folderPath);
                 System.out.println("Folder berhasil dibuat: " + folderPath.toAbsolutePath());
             }
 
-            // Tentukan nama file
-            String fileName = originalRecipeName.equals(recipeName) 
-                ? originalRecipeName + ".txt" // Nama file tetap jika nama tidak diubah
-                : recipeName + ".txt"; // Nama file baru jika nama diubah
-
-            Path oldFilePath = folderPath.resolve(originalRecipeName + ".txt"); // File lama
-            Path newFilePath = folderPath.resolve(fileName); // File baru
-
-            // Jika nama resep diubah, hapus file lama
-            if (!originalRecipeName.equals(recipeName)) {
-                Files.deleteIfExists(oldFilePath); // Hapus file lama
-                System.out.println("File lama dihapus: " + oldFilePath);
+            // Hapus file lama jika nama resep diubah
+            if (!recipeName.equals(originalRecipeName)) {
+                Path oldFilePath = folderPath.resolve(originalRecipeName + ".txt");
+                Files.deleteIfExists(oldFilePath);
+                System.out.println("File lama dihapus: " + oldFilePath.toAbsolutePath());
             }
 
-            // Tulis file baru
+            // Simpan file baru
+            Path filePath = folderPath.resolve(recipeName + ".txt");
             List<String> lines = new ArrayList<>();
             lines.add("Nama Resep: " + recipeName);
             lines.add("Tingkat Kesulitan: " + difficulty);
@@ -330,8 +326,8 @@ public class FormEditResep extends javax.swing.JPanel {
             lines.add("Bahan Tambahan: " + additionalIngredient);
             lines.add("Cara Memasak: " + instructions);
 
-            Files.write(newFilePath, lines);
-            System.out.println("Data berhasil disimpan ke file: " + newFilePath.toAbsolutePath());
+            Files.write(filePath, lines);
+            System.out.println("Data berhasil disimpan ke file: " + filePath.toAbsolutePath());
 
             // Perbarui baris di tabel
             tableModel.setValueAt(recipeName, selectedRow, 0);
@@ -343,16 +339,6 @@ public class FormEditResep extends javax.swing.JPanel {
             tableModel.setValueAt(instructions, selectedRow, 6);
 
             JOptionPane.showMessageDialog(this, "Resep berhasil diperbarui dan disimpan ke file!", "Sukses", JOptionPane.INFORMATION_MESSAGE);
-
-            // Log setelah semua berhasil
-            System.out.println("Resep berhasil diperbarui di tabel dan file.");
-
-            // Kembali ke daftar masakan
-            JPanel parentPanel = (JPanel) this.getParent();
-            parentPanel.removeAll();
-            parentPanel.add(new DaftarMasakan());
-            parentPanel.revalidate();
-            parentPanel.repaint();
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, "Gagal menyimpan perubahan ke file: " + e.getMessage(), "Kesalahan", JOptionPane.ERROR_MESSAGE);
             System.out.println("Gagal menyimpan file: " + e.getMessage());
@@ -366,8 +352,11 @@ public class FormEditResep extends javax.swing.JPanel {
 
     private void ratingSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_ratingSliderStateChanged
         int rating = ratingSlider.getValue(); // Ambil nilai slider
-        String stars = "★".repeat(rating) + "☆".repeat(5 - rating); // Format bintang
-        ratingLabel.setText("Rating: " + stars); // Perbarui label
+    String stars = "★".repeat(rating) + "☆".repeat(5 - rating); // Format bintang
+
+    // Set font untuk mendukung Unicode
+    ratingLabel.setFont(FontManager.getUnicodeCompatibleFont(Font.PLAIN, 14)); 
+    ratingLabel.setText("Rating: " + stars); // Perbarui label
     }//GEN-LAST:event_ratingSliderStateChanged
 
     private void cookingTimeSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_cookingTimeSpinnerStateChanged
