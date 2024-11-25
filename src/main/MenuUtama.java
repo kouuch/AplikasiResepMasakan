@@ -30,9 +30,7 @@ import view.MasakanRumahan.DaftarMasakan;
  */
 public class MenuUtama extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MenuUtama
-     */
+    int xx,xy;
     public MenuUtama() {
          initComponents(); // Panggil initComponents() terlebih dahulu
          //tambahkanKomponen(); // Buat metode terpisah untuk logika tambahan
@@ -97,6 +95,17 @@ public class MenuUtama extends javax.swing.JFrame {
         gradientPanelHorizontal1 = new costum.GradientPanelHorizontal();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                formMouseDragged(evt);
+            }
+        });
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                formMousePressed(evt);
+            }
+        });
 
         pnkiri.setForeground(new java.awt.Color(30, 32, 30));
         pnkiri.setColor1(new java.awt.Color(139, 69, 19));
@@ -553,6 +562,18 @@ public class MenuUtama extends javax.swing.JFrame {
     private void btnMenuutama5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenuutama5MouseExited
         // TODO add your handling code here:
     }//GEN-LAST:event_btnMenuutama5MouseExited
+
+    private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
+        xy = evt.getX();
+        xy = evt.getY();
+    }//GEN-LAST:event_formMousePressed
+
+    private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
+       int x = evt.getXOnScreen();
+       int y = evt.getYOnScreen();
+       this.setLocation(x - xx, y - xy);
+    
+    }//GEN-LAST:event_formMouseDragged
 
     /**
      * @param args the command line arguments
