@@ -102,17 +102,24 @@ public class ViewMasakanRumah extends JPanel {
     }
 
     public void setRecipeData(String recipeName, String mainIngredients, String cookingSteps,
-                              String difficulty, String cookingTime, String rating) {
-        nameLabel.setText(recipeName != null ? recipeName : "Nama Resep Tidak Tersedia");
-        // Perubahan Dimulai
+                          String difficulty, String cookingTime, String rating) {
+    // Tambahkan debug log di awal metode
+    System.out.println("DEBUG: Data yang diterima untuk setRecipeData:");
+    System.out.println("Nama Resep: " + recipeName);
+    System.out.println("Bahan Utama: " + mainIngredients);
+    System.out.println("Langkah Memasak: " + cookingSteps);
+    System.out.println("Tingkat Kesulitan: " + difficulty);
+    System.out.println("Waktu Memasak: " + cookingTime);
+    System.out.println("Rating: " + rating);
+
+    nameLabel.setText(recipeName != null ? recipeName : "Nama Resep Tidak Tersedia");
     ingredientsTextArea.setText(mainIngredients != null ? mainIngredients : "Bahan Tidak Tersedia");
     stepsTextArea.setText(cookingSteps != null ? cookingSteps : "Langkah Memasak Tidak Tersedia");
-    // Perubahan Berakhir
-        stepsTextArea.setText(cookingSteps != null ? cookingSteps : "Langkah Memasak Tidak Tersedia");
-        difficultyLabel.setText(difficulty != null ? difficulty : "Tingkat Kesulitan Tidak Tersedia");
-        cookingTimeLabel.setText(cookingTime != null ? cookingTime : "Waktu Memasak Tidak Tersedia");
-        ratingLabel.setText(rating != null ? rating.replace("?", "★") : "Rating Tidak Tersedia");
-    }
+    difficultyLabel.setText(difficulty != null ? difficulty : "Tingkat Kesulitan Tidak Tersedia");
+    cookingTimeLabel.setText(cookingTime != null ? cookingTime : "Waktu Memasak Tidak Tersedia");
+    ratingLabel.setText(rating != null ? rating.replace("?", "★") : "Rating Tidak Tersedia");
+}
+
 
 
 
@@ -135,17 +142,15 @@ public class ViewMasakanRumah extends JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        recipeDetailPanel = new costum.DetailPanelPoppins();
+        detailPanelPoppins1 = new costum.DetailPanelPoppins();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new java.awt.CardLayout());
-
-        recipeDetailPanel.setBackground(new java.awt.Color(255, 255, 255));
-        add(recipeDetailPanel, "card2");
+        add(detailPanelPoppins1, "card2");
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private costum.DetailPanelPoppins recipeDetailPanel;
+    private costum.DetailPanelPoppins detailPanelPoppins1;
     // End of variables declaration//GEN-END:variables
 }

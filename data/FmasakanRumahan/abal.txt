@@ -1,8 +1,7 @@
 Nama Resep: abal
-Bahan Utama: Isi bahan saa
-Bahan Tambahan: Isi bahan tambahan
-Cara Memasak: Isi cara memasak
 Tingkat Kesulitan: Item 1
 Waktu Memasak: 6m
-Porsi: 0
-Rating: 1
+Rating: 1★
+Bahan Utama: adabi
+Bahan Tambahan: sds
+Cara Memasak: sssss

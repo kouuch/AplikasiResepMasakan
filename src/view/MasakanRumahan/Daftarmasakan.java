@@ -92,14 +92,16 @@ public class DaftarMasakan extends javax.swing.JPanel {
 
 
 
+
     private String extractValue(List<String> lines, String key) {
-        for (String line : lines) {
-            if (line.startsWith(key + ":")) {
-                return line.split(":", 2)[1].trim();
-            }
+    System.out.println("DEBUG: Extracting key " + key + " from lines: " + lines); // Tambahkan di sini
+    for (String line : lines) {
+        if (line.startsWith(key + ":")) {
+            return line.split(":", 2)[1].trim();
         }
-        return "";
     }
+    return "";
+}
 
     private void deleteSelectedRecipe() {
         JTable table = recipeTablePanel.getTable();
@@ -327,7 +329,7 @@ private void saveRecipe(String[] data) {
     }// </editor-fold>//GEN-END:initComponents
 
     private void selectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectButtonActionPerformed
-    JTable table = recipeTablePanel.getTable();
+     JTable table = recipeTablePanel.getTable();
     int selectedRow = table.getSelectedRow();
 
     if (selectedRow != -1) {
@@ -338,12 +340,24 @@ private void saveRecipe(String[] data) {
         String rating = (String) table.getValueAt(selectedRow, 3); // Rating
 
         // Pastikan bahan dan langkah memasak diambil dari sumber data
-        String mainIngredients = "Isi bahan utama"; // Ambil dari file atau database
-        String cookingSteps = "Isi cara memasak"; // Ambil dari file atau database
+        String mainIngredients = (String) table.getValueAt(selectedRow, 4); // Ambil kolom "Bahan Utama"
+        String cookingSteps = (String) table.getValueAt(selectedRow, 6);
+
+        // Debug: Data yang diambil dari tabel
+        System.out.println("DEBUG: Data yang diambil dari tabel:");
+        System.out.println("Nama Resep: " + recipeName);
+        System.out.println("Tingkat Kesulitan: " + difficulty);
+        System.out.println("Waktu Memasak: " + cookingTime);
+        System.out.println("Rating: " + rating);
+        System.out.println("Bahan Utama: " + mainIngredients);
+        System.out.println("Langkah Memasak: " + cookingSteps);
 
         // Panggil panel detail dan kirim data
         ViewMasakanRumah detailPanel = new ViewMasakanRumah();
         detailPanel.setRecipeData(recipeName, mainIngredients, cookingSteps, difficulty, cookingTime, rating);
+
+        // Debug: Konfirmasi data berhasil diatur
+        System.out.println("DEBUG: Data berhasil diatur ke detailPanel.");
 
         // Pindah ke panel baru
         javax.swing.JPanel parentPanel = (javax.swing.JPanel) this.getParent();
@@ -351,9 +365,13 @@ private void saveRecipe(String[] data) {
         parentPanel.add(detailPanel);
         parentPanel.revalidate();
         parentPanel.repaint();
+
+        // Debug: Konfirmasi navigasi berhasil
+        System.out.println("DEBUG: Navigasi ke panel detail berhasil.");
     } else {
         javax.swing.JOptionPane.showMessageDialog(this, "Pilih resep yang ingin dilihat!");
     }
+
     }//GEN-LAST:event_selectButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
