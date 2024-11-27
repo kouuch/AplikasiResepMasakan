@@ -14,6 +14,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -437,7 +438,7 @@ private void saveRecipe(String[] data) {
 private boolean isDeleting = false;
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
     if (isDeleting) {
-        // Jika sudah ada aksi penghapusan yang sedang berlangsung, keluar dari fungsi
+        // Menghindari eksekusi berulang jika penghapusan sudah dilakukan
         return;
     }
     
@@ -445,7 +446,7 @@ private boolean isDeleting = false;
     int selectedRow = table.getSelectedRow();
 
     if (selectedRow != -1) {
-        // Tandai penghapusan sedang berjalan
+        // Menandakan bahwa penghapusan sedang dilakukan
         isDeleting = true;
 
         // Tampilkan dialog konfirmasi penghapusan
@@ -470,18 +471,20 @@ private boolean isDeleting = false;
                 JOptionPane.showMessageDialog(this, "Gagal menghapus resep: " + e.getMessage());
             }
         } 
-        // Jika pengguna memilih "No", hanya batalkan pemilihan dan keluar
+        // Jika pengguna memilih "No"
         else if (confirm == JOptionPane.NO_OPTION) {
+            // Hapus pemilihan baris dan berhenti dari eksekusi
             table.clearSelection();  // Menghapus pemilihan baris
             JOptionPane.showMessageDialog(this, "Resep tidak dihapus.");
-            return;  // Menghentikan eksekusi lebih lanjut
         }
-
-        // Reset flag penghapusan setelah selesai
-        isDeleting = false;
+        
+        // Reset flag penghapusan setelah selesai, memastikan tidak ada eksekusi berikutnya
+        SwingUtilities.invokeLater(() -> {
+            isDeleting = false;
+        });
     }
 }
-
+private boolean isDeleting = false;
 // Memastikan tombol delete diaktifkan saat sebuah baris dipilih
 private void tableSelectionChanged() {
     JTable table = recipeTablePanel.getTable();
