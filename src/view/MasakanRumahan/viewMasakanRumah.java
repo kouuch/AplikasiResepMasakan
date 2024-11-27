@@ -55,6 +55,19 @@ public class ViewMasakanRumah extends JPanel {
         ingredientsTextArea.setLineWrap(true);
         ingredientsTextArea.setWrapStyleWord(true);
         add(new JScrollPane(ingredientsTextArea), gbc);
+        
+        // Bahan Tambahan
+        gbc.gridx = 0;
+        gbc.gridy = 3;  // Pindahkan ke baris berikutnya
+        add(new JLabel("Bahan Tambahan:"), gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 3;
+        JTextArea additionalIngredientsTextArea = new JTextArea(5, 20);
+        additionalIngredientsTextArea.setEditable(false);
+        additionalIngredientsTextArea.setLineWrap(true);
+        additionalIngredientsTextArea.setWrapStyleWord(true);
+        add(new JScrollPane(additionalIngredientsTextArea), gbc);
 
         // Langkah Memasak
         gbc.gridx = 0;
