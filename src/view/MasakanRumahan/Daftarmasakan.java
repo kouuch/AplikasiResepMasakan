@@ -438,34 +438,51 @@ private void saveRecipe(String[] data) {
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
     JTable table = recipeTablePanel.getTable();
     int selectedRow = table.getSelectedRow();
-
+    
+    // Log pemilihan baris
+    System.out.println("DEBUG: Baris yang dipilih: " + selectedRow);
+    
     if (selectedRow != -1) {
         // Tampilkan dialog konfirmasi hanya jika ada baris yang dipilih
+        System.out.println("DEBUG: Menampilkan konfirmasi penghapusan.");
         int confirm = JOptionPane.showConfirmDialog(this,
             "Apakah Anda yakin ingin menghapus resep ini?",
             "Konfirmasi Hapus",
             JOptionPane.YES_NO_OPTION);
-
+        
+        // Log hasil konfirmasi
+        System.out.println("DEBUG: Hasil konfirmasi: " + confirm);
+        
         if (confirm == JOptionPane.YES_OPTION) {
             String recipeName = (String) table.getValueAt(selectedRow, 0); // Ambil nama resep
             try {
+                // Log sebelum menghapus file
+                System.out.println("DEBUG: Menghapus file untuk resep: " + recipeName);
                 // Hapus file resep
                 java.nio.file.Path filePath = java.nio.file.Paths.get("data/FmasakanRumahan/" + recipeName + ".txt");
                 java.nio.file.Files.deleteIfExists(filePath);
-
+                
                 // Hapus baris dari tabel
                 tableModel.removeRow(selectedRow);
-
+                
+                // Log setelah menghapus
+                System.out.println("DEBUG: File berhasil dihapus dan baris dari tabel dihapus.");
                 JOptionPane.showMessageDialog(this, "Resep berhasil dihapus!");
             } catch (Exception e) {
+                // Log error jika terjadi kegagalan
+                System.out.println("DEBUG: Gagal menghapus resep: " + e.getMessage());
                 JOptionPane.showMessageDialog(this, "Gagal menghapus resep: " + e.getMessage());
             }
         } else if (confirm == JOptionPane.NO_OPTION) {
             // Clear selection dan jangan lakukan apa-apa setelah klik "No"
+            System.out.println("DEBUG: Pengguna memilih 'No'. Menghapus pemilihan baris.");
             table.clearSelection();
             return; // Menghentikan eksekusi lebih lanjut jika "No" dipilih
         }
-    }      
+    } else {
+        // Log jika tidak ada baris yang dipilih
+        System.out.println("DEBUG: Tidak ada baris yang dipilih untuk dihapus.");
+    }     
     }//GEN-LAST:event_deleteButtonActionPerformed
 
 
