@@ -22,10 +22,10 @@ public class ViewMasakanRumah extends JPanel {
         // Menggunakan BoxLayout untuk tata letak vertikal
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        // Nama Resep
+        // Nama Resep (Rata kiri)
         nameLabel = new JLabel("Nama Resep Tidak Tersedia");
         nameLabel.setFont(new Font("Segoe UI", Font.BOLD, 24));
-        nameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        nameLabel.setAlignmentX(Component.LEFT_ALIGNMENT); // Rata kiri
         add(nameLabel);
 
         // Bahan Utama
@@ -95,7 +95,7 @@ public class ViewMasakanRumah extends JPanel {
 
         ratingLabel = new JLabel("Rating Tidak Tersedia");
         ratingLabel.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 16));
-        ratingLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        ratingLabel.setAlignmentX(Component.LEFT_ALIGNMENT); // Rata kiri
         add(ratingLabel);
     }
 
