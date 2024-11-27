@@ -328,7 +328,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
         pnMain3.setBackground(new java.awt.Color(139, 69, 19));
 
-        pnLine3.setBackground(new java.awt.Color(0, 0, 0));
+        pnLine3.setBackground(new java.awt.Color(139, 69, 19));
         pnLine3.setPreferredSize(new java.awt.Dimension(5, 35));
 
         javax.swing.GroupLayout pnLine3Layout = new javax.swing.GroupLayout(pnLine3);
@@ -419,7 +419,7 @@ public class MenuUtama extends javax.swing.JFrame {
                 .addComponent(pnMain2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnMain3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(331, Short.MAX_VALUE))
+                .addContainerGap(328, Short.MAX_VALUE))
         );
 
         getContentPane().add(pnkiri, java.awt.BorderLayout.LINE_START);
