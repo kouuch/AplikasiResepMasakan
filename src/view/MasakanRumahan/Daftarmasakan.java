@@ -472,7 +472,7 @@ private void saveRecipe(String[] data) {
                 } else if (confirm == JOptionPane.NO_OPTION) {
                     // Menghapus pemilihan baris jika memilih "No"
                     table.clearSelection();
-                    JOptionPane.showMessageDialog(DaftarMasakan.this, "Resep tidak dihapus.");
+                    //JOptionPane.showMessageDialog(DaftarMasakan.this, "Resep tidak dihapus.");
                 }
             }
         });
