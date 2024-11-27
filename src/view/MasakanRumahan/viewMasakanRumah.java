@@ -21,17 +21,20 @@ public class ViewMasakanRumah extends JPanel {
     public ViewMasakanRumah() {
         // Menggunakan BoxLayout untuk tata letak vertikal
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20)); // Menambahkan jarak luar panel
 
-        // Nama Resep (Rata kiri)
+        // Judul: Nama Resep
         nameLabel = new JLabel("Nama Resep Tidak Tersedia");
         nameLabel.setFont(new Font("Segoe UI", Font.BOLD, 24));
-        nameLabel.setAlignmentX(Component.LEFT_ALIGNMENT); // Rata kiri
+        nameLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // Judul rata tengah
         add(nameLabel);
 
+        // Memberi jarak antar elemen
+        add(Box.createVerticalStrut(10)); 
+
         // Bahan Utama
-        add(Box.createVerticalStrut(10)); // Memberi jarak
         JLabel ingredientsLabel = new JLabel("Bahan Utama:");
-        ingredientsLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        ingredientsLabel.setAlignmentX(Component.LEFT_ALIGNMENT); // Label rata kiri
         add(ingredientsLabel);
 
         ingredientsTextArea = new JTextArea(5, 20);
@@ -44,7 +47,7 @@ public class ViewMasakanRumah extends JPanel {
         // Bahan Tambahan
         add(Box.createVerticalStrut(10)); // Memberi jarak
         JLabel additionalIngredientsLabel = new JLabel("Bahan Tambahan:");
-        additionalIngredientsLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        additionalIngredientsLabel.setAlignmentX(Component.LEFT_ALIGNMENT); // Label rata kiri
         add(additionalIngredientsLabel);
 
         additionalIngredientsTextArea = new JTextArea(5, 20);
@@ -57,7 +60,7 @@ public class ViewMasakanRumah extends JPanel {
         // Langkah Memasak
         add(Box.createVerticalStrut(10)); // Memberi jarak
         JLabel stepsLabel = new JLabel("Langkah Memasak:");
-        stepsLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        stepsLabel.setAlignmentX(Component.LEFT_ALIGNMENT); // Label rata kiri
         add(stepsLabel);
 
         stepsTextArea = new JTextArea(5, 20);
@@ -70,27 +73,27 @@ public class ViewMasakanRumah extends JPanel {
         // Tingkat Kesulitan
         add(Box.createVerticalStrut(10)); // Memberi jarak
         JLabel difficultyTextLabel = new JLabel("Tingkat Kesulitan:");
-        difficultyTextLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        difficultyTextLabel.setAlignmentX(Component.LEFT_ALIGNMENT); // Label rata kiri
         add(difficultyTextLabel);
 
         difficultyLabel = new JLabel("Tingkat Kesulitan Tidak Tersedia");
-        difficultyLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        difficultyLabel.setAlignmentX(Component.LEFT_ALIGNMENT); // Rata kiri
         add(difficultyLabel);
 
         // Waktu Memasak
         add(Box.createVerticalStrut(10)); // Memberi jarak
         JLabel cookingTimeTextLabel = new JLabel("Waktu Memasak:");
-        cookingTimeTextLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        cookingTimeTextLabel.setAlignmentX(Component.LEFT_ALIGNMENT); // Label rata kiri
         add(cookingTimeTextLabel);
 
         cookingTimeLabel = new JLabel("Waktu Memasak Tidak Tersedia");
-        cookingTimeLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        cookingTimeLabel.setAlignmentX(Component.LEFT_ALIGNMENT); // Rata kiri
         add(cookingTimeLabel);
 
         // Rating
         add(Box.createVerticalStrut(10)); // Memberi jarak
         JLabel ratingTextLabel = new JLabel("Rating:");
-        ratingTextLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        ratingTextLabel.setAlignmentX(Component.LEFT_ALIGNMENT); // Label rata kiri
         add(ratingTextLabel);
 
         ratingLabel = new JLabel("Rating Tidak Tersedia");
