@@ -98,10 +98,10 @@ public class DaftarMasakan extends javax.swing.JPanel {
         recipeTablePanel.getTable().getColumnModel().getColumn(0).setPreferredWidth(150);
         recipeTablePanel.getTable().getColumnModel().getColumn(1).setPreferredWidth(100);
         recipeTablePanel.getTable().getColumnModel().getColumn(2).setPreferredWidth(80);
-        recipeTablePanel.getTable().getColumnModel().getColumn(3).setPreferredWidth(60);
+        recipeTablePanel.getTable().getColumnModel().getColumn(3).setPreferredWidth(85);
         recipeTablePanel.getTable().getColumnModel().getColumn(4).setPreferredWidth(150);
         recipeTablePanel.getTable().getColumnModel().getColumn(5).setPreferredWidth(150);
-        recipeTablePanel.getTable().getColumnModel().getColumn(6).setPreferredWidth(200);
+        recipeTablePanel.getTable().getColumnModel().getColumn(6).setPreferredWidth(150);
     } catch (IOException e) {
         JOptionPane.showMessageDialog(this, "Gagal memuat data: " + e.getMessage(), "Kesalahan", JOptionPane.ERROR_MESSAGE);
     }
