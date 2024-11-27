@@ -436,36 +436,37 @@ private void saveRecipe(String[] data) {
     }//GEN-LAST:event_editButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-          JTable table = recipeTablePanel.getTable();
+     JTable table = recipeTablePanel.getTable();
     int selectedRow = table.getSelectedRow();
 
     if (selectedRow != -1) {
+        // Tampilkan dialog konfirmasi
         int confirm = JOptionPane.showConfirmDialog(this,
             "Apakah Anda yakin ingin menghapus resep ini?",
             "Konfirmasi Hapus",
             JOptionPane.YES_NO_OPTION);
 
+        // Jika pengguna memilih "Yes"
         if (confirm == JOptionPane.YES_OPTION) {
             String recipeName = (String) table.getValueAt(selectedRow, 0); // Get recipe name
             try {
-                // Delete recipe file
+                // Hapus file resep
                 java.nio.file.Path filePath = java.nio.file.Paths.get("data/FmasakanRumahan/" + recipeName + ".txt");
                 java.nio.file.Files.deleteIfExists(filePath);
 
-                // Remove row from table
+                // Hapus baris dari tabel
                 tableModel.removeRow(selectedRow);
 
                 JOptionPane.showMessageDialog(this, "Resep berhasil dihapus!");
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Gagal menghapus resep: " + e.getMessage());
             }
-        } else {
-            // Jika user memilih "No", batalkan pemilihan di tabel
-            table.clearSelection();  // Membatalkan seleksi baris yang dipilih
+        } 
+        // Jika pengguna memilih "No", batalkan pemilihan
+        else if (confirm == JOptionPane.NO_OPTION) {
+            table.clearSelection();  // Menghapus pemilihan baris
         }
-    }
-
-    
+    }    
     }//GEN-LAST:event_deleteButtonActionPerformed
 
 
