@@ -330,6 +330,14 @@ public class FormEditResep extends javax.swing.JPanel {
             tableModel.setValueAt(instructions, selectedRow, 6);
 
             JOptionPane.showMessageDialog(this, "Resep berhasil diperbarui dan disimpan ke file!", "Sukses", JOptionPane.INFORMATION_MESSAGE);
+
+            // Kembali ke panel DaftarMasakan
+            javax.swing.JPanel parentPanel = (javax.swing.JPanel) this.getParent();
+            parentPanel.removeAll();
+            parentPanel.add(new DaftarMasakan());  // Menambahkan panel DaftarMasakan
+            parentPanel.revalidate();
+            parentPanel.repaint();
+
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, "Gagal menyimpan perubahan ke file: " + e.getMessage(), "Kesalahan", JOptionPane.ERROR_MESSAGE);
             System.out.println("Gagal menyimpan file: " + e.getMessage());
