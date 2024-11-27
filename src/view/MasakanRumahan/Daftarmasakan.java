@@ -14,7 +14,6 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
-import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -435,26 +434,18 @@ private void saveRecipe(String[] data) {
     }
 
     }//GEN-LAST:event_editButtonActionPerformed
-private boolean isDeleting = false;
+
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-    if (isDeleting) {
-        return;  // Menghindari eksekusi berulang
-    }
-    
-    JTable table = recipeTablePanel.getTable();
+     JTable table = recipeTablePanel.getTable();
     int selectedRow = table.getSelectedRow();
 
     if (selectedRow != -1) {
-        // Mengaktifkan flag untuk mencegah penghapusan berulang
-        isDeleting = true;
-
         // Tampilkan konfirmasi penghapusan
         int confirm = JOptionPane.showConfirmDialog(this,
             "Apakah Anda yakin ingin menghapus resep ini?",
             "Konfirmasi Hapus",
             JOptionPane.YES_NO_OPTION);
 
-        // Jika pengguna memilih "Yes"
         if (confirm == JOptionPane.YES_OPTION) {
             String recipeName = (String) table.getValueAt(selectedRow, 0); // Ambil nama resep
             try {
@@ -469,19 +460,14 @@ private boolean isDeleting = false;
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Gagal menghapus resep: " + e.getMessage());
             }
-        } 
-        // Jika pengguna memilih "No"
-        else if (confirm == JOptionPane.NO_OPTION) {
-            // Menghapus pemilihan baris
-            table.clearSelection();  
+        } else if (confirm == JOptionPane.NO_OPTION) {
+            // Menghapus pemilihan baris jika memilih "No"
+            table.clearSelection();
             JOptionPane.showMessageDialog(this, "Resep tidak dihapus.");
         }
-
-        // Reset flag setelah operasi selesai
-        isDeleting = false;
     }
 }
-
+private boolean isDeleting = false;
 // Memastikan tombol delete diaktifkan saat sebuah baris dipilih
 private void tableSelectionChanged() {
     JTable table = recipeTablePanel.getTable();
