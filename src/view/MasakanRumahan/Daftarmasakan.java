@@ -442,13 +442,13 @@ private void saveRecipe(String[] data) {
     if (selectedRow != -1) {
         // Tampilkan dialog konfirmasi
         int confirm = JOptionPane.showConfirmDialog(this,
-            "Apakah Anda yakin ingin menghapus resep ini?",
-            "Konfirmasi Hapus",
-            JOptionPane.YES_NO_OPTION);
+                "Apakah Anda yakin ingin menghapus resep ini?",
+                "Konfirmasi Hapus",
+                JOptionPane.YES_NO_OPTION);
 
         // Jika pengguna memilih "Yes"
         if (confirm == JOptionPane.YES_OPTION) {
-            String recipeName = (String) table.getValueAt(selectedRow, 0); // Ambil nama resep
+            String recipeName = (String) table.getValueAt(selectedRow, 0); // Get recipe name
             try {
                 // Hapus file resep
                 java.nio.file.Path filePath = java.nio.file.Paths.get("data/FmasakanRumahan/" + recipeName + ".txt");
@@ -461,14 +461,21 @@ private void saveRecipe(String[] data) {
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Gagal menghapus resep: " + e.getMessage());
             }
-        } 
-        // Jika pengguna memilih "No", clear selection dan hentikan aksi lebih lanjut
-        else {
-            // Menghapus pemilihan baris dan menghentikan eksekusi lebih lanjut
+        } else if (confirm == JOptionPane.NO_OPTION) {
+            // Menonaktifkan tombol delete untuk mencegah aksi berulang
+            deleteButton.setEnabled(false);
+            // Clear selection dan hentikan eksekusi
             table.clearSelection();
-            return;  // Menghentikan eksekusi lebih lanjut
         }
     }
+}
+
+// Memastikan tombol delete diaktifkan saat sebuah baris dipilih
+private void tableSelectionChanged() {
+    JTable table = recipeTablePanel.getTable();
+    int selectedRow = table.getSelectedRow();
+    deleteButton.setEnabled(selectedRow != -1); // Enable delete only if a row is selected
+
     }//GEN-LAST:event_deleteButtonActionPerformed
 
 
