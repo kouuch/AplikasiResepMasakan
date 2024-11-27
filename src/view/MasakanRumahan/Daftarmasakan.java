@@ -96,23 +96,10 @@ public class DaftarMasakan extends javax.swing.JPanel {
                 }
             }
         }
-
-        // Mengatur lebar kolom
-        recipeTablePanel.getTable().getColumnModel().getColumn(0).setPreferredWidth(150);
-        recipeTablePanel.getTable().getColumnModel().getColumn(1).setPreferredWidth(100);
-        recipeTablePanel.getTable().getColumnModel().getColumn(2).setPreferredWidth(80);
-        recipeTablePanel.getTable().getColumnModel().getColumn(3).setPreferredWidth(85);
-        recipeTablePanel.getTable().getColumnModel().getColumn(4).setPreferredWidth(200);  // Lebar kolom Bahan Utama
-        recipeTablePanel.getTable().getColumnModel().getColumn(5).setPreferredWidth(200);  // Lebar kolom Bahan Tambahan
-        recipeTablePanel.getTable().getColumnModel().getColumn(6).setPreferredWidth(250);  // Lebar kolom Langkah Memasak
     } catch (IOException e) {
         JOptionPane.showMessageDialog(this, "Gagal memuat data: " + e.getMessage(), "Kesalahan", JOptionPane.ERROR_MESSAGE);
     }
 }
-
-
-
-
 
 
     private String extractValue(List<String> lines, String key) {
@@ -193,11 +180,6 @@ public class DaftarMasakan extends javax.swing.JPanel {
     }
 }
 
-
-
-
-
-
 private void saveRecipe(String[] data) {
     // Validasi semua elemen data
     for (int i = 0; i < data.length; i++) {
@@ -221,20 +203,33 @@ private void saveRecipe(String[] data) {
         lines.add("Tingkat Kesulitan: " + data[1]);  // Tingkat Kesulitan
         lines.add("Waktu Memasak: " + data[2]);  // Waktu Memasak
         lines.add("Rating: " + data[3]);  // Rating
-        lines.add("Bahan Utama: " + data[4]);  // Bahan Utama
-        lines.add("Bahan Tambahan: " + data[5]);  // Bahan Tambahan
+        lines.add("Bahan Utama:\n" + formatIngredients(data[4]));  // Bahan Utama
+        lines.add("Bahan Tambahan:\n" + formatIngredients(data[5]));  // Bahan Tambahan
         lines.add("Cara Memasak: " + data[6]);  // Cara Memasak
 
         java.nio.file.Files.write(filePath, lines);
 
         // Tambahkan data ke tabel
-            tableModel.addRow(data);
+        tableModel.addRow(data);
 
         JOptionPane.showMessageDialog(this, "Resep berhasil disimpan!", "Sukses", JOptionPane.INFORMATION_MESSAGE);
     } catch (Exception e) {
         JOptionPane.showMessageDialog(this, "Gagal menyimpan data: " + e.getMessage(), "Kesalahan", JOptionPane.ERROR_MESSAGE);
     }
 }
+
+private String formatIngredients(String ingredients) {
+    String[] ingredientList = ingredients.split("\n");
+    StringBuilder formattedIngredients = new StringBuilder();
+    
+    int counter = 1;
+    for (String ingredient : ingredientList) {
+        formattedIngredients.append(counter).append(". ").append(ingredient).append("\n");
+        counter++;
+    }
+    return formattedIngredients.toString();
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
