@@ -94,14 +94,19 @@ public class FormTambahResep extends javax.swing.JPanel {
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.WARNING_MESSAGE);
             if (response != JOptionPane.YES_OPTION) {
-                return;
+                return; // Jika tidak ingin menimpa, batalkan penyimpanan
             }
         }
 
-        // Format data untuk disimpan
+        // Pisahkan bahan utama dan tambahan dengan newline jika ada banyak bahan
+        mainIngredient = mainIngredient.replaceAll("\n", ", "); // Menyatukan bahan utama dengan koma
+        additionalIngredient = additionalIngredient.replaceAll("\n", ", "); // Menyatukan bahan tambahan dengan koma
+
+        // Format data untuk disimpan (gunakan \n untuk pemisah)
         String dataToSave = String.format(
                 "Nama Resep: %s\nBahan Utama: %s\nBahan Tambahan: %s\nTingkat Kesulitan: %s\nWaktu Memasak: %dm\nPorsi: %d\nRating: %d\nCara Memasak: %s",
                 recipeName, mainIngredient, additionalIngredient, difficulty, cookingTime, servings, rating, instructions);
+
         Files.write(filePath, dataToSave.getBytes());
 
         // Format rating dengan bintang
