@@ -436,32 +436,33 @@ private void saveRecipe(String[] data) {
     }//GEN-LAST:event_editButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-         JTable table = recipeTablePanel.getTable();
+          JTable table = recipeTablePanel.getTable();
     int selectedRow = table.getSelectedRow();
 
     if (selectedRow != -1) {
-        // Ambil data dari baris yang dipilih
-        String recipeName = (String) table.getValueAt(selectedRow, 0); // Nama Resep
-        String difficulty = (String) table.getValueAt(selectedRow, 1); // Tingkat Kesulitan
-        String cookingTime = (String) table.getValueAt(selectedRow, 2); // Waktu Memasak
-        String rating = (String) table.getValueAt(selectedRow, 3); // Rating
+        int confirm = JOptionPane.showConfirmDialog(this,
+            "Apakah Anda yakin ingin menghapus resep ini?",
+            "Konfirmasi Hapus",
+            JOptionPane.YES_NO_OPTION);
 
-        // Pastikan bahan dan langkah memasak diambil dari sumber data
-        String mainIngredients = "Isi bahan utama"; // Ambil dari file atau database
-        String cookingSteps = "Isi cara memasak"; // Ambil dari file atau database
+        if (confirm == JOptionPane.YES_OPTION) {
+            String recipeName = (String) table.getValueAt(selectedRow, 0); // Get recipe name
+            try {
+                // Delete recipe file
+                java.nio.file.Path filePath = java.nio.file.Paths.get("data/FmasakanRumahan/" + recipeName + ".txt");
+                java.nio.file.Files.deleteIfExists(filePath);
 
-        // Panggil panel detail dan kirim data
-        ViewMasakanRumah detailPanel = new ViewMasakanRumah();
-        detailPanel.setRecipeData(recipeName, mainIngredients, cookingSteps, difficulty, cookingTime, rating);
+                // Remove row from table
+                tableModel.removeRow(selectedRow);
 
-        // Pindah ke panel baru
-        javax.swing.JPanel parentPanel = (javax.swing.JPanel) this.getParent();
-        parentPanel.removeAll();
-        parentPanel.add(detailPanel);
-        parentPanel.revalidate();
-        parentPanel.repaint();
-    } else {
-        //javax.swing.JOptionPane.showMessageDialog(this, "Pilih resep yang ingin dilihat!");
+                JOptionPane.showMessageDialog(this, "Resep berhasil dihapus!");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Gagal menghapus resep: " + e.getMessage());
+            }
+        } else {
+            // Jika user memilih "No", batalkan pemilihan di tabel
+            table.clearSelection();  // Membatalkan seleksi baris yang dipilih
+        }
     }
 
     
