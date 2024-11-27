@@ -89,20 +89,22 @@ public class DaftarMasakan extends javax.swing.JPanel {
                     // Format rating dengan bintang
                     String ratingWithStars = "★".repeat(ratingValue) + "☆".repeat(5 - ratingValue);
 
+                    // Menambahkan data ke tabel
                     tableModel.addRow(new Object[]{
                         recipeName, difficulty, cookingTime, ratingWithStars, mainIngredient, additionalIngredient, instructions
                     });
                 }
             }
         }
+
         // Mengatur lebar kolom
         recipeTablePanel.getTable().getColumnModel().getColumn(0).setPreferredWidth(150);
         recipeTablePanel.getTable().getColumnModel().getColumn(1).setPreferredWidth(100);
         recipeTablePanel.getTable().getColumnModel().getColumn(2).setPreferredWidth(80);
         recipeTablePanel.getTable().getColumnModel().getColumn(3).setPreferredWidth(85);
-        recipeTablePanel.getTable().getColumnModel().getColumn(4).setPreferredWidth(150);
-        recipeTablePanel.getTable().getColumnModel().getColumn(5).setPreferredWidth(150);
-        recipeTablePanel.getTable().getColumnModel().getColumn(6).setPreferredWidth(150);
+        recipeTablePanel.getTable().getColumnModel().getColumn(4).setPreferredWidth(200);  // Lebar kolom Bahan Utama
+        recipeTablePanel.getTable().getColumnModel().getColumn(5).setPreferredWidth(200);  // Lebar kolom Bahan Tambahan
+        recipeTablePanel.getTable().getColumnModel().getColumn(6).setPreferredWidth(250);  // Lebar kolom Langkah Memasak
     } catch (IOException e) {
         JOptionPane.showMessageDialog(this, "Gagal memuat data: " + e.getMessage(), "Kesalahan", JOptionPane.ERROR_MESSAGE);
     }
@@ -349,7 +351,7 @@ private void saveRecipe(String[] data) {
     }// </editor-fold>//GEN-END:initComponents
 
     private void selectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectButtonActionPerformed
-      JTable table = recipeTablePanel.getTable();
+      JTable table = recipeTablePanel.getTable();  // Pastikan recipeTablePanel telah terinisialisasi
     int selectedRow = table.getSelectedRow();
 
     if (selectedRow != -1) {
@@ -359,6 +361,7 @@ private void saveRecipe(String[] data) {
         String cookingTime = (String) table.getValueAt(selectedRow, 2); // Waktu Memasak
         String rating = (String) table.getValueAt(selectedRow, 3); // Rating
         String mainIngredients = (String) table.getValueAt(selectedRow, 4); // Bahan Utama
+        String additionalIngredients = (String) table.getValueAt(selectedRow, 5); // Bahan Tambahan
         String cookingSteps = (String) table.getValueAt(selectedRow, 6); // Langkah Memasak
 
         // Debug: Data yang diambil dari tabel
@@ -368,11 +371,12 @@ private void saveRecipe(String[] data) {
         System.out.println("Waktu Memasak: " + cookingTime);
         System.out.println("Rating: " + rating);
         System.out.println("Bahan Utama: " + mainIngredients);
+        System.out.println("Bahan Tambahan: " + additionalIngredients);
         System.out.println("Langkah Memasak: " + cookingSteps);
 
         // Panggil panel detail dan kirim data
         ViewMasakanRumah detailPanel = new ViewMasakanRumah();
-        detailPanel.setRecipeData(recipeName, mainIngredients, cookingSteps, difficulty, cookingTime, rating);
+        detailPanel.setRecipeData(recipeName, mainIngredients, additionalIngredients, cookingSteps, difficulty, cookingTime, rating);
 
         // Debug: Konfirmasi data berhasil diatur
         System.out.println("DEBUG: Data berhasil diatur ke detailPanel.");

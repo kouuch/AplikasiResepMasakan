@@ -32,7 +32,6 @@ public class ViewMasakanRumah extends JPanel {
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
-        gbc.anchor = GridBagConstraints.WEST;
 
         // Nama Resep
         gbc.gridx = 0;
@@ -55,7 +54,8 @@ public class ViewMasakanRumah extends JPanel {
         ingredientsTextArea.setEditable(false);
         ingredientsTextArea.setLineWrap(true);
         ingredientsTextArea.setWrapStyleWord(true);
-        add(new JScrollPane(ingredientsTextArea), gbc);
+        JScrollPane ingredientsScroll = new JScrollPane(ingredientsTextArea);
+        add(ingredientsScroll, gbc);
 
         // Bahan Tambahan
         gbc.gridx = 0;
@@ -68,11 +68,12 @@ public class ViewMasakanRumah extends JPanel {
         additionalIngredientsTextArea.setEditable(false);
         additionalIngredientsTextArea.setLineWrap(true);
         additionalIngredientsTextArea.setWrapStyleWord(true);
-        add(new JScrollPane(additionalIngredientsTextArea), gbc);
+        JScrollPane additionalIngredientsScroll = new JScrollPane(additionalIngredientsTextArea);
+        add(additionalIngredientsScroll, gbc);
 
         // Langkah Memasak
         gbc.gridx = 0;
-        gbc.gridy = 3; // Pindahkan ke baris berikutnya
+        gbc.gridy = 3;
         add(new JLabel("Langkah Memasak:"), gbc);
 
         gbc.gridx = 1;
@@ -115,25 +116,17 @@ public class ViewMasakanRumah extends JPanel {
         add(ratingLabel, gbc);
     }
 
-    public void setRecipeData(String recipeName, String mainIngredients, String additionalIngredients, String cookingSteps,
-                          String difficulty, String cookingTime, String rating) {
-        System.out.println("DEBUG: Data yang diterima untuk setRecipeData:");
-        System.out.println("Nama Resep: " + recipeName);
-        System.out.println("Bahan Utama: " + mainIngredients);
-        System.out.println("Bahan Tambahan: " + additionalIngredients);
-        System.out.println("Langkah Memasak: " + cookingSteps);
-        System.out.println("Tingkat Kesulitan: " + difficulty);
-        System.out.println("Waktu Memasak: " + cookingTime);
-        System.out.println("Rating: " + rating);
-
+    public void setRecipeData(String recipeName, String mainIngredients, String additionalIngredients,
+                           String cookingSteps, String difficulty, String cookingTime, String rating) {
         nameLabel.setText(recipeName != null ? recipeName : "Nama Resep Tidak Tersedia");
-        ingredientsTextArea.setText(mainIngredients != null ? mainIngredients : "Bahan Tidak Tersedia");
+        ingredientsTextArea.setText(mainIngredients != null ? mainIngredients : "Bahan Utama Tidak Tersedia");
         additionalIngredientsTextArea.setText(additionalIngredients != null ? additionalIngredients : "Bahan Tambahan Tidak Tersedia");
         stepsTextArea.setText(cookingSteps != null ? cookingSteps : "Langkah Memasak Tidak Tersedia");
         difficultyLabel.setText(difficulty != null ? difficulty : "Tingkat Kesulitan Tidak Tersedia");
         cookingTimeLabel.setText(cookingTime != null ? cookingTime : "Waktu Memasak Tidak Tersedia");
         ratingLabel.setText(rating != null ? rating.replace("?", "★") : "Rating Tidak Tersedia");
     }
+ 
 
 
 
