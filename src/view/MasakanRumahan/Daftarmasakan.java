@@ -439,50 +439,43 @@ private void saveRecipe(String[] data) {
     JTable table = recipeTablePanel.getTable();
     int selectedRow = table.getSelectedRow();
     
-    // Log pemilihan baris
-    System.out.println("DEBUG: Baris yang dipilih: " + selectedRow);
+    System.out.println("DEBUG: Baris yang dipilih: " + selectedRow); // Log baris yang dipilih
     
     if (selectedRow != -1) {
-        // Tampilkan dialog konfirmasi hanya jika ada baris yang dipilih
         System.out.println("DEBUG: Menampilkan konfirmasi penghapusan.");
+        // Tampilkan konfirmasi penghapusan
         int confirm = JOptionPane.showConfirmDialog(this,
             "Apakah Anda yakin ingin menghapus resep ini?",
             "Konfirmasi Hapus",
             JOptionPane.YES_NO_OPTION);
-        
-        // Log hasil konfirmasi
-        System.out.println("DEBUG: Hasil konfirmasi: " + confirm);
-        
+
+        System.out.println("DEBUG: Hasil konfirmasi: " + confirm); // Log hasil konfirmasi
+
         if (confirm == JOptionPane.YES_OPTION) {
             String recipeName = (String) table.getValueAt(selectedRow, 0); // Ambil nama resep
             try {
-                // Log sebelum menghapus file
-                System.out.println("DEBUG: Menghapus file untuk resep: " + recipeName);
+                System.out.println("DEBUG: Menghapus file untuk resep: " + recipeName); // Log sebelum menghapus file
                 // Hapus file resep
                 java.nio.file.Path filePath = java.nio.file.Paths.get("data/FmasakanRumahan/" + recipeName + ".txt");
                 java.nio.file.Files.deleteIfExists(filePath);
-                
+
                 // Hapus baris dari tabel
                 tableModel.removeRow(selectedRow);
-                
-                // Log setelah menghapus
+
                 System.out.println("DEBUG: File berhasil dihapus dan baris dari tabel dihapus.");
                 JOptionPane.showMessageDialog(this, "Resep berhasil dihapus!");
             } catch (Exception e) {
-                // Log error jika terjadi kegagalan
-                System.out.println("DEBUG: Gagal menghapus resep: " + e.getMessage());
+                System.out.println("DEBUG: Gagal menghapus resep: " + e.getMessage()); // Log error
                 JOptionPane.showMessageDialog(this, "Gagal menghapus resep: " + e.getMessage());
             }
         } else if (confirm == JOptionPane.NO_OPTION) {
-            // Clear selection dan jangan lakukan apa-apa setelah klik "No"
-            System.out.println("DEBUG: Pengguna memilih 'No'. Menghapus pemilihan baris.");
-            table.clearSelection();
-            return; // Menghentikan eksekusi lebih lanjut jika "No" dipilih
+            System.out.println("DEBUG: Pengguna memilih 'No'. Tidak ada tindakan lanjutan."); // Log pilihan 'No'
+            table.clearSelection();  // Menghapus pemilihan baris setelah memilih 'No'
+            return; // Menghentikan eksekusi lebih lanjut jika 'No' dipilih
         }
     } else {
-        // Log jika tidak ada baris yang dipilih
-        System.out.println("DEBUG: Tidak ada baris yang dipilih untuk dihapus.");
-    }     
+        System.out.println("DEBUG: Tidak ada baris yang dipilih untuk dihapus."); // Log jika tidak ada baris yang dipilih
+    }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
 
