@@ -349,7 +349,7 @@ private void saveRecipe(String[] data) {
     }// </editor-fold>//GEN-END:initComponents
 
     private void selectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectButtonActionPerformed
-     JTable table = recipeTablePanel.getTable();
+      JTable table = recipeTablePanel.getTable();
     int selectedRow = table.getSelectedRow();
 
     if (selectedRow != -1) {
@@ -358,10 +358,8 @@ private void saveRecipe(String[] data) {
         String difficulty = (String) table.getValueAt(selectedRow, 1); // Tingkat Kesulitan
         String cookingTime = (String) table.getValueAt(selectedRow, 2); // Waktu Memasak
         String rating = (String) table.getValueAt(selectedRow, 3); // Rating
-
-        // Pastikan bahan dan langkah memasak diambil dari sumber data
-        String mainIngredients = (String) table.getValueAt(selectedRow, 4); // Ambil kolom "Bahan Utama"
-        String cookingSteps = (String) table.getValueAt(selectedRow, 6);
+        String mainIngredients = (String) table.getValueAt(selectedRow, 4); // Bahan Utama
+        String cookingSteps = (String) table.getValueAt(selectedRow, 6); // Langkah Memasak
 
         // Debug: Data yang diambil dari tabel
         System.out.println("DEBUG: Data yang diambil dari tabel:");
@@ -391,7 +389,6 @@ private void saveRecipe(String[] data) {
     } else {
         javax.swing.JOptionPane.showMessageDialog(this, "Pilih resep yang ingin dilihat!");
     }
-
     }//GEN-LAST:event_selectButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
