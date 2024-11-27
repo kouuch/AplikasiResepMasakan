@@ -438,18 +438,17 @@ private void saveRecipe(String[] data) {
 private boolean isDeleting = false;
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
     if (isDeleting) {
-        // Menghindari eksekusi berulang jika penghapusan sudah dilakukan
-        return;
+        return;  // Menghindari eksekusi berulang
     }
     
     JTable table = recipeTablePanel.getTable();
     int selectedRow = table.getSelectedRow();
 
     if (selectedRow != -1) {
-        // Menandakan bahwa penghapusan sedang dilakukan
+        // Mengaktifkan flag untuk mencegah penghapusan berulang
         isDeleting = true;
 
-        // Tampilkan dialog konfirmasi penghapusan
+        // Tampilkan konfirmasi penghapusan
         int confirm = JOptionPane.showConfirmDialog(this,
             "Apakah Anda yakin ingin menghapus resep ini?",
             "Konfirmasi Hapus",
@@ -473,18 +472,16 @@ private boolean isDeleting = false;
         } 
         // Jika pengguna memilih "No"
         else if (confirm == JOptionPane.NO_OPTION) {
-            // Hapus pemilihan baris dan berhenti dari eksekusi
-            table.clearSelection();  // Menghapus pemilihan baris
+            // Menghapus pemilihan baris
+            table.clearSelection();  
             JOptionPane.showMessageDialog(this, "Resep tidak dihapus.");
         }
-        
-        // Reset flag penghapusan setelah selesai, memastikan tidak ada eksekusi berikutnya
-        SwingUtilities.invokeLater(() -> {
-            isDeleting = false;
-        });
+
+        // Reset flag setelah operasi selesai
+        isDeleting = false;
     }
 }
-private boolean isDeleting = false;
+
 // Memastikan tombol delete diaktifkan saat sebuah baris dipilih
 private void tableSelectionChanged() {
     JTable table = recipeTablePanel.getTable();
