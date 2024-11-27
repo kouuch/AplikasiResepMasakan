@@ -32,7 +32,9 @@ public class MenuUtama extends javax.swing.JFrame {
 
     int xx,xy;
     public MenuUtama() {
-         initComponents(); // Panggil initComponents() terlebih dahulu
+         initComponents();
+         setLocationRelativeTo(null);
+// Panggil initComponents() terlebih dahulu
          //tambahkanKomponen(); // Buat metode terpisah untuk logika tambahan
     }
     

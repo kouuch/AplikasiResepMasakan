@@ -20,7 +20,43 @@ import theme.FontManager;
  * @author User
  */
 public class FormEditResep extends javax.swing.JPanel {
-    passIngredients != null && !additionalIngredients.isEmpty() ? additionalIngredients : "Data tidak tersedia");
+    private DefaultTableModel tableModel;
+    private boolean isEditMode = false;
+    private int selectedRow = -1;
+    private String originalRecipeName; // Untuk menyimpan nama resep asli
+
+    public FormEditResep(DefaultTableModel model, String recipeName, String difficulty, 
+                     String cookingTime, int servings, int rating, String mainIngredients, 
+                     String additionalIngredients, String cookingSteps, int selectedRow) {
+    this.tableModel = model;
+    this.selectedRow = selectedRow;
+    this.originalRecipeName = recipeName; // Simpan nama resep asli
+    System.out.printf("Memuat data ke FormEditResep:%nNama Resep: %s%nBahan Utama: %s%nBahan Tambahan: %s%nCara Memasak: %s%n",
+        recipeName, mainIngredients, additionalIngredients, cookingSteps);
+
+    initComponents();
+
+    // Atur nilai slider rating
+    ratingSlider.setMinimum(0);
+    ratingSlider.setMaximum(5);
+    ratingSlider.setMajorTickSpacing(1);
+    ratingSlider.setPaintTicks(true);
+    ratingSlider.setPaintLabels(true);
+
+    // Set data berdasarkan input
+    recipeNameField.setText(recipeName != null ? recipeName : "");
+    difficultyComboBox.setSelectedItem(difficulty != null ? difficulty : "Mudah");
+
+    try {
+        cookingTimeSpinner.setValue(Integer.parseInt(cookingTime.replace("m", "").trim()));
+    } catch (NumberFormatException e) {
+        cookingTimeSpinner.setValue(0); // Set nilai default jika parsing gagal
+    }
+
+    servingsSpinner.setValue(servings);
+    ratingSlider.setValue((rating >= 0 && rating <= 5) ? rating : 3);
+    mainIngredientArea.setText(mainIngredients != null && !mainIngredients.isEmpty() ? mainIngredients : "Data tidak tersedia");
+    additionalIngredientArea.setText(additionalIngredients != null && !additionalIngredients.isEmpty() ? additionalIngredients : "Data tidak tersedia");
     cookingStepsArea.setText(cookingSteps != null && !cookingSteps.isEmpty() ? cookingSteps : "Data tidak tersedia");
 }
 
