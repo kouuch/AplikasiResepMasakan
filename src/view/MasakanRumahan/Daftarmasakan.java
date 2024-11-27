@@ -434,12 +434,20 @@ private void saveRecipe(String[] data) {
     }
 
     }//GEN-LAST:event_editButtonActionPerformed
-
+private boolean isDeleting = false;
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+    if (isDeleting) {
+        // Jika sudah ada aksi penghapusan yang berjalan, jangan lakukan apa-apa lagi
+        return;
+    }
+    
     JTable table = recipeTablePanel.getTable();
     int selectedRow = table.getSelectedRow();
 
     if (selectedRow != -1) {
+        // Tandai bahwa penghapusan sedang diproses
+        isDeleting = true;
+
         // Tampilkan dialog konfirmasi
         int confirm = JOptionPane.showConfirmDialog(this,
                 "Apakah Anda yakin ingin menghapus resep ini?",
@@ -462,11 +470,13 @@ private void saveRecipe(String[] data) {
                 JOptionPane.showMessageDialog(this, "Gagal menghapus resep: " + e.getMessage());
             }
         } else if (confirm == JOptionPane.NO_OPTION) {
-            // Menonaktifkan tombol delete untuk mencegah aksi berulang
-            deleteButton.setEnabled(false);
-            // Clear selection dan hentikan eksekusi
-            table.clearSelection();
+            // Jika pengguna memilih "No", jangan lakukan apa-apa dan reset flag
+            table.clearSelection();  // Menghapus pemilihan baris
+            JOptionPane.showMessageDialog(this, "Resep tidak dihapus.");
         }
+
+        // Reset flag penghapusan setelah proses selesai
+        isDeleting = false;
     }
 }
 
