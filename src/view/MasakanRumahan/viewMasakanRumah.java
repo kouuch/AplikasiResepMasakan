@@ -4,7 +4,6 @@
  */
 package view.MasakanRumahan;
 
-
 import java.awt.*;
 import javax.swing.*;
 
@@ -19,87 +18,87 @@ public class ViewMasakanRumah extends JPanel {
     private JLabel ratingLabel;
 
     public ViewMasakanRumah() {
-        // Menggunakan BoxLayout untuk tata letak vertikal
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20)); // Menambahkan jarak luar panel
+        // Menggunakan GridBagLayout untuk tata letak yang lebih terstruktur
+        setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10, 10, 10, 10);  // Jarak antar elemen
 
-        // Judul: Nama Resep
+        // Menyusun komponen di dalam GridBagLayout
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;  // Judul di tengah
+        gbc.anchor = GridBagConstraints.CENTER;
+
+        // Nama Resep
         nameLabel = new JLabel("Nama Resep Tidak Tersedia");
         nameLabel.setFont(new Font("Segoe UI", Font.BOLD, 24));
-        nameLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // Judul rata tengah
-        add(nameLabel);
+        add(nameLabel, gbc);
 
         // Memberi jarak antar elemen
-        add(Box.createVerticalStrut(10)); 
+        gbc.gridwidth = 1;
 
         // Bahan Utama
-        JLabel ingredientsLabel = new JLabel("Bahan Utama:");
-        ingredientsLabel.setAlignmentX(Component.LEFT_ALIGNMENT); // Label rata kiri
-        add(ingredientsLabel);
-
+        gbc.gridy++;
+        add(new JLabel("Bahan Utama:"), gbc);
+        gbc.gridx = 1;
         ingredientsTextArea = new JTextArea(5, 20);
         ingredientsTextArea.setEditable(false);
         ingredientsTextArea.setLineWrap(true);
         ingredientsTextArea.setWrapStyleWord(true);
         JScrollPane ingredientsScroll = new JScrollPane(ingredientsTextArea);
-        add(ingredientsScroll);
+        ingredientsScroll.setPreferredSize(new Dimension(500, 100)); // Set width of the text area
+        add(ingredientsScroll, gbc);
 
         // Bahan Tambahan
-        add(Box.createVerticalStrut(10)); // Memberi jarak
-        JLabel additionalIngredientsLabel = new JLabel("Bahan Tambahan:");
-        additionalIngredientsLabel.setAlignmentX(Component.LEFT_ALIGNMENT); // Label rata kiri
-        add(additionalIngredientsLabel);
-
+        gbc.gridy++;
+        gbc.gridx = 0;
+        add(new JLabel("Bahan Tambahan:"), gbc);
+        gbc.gridx = 1;
         additionalIngredientsTextArea = new JTextArea(5, 20);
         additionalIngredientsTextArea.setEditable(false);
         additionalIngredientsTextArea.setLineWrap(true);
         additionalIngredientsTextArea.setWrapStyleWord(true);
         JScrollPane additionalIngredientsScroll = new JScrollPane(additionalIngredientsTextArea);
-        add(additionalIngredientsScroll);
+        additionalIngredientsScroll.setPreferredSize(new Dimension(500, 100)); // Set width of the text area
+        add(additionalIngredientsScroll, gbc);
 
         // Langkah Memasak
-        add(Box.createVerticalStrut(10)); // Memberi jarak
-        JLabel stepsLabel = new JLabel("Langkah Memasak:");
-        stepsLabel.setAlignmentX(Component.LEFT_ALIGNMENT); // Label rata kiri
-        add(stepsLabel);
-
+        gbc.gridy++;
+        gbc.gridx = 0;
+        add(new JLabel("Langkah Memasak:"), gbc);
+        gbc.gridx = 1;
         stepsTextArea = new JTextArea(5, 20);
         stepsTextArea.setEditable(false);
         stepsTextArea.setLineWrap(true);
         stepsTextArea.setWrapStyleWord(true);
         JScrollPane stepsScroll = new JScrollPane(stepsTextArea);
-        add(stepsScroll);
+        stepsScroll.setPreferredSize(new Dimension(500, 100)); // Set width of the text area
+        add(stepsScroll, gbc);
 
         // Tingkat Kesulitan
-        add(Box.createVerticalStrut(10)); // Memberi jarak
-        JLabel difficultyTextLabel = new JLabel("Tingkat Kesulitan:");
-        difficultyTextLabel.setAlignmentX(Component.LEFT_ALIGNMENT); // Label rata kiri
-        add(difficultyTextLabel);
-
+        gbc.gridy++;
+        gbc.gridx = 0;
+        add(new JLabel("Tingkat Kesulitan:"), gbc);
+        gbc.gridx = 1;
         difficultyLabel = new JLabel("Tingkat Kesulitan Tidak Tersedia");
-        difficultyLabel.setAlignmentX(Component.LEFT_ALIGNMENT); // Rata kiri
-        add(difficultyLabel);
+        add(difficultyLabel, gbc);
 
         // Waktu Memasak
-        add(Box.createVerticalStrut(10)); // Memberi jarak
-        JLabel cookingTimeTextLabel = new JLabel("Waktu Memasak:");
-        cookingTimeTextLabel.setAlignmentX(Component.LEFT_ALIGNMENT); // Label rata kiri
-        add(cookingTimeTextLabel);
-
+        gbc.gridy++;
+        gbc.gridx = 0;
+        add(new JLabel("Waktu Memasak:"), gbc);
+        gbc.gridx = 1;
         cookingTimeLabel = new JLabel("Waktu Memasak Tidak Tersedia");
-        cookingTimeLabel.setAlignmentX(Component.LEFT_ALIGNMENT); // Rata kiri
-        add(cookingTimeLabel);
+        add(cookingTimeLabel, gbc);
 
         // Rating
-        add(Box.createVerticalStrut(10)); // Memberi jarak
-        JLabel ratingTextLabel = new JLabel("Rating:");
-        ratingTextLabel.setAlignmentX(Component.LEFT_ALIGNMENT); // Label rata kiri
-        add(ratingTextLabel);
-
+        gbc.gridy++;
+        gbc.gridx = 0;
+        add(new JLabel("Rating:"), gbc);
+        gbc.gridx = 1;
         ratingLabel = new JLabel("Rating Tidak Tersedia");
         ratingLabel.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 16));
-        ratingLabel.setAlignmentX(Component.LEFT_ALIGNMENT); // Rata kiri
-        add(ratingLabel);
+        add(ratingLabel, gbc);
     }
 
     public void setRecipeData(String recipeName, String mainIngredients, String additionalIngredients,
@@ -112,6 +111,7 @@ public class ViewMasakanRumah extends JPanel {
         cookingTimeLabel.setText(cookingTime != null ? cookingTime : "Waktu Memasak Tidak Tersedia");
         ratingLabel.setText(rating != null ? rating.replace("?", "★") : "Rating Tidak Tersedia");
     }
+
  
 
 
