@@ -118,7 +118,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
         pnMain.setBackground(new java.awt.Color(139, 69, 19));
 
-        pnLine.setBackground(new java.awt.Color(0, 0, 0));
+        pnLine.setBackground(new java.awt.Color(139, 69, 19));
         pnLine.setPreferredSize(new java.awt.Dimension(5, 35));
 
         javax.swing.GroupLayout pnLineLayout = new javax.swing.GroupLayout(pnLine);
@@ -208,7 +208,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
         pnMain1.setBackground(new java.awt.Color(139, 69, 19));
 
-        pnLine1.setBackground(new java.awt.Color(0, 0, 0));
+        pnLine1.setBackground(new java.awt.Color(139, 69, 19));
         pnLine1.setPreferredSize(new java.awt.Dimension(5, 35));
 
         javax.swing.GroupLayout pnLine1Layout = new javax.swing.GroupLayout(pnLine1);
@@ -483,7 +483,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void btnMenuutamaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenuutamaMouseExited
         pnMain.setBackground(Color.decode("#8B4513"));
-        pnLine.setBackground(Color.decode("#000000"));
+        pnLine.setBackground(Color.decode("#8B4513"));
     }//GEN-LAST:event_btnMenuutamaMouseExited
         
     private void btnMenuutamaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenuutamaMouseClicked
@@ -537,19 +537,27 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void btnMenuutama3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenuutama3MouseExited
         pnMain1.setBackground(Color.decode("#8B4513"));
-        pnLine1.setBackground(Color.decode("#000000"));
+        pnLine1.setBackground(Color.decode("#8B4513"));
     }//GEN-LAST:event_btnMenuutama3MouseExited
 
     private void btnMenuutama4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenuutama4MouseClicked
-        // TODO add your handling code here:
+        pnMain2.setBackground(Color.decode("#FDDBBB"));
+        pnLine2.setBackground(Color.decode("#FFF5E1"));
+        
+        pnUtama.removeAll();
+        //pnUtama.add(new FromMenuutama());
+        pnUtama.repaint();
+        pnUtama.revalidate();
     }//GEN-LAST:event_btnMenuutama4MouseClicked
 
     private void btnMenuutama4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenuutama4MouseEntered
-        // TODO add your handling code here:
+        pnMain2.setBackground(Color.decode("#D2B48C"));
+        pnLine2.setBackground(Color.decode("#FFF5E1"));
     }//GEN-LAST:event_btnMenuutama4MouseEntered
 
     private void btnMenuutama4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenuutama4MouseExited
-        // TODO add your handling code here:
+        pnMain2.setBackground(Color.decode("#8B4513"));
+        pnLine2.setBackground(Color.decode("#8B4513"));
     }//GEN-LAST:event_btnMenuutama4MouseExited
 
     private void btnMenuutama5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenuutama5MouseClicked
