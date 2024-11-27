@@ -104,9 +104,12 @@ public class FormTambahResep extends javax.swing.JPanel {
                 recipeName, mainIngredient, additionalIngredient, difficulty, cookingTime, servings, rating, instructions);
         Files.write(filePath, dataToSave.getBytes());
 
-        // Tambahkan data ke tabel
-        tableModel.addRow(new Object[]{
-                recipeName, difficulty, cookingTime + "m", rating + "★", mainIngredient, additionalIngredient, instructions
+        // Format rating dengan bintang
+        String ratingWithStars = "★".repeat(rating) + "☆".repeat(5 - rating);
+
+        // Tambahkan data ke tabel dengan rating berupa bintang
+        tableModel.addRow(new Object[] {
+                recipeName, difficulty, cookingTime + "m", ratingWithStars, mainIngredient, additionalIngredient, instructions
         });
 
         JOptionPane.showMessageDialog(this, "Resep berhasil ditambahkan!", "Sukses", JOptionPane.INFORMATION_MESSAGE);
@@ -117,6 +120,8 @@ public class FormTambahResep extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(this, "Gagal menyimpan resep: " + e.getMessage(), "Kesalahan", JOptionPane.ERROR_MESSAGE);
     }
 }
+
+
 
     
 

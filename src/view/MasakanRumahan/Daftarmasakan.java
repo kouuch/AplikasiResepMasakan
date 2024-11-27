@@ -79,8 +79,17 @@ public class DaftarMasakan extends javax.swing.JPanel {
                     String additionalIngredient = extractValue(lines, "Bahan Tambahan");
                     String instructions = extractValue(lines, "Cara Memasak");
 
+                    // Bersihkan rating agar hanya angka, hapus karakter selain angka
+                    rating = rating.replaceAll("[^0-9]", "");
+
+                    // Pastikan rating tidak kosong dan dalam bentuk angka valid
+                    int ratingValue = rating.isEmpty() ? 0 : Integer.parseInt(rating);
+
+                    // Format rating dengan bintang
+                    String ratingWithStars = "★".repeat(ratingValue) + "☆".repeat(5 - ratingValue);
+
                     tableModel.addRow(new Object[]{
-                        recipeName, difficulty, cookingTime, rating, mainIngredient, additionalIngredient, instructions
+                        recipeName, difficulty, cookingTime, ratingWithStars, mainIngredient, additionalIngredient, instructions
                     });
                 }
             }
@@ -89,6 +98,8 @@ public class DaftarMasakan extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(this, "Gagal memuat data: " + e.getMessage(), "Kesalahan", JOptionPane.ERROR_MESSAGE);
     }
 }
+
+
 
 
 
