@@ -18,6 +18,7 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import org.apache.batik.transcoder.TranscoderException;
@@ -660,23 +661,31 @@ public class MenuUtama extends javax.swing.JFrame {
     }//GEN-LAST:event_formMouseDragged
 
     private void btnMenuutama6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenuutama6MouseClicked
-        pnMain4.setBackground(Color.decode("#FDDBBB"));
-        pnLine4.setBackground(Color.decode("#FFF5E1"));
-        
-        pnUtama.removeAll();
-        //pnUtama.add(new FromMenuutama());
-        pnUtama.repaint();
-        pnUtama.revalidate();
+        pnMain11.setBackground(Color.decode("#FDDBBB"));
+        pnLine11.setBackground(Color.decode("#FFF5E1"));
+
+    // Tambahkan logika untuk keluar dari aplikasi
+    int confirmExit = JOptionPane.showConfirmDialog(this, 
+            "Apakah Anda yakin ingin keluar?", 
+            "Konfirmasi Keluar", 
+            JOptionPane.YES_NO_OPTION);
+
+    if (confirmExit == JOptionPane.YES_OPTION) {
+        System.exit(0);  // Keluar dari aplikasi
+    } else {
+        // Jika pengguna memilih "No", biarkan aplikasi tetap berjalan
+        System.out.println("Pengguna memilih untuk tetap di aplikasi.");
+    }
     }//GEN-LAST:event_btnMenuutama6MouseClicked
 
     private void btnMenuutama6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenuutama6MouseEntered
-        pnMain4.setBackground(Color.decode("#D2B48C"));
-        pnLine4.setBackground(Color.decode("#FFF5E1"));
+        pnMain11.setBackground(Color.decode("#D2B48C"));
+        pnLine11.setBackground(Color.decode("#FFF5E1"));
     }//GEN-LAST:event_btnMenuutama6MouseEntered
 
     private void btnMenuutama6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenuutama6MouseExited
-        pnMain4.setBackground(Color.decode("#8B4513"));
-        pnLine4.setBackground(Color.decode("#8B4513"));
+        pnMain11.setBackground(Color.decode("#8B4513"));
+        pnLine11.setBackground(Color.decode("#8B4513"));
     }//GEN-LAST:event_btnMenuutama6MouseExited
 
     /**
