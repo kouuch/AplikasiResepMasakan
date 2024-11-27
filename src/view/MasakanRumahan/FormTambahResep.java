@@ -126,10 +126,6 @@ public class FormTambahResep extends javax.swing.JPanel {
     }
 }
 
-
-
-    
-
     private void clearForm() {
         recipeNameField.setText("");
         mainIngredientTextArea.setText("");
@@ -141,6 +137,18 @@ public class FormTambahResep extends javax.swing.JPanel {
         instructionsTextArea.setText("");
     }
     
+    private String formatIngredients(String ingredients) {
+    String[] ingredientsArray = ingredients.split("\n");
+    StringBuilder formattedIngredients = new StringBuilder();
+    
+    int counter = 1;
+    for (String ingredient : ingredientsArray) {
+        formattedIngredients.append(counter).append(". ").append(ingredient.trim()).append("\n");
+        counter++;
+    }
+    return formattedIngredients.toString();
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
