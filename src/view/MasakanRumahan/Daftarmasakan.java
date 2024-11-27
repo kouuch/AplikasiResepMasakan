@@ -440,13 +440,12 @@ private void saveRecipe(String[] data) {
     int selectedRow = table.getSelectedRow();
 
     if (selectedRow != -1) {
-        // Tampilkan dialog konfirmasi
+        // Tampilkan dialog konfirmasi hanya jika ada baris yang dipilih
         int confirm = JOptionPane.showConfirmDialog(this,
             "Apakah Anda yakin ingin menghapus resep ini?",
             "Konfirmasi Hapus",
             JOptionPane.YES_NO_OPTION);
 
-        // Jika pengguna memilih "Yes"
         if (confirm == JOptionPane.YES_OPTION) {
             String recipeName = (String) table.getValueAt(selectedRow, 0); // Ambil nama resep
             try {
@@ -461,12 +460,10 @@ private void saveRecipe(String[] data) {
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Gagal menghapus resep: " + e.getMessage());
             }
-        } 
-        // Jika pengguna memilih "No", batalkan pemilihan dan jangan lakukan apa-apa
-        else if (confirm == JOptionPane.NO_OPTION) {
+        } else if (confirm == JOptionPane.NO_OPTION) {
             // Clear selection dan jangan lakukan apa-apa setelah klik "No"
             table.clearSelection();
-            return; // Menghentikan eksekusi lebih lanjut
+            return; // Menghentikan eksekusi lebih lanjut jika "No" dipilih
         }
     }      
     }//GEN-LAST:event_deleteButtonActionPerformed
