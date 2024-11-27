@@ -109,7 +109,7 @@
         <Component class="javax.swing.JButton" name="deleteButton">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/img/Choose.png"/>
+              <Image iconType="3" name="/img/Full Trash.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Hapus"/>
             <Property name="horizontalAlignment" type="int" value="2"/>
@@ -133,7 +133,7 @@
         <Component class="javax.swing.JButton" name="addButton">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/img/Choose.png"/>
+              <Image iconType="3" name="/img/Plus.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Tambah"/>
             <Property name="horizontalAlignment" type="int" value="2"/>
@@ -145,7 +145,7 @@
         <Component class="javax.swing.JButton" name="editButton">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/img/Choose.png"/>
+              <Image iconType="3" name="/img/Edit.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Edit"/>
             <Property name="horizontalAlignment" type="int" value="2"/>

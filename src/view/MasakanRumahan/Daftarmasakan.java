@@ -243,7 +243,7 @@ private void saveRecipe(String[] data) {
         subtitleLabel.setForeground(new java.awt.Color(222, 170, 121));
         subtitleLabel.setText("Resep Masakan");
 
-        deleteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Choose.png"))); // NOI18N
+        deleteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Full Trash.png"))); // NOI18N
         deleteButton.setText("Hapus");
         deleteButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         deleteButton.addActionListener(new java.awt.event.ActionListener() {
@@ -261,7 +261,7 @@ private void saveRecipe(String[] data) {
             }
         });
 
-        addButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Choose.png"))); // NOI18N
+        addButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Plus.png"))); // NOI18N
         addButton.setText("Tambah");
         addButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         addButton.addActionListener(new java.awt.event.ActionListener() {
@@ -270,7 +270,7 @@ private void saveRecipe(String[] data) {
             }
         });
 
-        editButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Choose.png"))); // NOI18N
+        editButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Edit.png"))); // NOI18N
         editButton.setText("Edit");
         editButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         editButton.addActionListener(new java.awt.event.ActionListener() {
