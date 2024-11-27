@@ -437,7 +437,7 @@ private void saveRecipe(String[] data) {
 private boolean isDeleting = false;
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
     if (isDeleting) {
-        // Jika sudah ada aksi penghapusan yang berjalan, jangan lakukan apa-apa lagi
+        // Jika sudah ada aksi penghapusan yang sedang berlangsung, keluar dari fungsi
         return;
     }
     
@@ -445,18 +445,18 @@ private boolean isDeleting = false;
     int selectedRow = table.getSelectedRow();
 
     if (selectedRow != -1) {
-        // Tandai bahwa penghapusan sedang diproses
+        // Tandai penghapusan sedang berjalan
         isDeleting = true;
 
-        // Tampilkan dialog konfirmasi
+        // Tampilkan dialog konfirmasi penghapusan
         int confirm = JOptionPane.showConfirmDialog(this,
-                "Apakah Anda yakin ingin menghapus resep ini?",
-                "Konfirmasi Hapus",
-                JOptionPane.YES_NO_OPTION);
+            "Apakah Anda yakin ingin menghapus resep ini?",
+            "Konfirmasi Hapus",
+            JOptionPane.YES_NO_OPTION);
 
         // Jika pengguna memilih "Yes"
         if (confirm == JOptionPane.YES_OPTION) {
-            String recipeName = (String) table.getValueAt(selectedRow, 0); // Get recipe name
+            String recipeName = (String) table.getValueAt(selectedRow, 0); // Ambil nama resep
             try {
                 // Hapus file resep
                 java.nio.file.Path filePath = java.nio.file.Paths.get("data/FmasakanRumahan/" + recipeName + ".txt");
@@ -469,13 +469,15 @@ private boolean isDeleting = false;
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Gagal menghapus resep: " + e.getMessage());
             }
-        } else if (confirm == JOptionPane.NO_OPTION) {
-            // Jika pengguna memilih "No", jangan lakukan apa-apa dan reset flag
+        } 
+        // Jika pengguna memilih "No", hanya batalkan pemilihan dan keluar
+        else if (confirm == JOptionPane.NO_OPTION) {
             table.clearSelection();  // Menghapus pemilihan baris
             JOptionPane.showMessageDialog(this, "Resep tidak dihapus.");
+            return;  // Menghentikan eksekusi lebih lanjut
         }
 
-        // Reset flag penghapusan setelah proses selesai
+        // Reset flag penghapusan setelah selesai
         isDeleting = false;
     }
 }
