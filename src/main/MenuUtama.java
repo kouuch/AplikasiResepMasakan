@@ -102,6 +102,7 @@ public class MenuUtama extends javax.swing.JFrame {
         gradientPanelHorizontal1 = new costum.GradientPanelHorizontal();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 formMouseDragged(evt);
