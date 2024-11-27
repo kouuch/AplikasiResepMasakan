@@ -462,8 +462,8 @@ private void saveRecipe(String[] data) {
                 JOptionPane.showMessageDialog(this, "Gagal menghapus resep: " + e.getMessage());
             }
         } else if (confirm == JOptionPane.NO_OPTION) {
-            // Pastikan pemilihan baris dibatalkan hanya jika "No" yang dipilih
-            table.clearSelection();  // Menghapus pemilihan baris
+            // Hentikan eksekusi fungsi jika memilih "No"
+            return; // Menambahkan return untuk memastikan tidak ada tindakan lebih lanjut
         }
     }      
     }//GEN-LAST:event_deleteButtonActionPerformed
