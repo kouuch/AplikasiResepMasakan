@@ -98,9 +98,9 @@ public class FormTambahResep extends javax.swing.JPanel {
             }
         }
 
-        // Pisahkan bahan utama dan tambahan dengan newline jika ada banyak bahan
-        mainIngredient = mainIngredient.replaceAll("\n", ", "); // Menyatukan bahan utama dengan koma
-        additionalIngredient = additionalIngredient.replaceAll("\n", ", "); // Menyatukan bahan tambahan dengan koma
+        // Format bahan dengan penomoran
+        mainIngredient = formatIngredients(mainIngredient);
+        additionalIngredient = formatIngredients(additionalIngredient);
 
         // Format data untuk disimpan (gunakan \n untuk pemisah)
         String dataToSave = String.format(
@@ -125,6 +125,19 @@ public class FormTambahResep extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(this, "Gagal menyimpan resep: " + e.getMessage(), "Kesalahan", JOptionPane.ERROR_MESSAGE);
     }
 }
+
+private String formatIngredients(String ingredients) {
+    String[] ingredientsArray = ingredients.split("\n");
+    StringBuilder formattedIngredients = new StringBuilder();
+    
+    int counter = 1;
+    for (String ingredient : ingredientsArray) {
+        formattedIngredients.append(counter).append(". ").append(ingredient.trim()).append("\n");
+        counter++;
+    }
+    return formattedIngredients.toString();
+}
+
 
     private void clearForm() {
         recipeNameField.setText("");
