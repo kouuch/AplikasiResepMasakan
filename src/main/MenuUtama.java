@@ -268,7 +268,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
         pnMain2.setBackground(new java.awt.Color(139, 69, 19));
 
-        pnLine2.setBackground(new java.awt.Color(0, 0, 0));
+        pnLine2.setBackground(new java.awt.Color(139, 69, 19));
         pnLine2.setPreferredSize(new java.awt.Dimension(5, 35));
 
         javax.swing.GroupLayout pnLine2Layout = new javax.swing.GroupLayout(pnLine2);
@@ -561,7 +561,13 @@ public class MenuUtama extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMenuutama4MouseExited
 
     private void btnMenuutama5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenuutama5MouseClicked
-        // TODO add your handling code here:
+        pnMain3.setBackground(Color.decode("#FDDBBB"));
+        pnLine3.setBackground(Color.decode("#FFF5E1"));
+        
+        pnUtama.removeAll();
+        //pnUtama.add(new FromMenuutama());
+        pnUtama.repaint();
+        pnUtama.revalidate();
     }//GEN-LAST:event_btnMenuutama5MouseClicked
 
     private void btnMenuutama5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenuutama5MouseEntered
