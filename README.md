@@ -31,10 +31,14 @@ Aplikasi Resep Masakan adalah sebuah aplikasi desktop berbasis Java Swing yang d
    Aplikasi menggunakan font Poppins untuk memberikan tampilan modern dan nyaman.
 
 ---
-## Tampilan Awal
+
 
 ## 🛠️ Teknologi yang Digunakan
 - **Java Swing**: Framework untuk antarmuka pengguna.
 - **CardLayout**: Mengelola tampilan panel dalam aplikasi.
 - **Font Manager**: Untuk memuat font eksternal (Poppins).
 - **File Handling**: Penyimpanan data berbasis file teks.
+
+  ## Tampilan Awal
+
+  ![image](https://github.com/user-attachments/assets/26482f5b-bb38-4901-b187-aa0effd74880)
