@@ -17,21 +17,21 @@ public class KueView extends javax.swing.JPanel {
     public KueView() {
    initComponents();
         
-        // Menggunakan layout null untuk kontrol manual
-        this.setLayout(null);  // Tidak ada layout manager, kontrol posisi manual
-        
-        // Membuat LabelGambar dan menambahkan ke panel
-        // Menggunakan path relatif untuk gambar yang ada di dalam folder img
-        LabelGambar labelGambar = new LabelGambar("/img/kue.png");  // Path gambar sesuai dengan tempat Anda menyimpan gambar
-        
-        // Menentukan posisi dan ukuran gambar
-        labelGambar.setBounds(0, 0, 794, 526);  // Tentukan posisi dan ukuran gambar sesuai dengan kebutuhan
-        
-        // Menambahkan LabelGambar ke panel
-        this.add(labelGambar);  // Menambahkan label gambar ke panel
-        
-        // Menentukan ukuran panel
-        this.setPreferredSize(new java.awt.Dimension(794, 526));  // Ukuran panel sesuai dengan gambar
+//        // Menggunakan layout null untuk kontrol manual
+//        this.setLayout(null);  // Tidak ada layout manager, kontrol posisi manual
+//        
+//        // Membuat LabelGambar dan menambahkan ke panel
+//        // Menggunakan path relatif untuk gambar yang ada di dalam folder img
+//        LabelGambar labelGambar = new LabelGambar("/img/kue.png");  // Path gambar sesuai dengan tempat Anda menyimpan gambar
+//        
+//        // Menentukan posisi dan ukuran gambar
+//        labelGambar.setBounds(0, 0, 794, 526);  // Tentukan posisi dan ukuran gambar sesuai dengan kebutuhan
+//        
+//        // Menambahkan LabelGambar ke panel
+//        this.add(labelGambar);  // Menambahkan label gambar ke panel
+//        
+//        // Menentukan ukuran panel
+//        this.setPreferredSize(new java.awt.Dimension(794, 526));  // Ukuran panel sesuai dengan gambar
     }
 
 
