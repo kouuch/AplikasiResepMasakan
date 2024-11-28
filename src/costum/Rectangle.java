@@ -13,8 +13,7 @@ public class Rectangle extends JPanel {
     // Konstruktor untuk menetapkan nilai default cornerRadius dan backgroundColor
     public Rectangle() {
         this.cornerRadius = 40; // Default cornerRadius
-        this.backgroundColor = Color.CYAN; // Default backgroundColor
-        setBackground(backgroundColor); // Menetapkan warna latar belakang
+        this.backgroundColor = Color.CYAN; // Default backgroundColor untuk roundRect
     }
 
     // Getter untuk cornerRadius
@@ -36,18 +35,20 @@ public class Rectangle extends JPanel {
     // Setter untuk backgroundColor
     public void setBackgroundColor(Color backgroundColor) {
         this.backgroundColor = backgroundColor;
-        setBackground(backgroundColor); // Update background panel
         repaint(); // Memastikan panel diperbarui dengan warna baru
     }
 
     // Method untuk menggambar panel dengan sudut melengkung dan backgroundColor
     @Override
     protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
+        super.paintComponent(g);  // Memanggil paintComponent dari JPanel untuk menjaga latar belakang default
+
         Graphics2D g2d = (Graphics2D) g;
 
-        // Set warna sesuai dengan backgroundColor
-        g2d.setColor(backgroundColor);
-        g2d.fillRoundRect(0, 0, getWidth(), getHeight(), cornerRadius, cornerRadius); // Gambar dengan sudut melengkung
+        // Mengatur warna untuk roundRect
+        g2d.setColor(backgroundColor);  // Menentukan warna untuk isi roundRect
+        g2d.fillRoundRect(0, 0, getWidth(), getHeight(), cornerRadius, cornerRadius);  // Gambar roundRect
+
+        // Jika Anda ingin menambahkan border atau efek lainnya, bisa ditambahkan di sini.
     }
 }

@@ -27,33 +27,33 @@ public class SayuranView extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        rectangle2 = new costum.Rectangle();
         jLabel1 = new javax.swing.JLabel();
+        rectangle2 = new costum.Rectangle();
 
         setLayout(new java.awt.CardLayout());
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        rectangle2.setBackground(new java.awt.Color(85, 125, 65));
-        rectangle2.setCornerRadius(20);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/backGsayuran.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 792, -1));
+
+        rectangle2.setBackground(new java.awt.Color(51, 255, 51));
+        rectangle2.setForeground(new java.awt.Color(255, 0, 51));
 
         javax.swing.GroupLayout rectangle2Layout = new javax.swing.GroupLayout(rectangle2);
         rectangle2.setLayout(rectangle2Layout);
         rectangle2Layout.setHorizontalGroup(
             rectangle2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 270, Short.MAX_VALUE)
+            .addGap(0, 219, Short.MAX_VALUE)
         );
         rectangle2Layout.setVerticalGroup(
             rectangle2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 60, Short.MAX_VALUE)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        jPanel2.add(rectangle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, 270, 60));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/backGsayuran.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 792, -1));
+        jPanel2.add(rectangle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
 
         add(jPanel2, "card2");
     }// </editor-fold>//GEN-END:initComponents
