@@ -24,6 +24,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import org.apache.batik.transcoder.TranscoderException;
 import theme.FlatLafManager;
 import view.FromMenuutama;
+import view.Kue.KueView;
 import view.MasakanRumahan.DaftarMasakan;
 import view.Sayuran.SayuranView;
 /**
@@ -635,7 +636,7 @@ public class MenuUtama extends javax.swing.JFrame {
         pnLine3.setBackground(Color.decode("#FFF5E1"));
         
         pnUtama.removeAll();
-        //pnUtama.add(new SayuranView());
+        pnUtama.add(new KueView());
         pnUtama.repaint();
         pnUtama.revalidate();
     }//GEN-LAST:event_btnMenuutama5MouseClicked
