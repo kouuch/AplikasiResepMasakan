@@ -2,19 +2,21 @@ package costum;
 
 import javax.swing.*;
 import java.awt.*;
+import java.net.URL;
 
 public class LabelGambar extends JLabel {
-
     private Image image;
 
     // Konstruktor untuk memuat gambar
     public LabelGambar(String imagePath) {
-        // Muat gambar dari file
-        ImageIcon icon = new ImageIcon(imagePath);  // Ganti dengan path gambar Anda
-        if (icon.getImageLoadStatus() == MediaTracker.ERRORED) {
-            System.out.println("Gambar tidak ditemukan atau gagal dimuat!");
-        } else {
+        // Menggunakan getClass().getResource untuk memuat gambar dengan path relatif
+        URL imgURL = getClass().getResource(imagePath);  // Pastikan path relatif yang benar
+        if (imgURL != null) {
+            System.out.println("Gambar ditemukan di path: " + imgURL);  // Menampilkan log path gambar
+            ImageIcon icon = new ImageIcon(imgURL);
             image = icon.getImage();
+        } else {
+            System.out.println("Gambar tidak ditemukan di path: " + imagePath);  // Jika gambar tidak ditemukan
         }
     }
 
@@ -23,7 +25,6 @@ public class LabelGambar extends JLabel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);  // Memanggil super untuk membersihkan label
 
-        // Jika gambar berhasil dimuat
         if (image != null) {
             // Menyesuaikan ukuran gambar dengan ukuran label
             image = image.getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH);  // Mengubah ukuran gambar agar sesuai dengan ukuran label
