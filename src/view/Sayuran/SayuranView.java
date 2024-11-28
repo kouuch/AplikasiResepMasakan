@@ -70,6 +70,8 @@ public class SayuranView extends javax.swing.JPanel {
 
         jPanel2.add(rectangle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 170, 290, -1));
 
+        rectangle3.setBackgroundColor(new java.awt.Color(51, 255, 51));
+
         javax.swing.GroupLayout rectangle3Layout = new javax.swing.GroupLayout(rectangle3);
         rectangle3.setLayout(rectangle3Layout);
         rectangle3Layout.setHorizontalGroup(
@@ -81,7 +83,7 @@ public class SayuranView extends javax.swing.JPanel {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        jPanel2.add(rectangle3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 250, -1));
+        jPanel2.add(rectangle3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 250, -1));
 
         add(jPanel2, "card2");
     }// </editor-fold>//GEN-END:initComponents

@@ -92,9 +92,14 @@
           </Layout>
         </Container>
         <Container class="costum.Rectangle" name="rectangle3">
+          <Properties>
+            <Property name="backgroundColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="ff" red="33" type="rgb"/>
+            </Property>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="100" y="100" width="250" height="-1"/>
+              <AbsoluteConstraints x="110" y="170" width="250" height="-1"/>
             </Constraint>
           </Constraints>
 
