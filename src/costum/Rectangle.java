@@ -9,10 +9,20 @@ public class Rectangle extends JPanel {
 
     private int cornerRadius;
 
-    // Constructor untuk menetapkan nilai cornerRadius secara langsung
+    // Constructor untuk menetapkan nilai default cornerRadius
     public Rectangle() {
-        // Tentukan nilai cornerRadius langsung dalam kode
-        this.cornerRadius = 40; // Misalnya, sudut dengan radius 40
+        this.cornerRadius = 40;  // Nilai default cornerRadius
+    }
+
+    // Getter untuk cornerRadius
+    public int getCornerRadius() {
+        return cornerRadius;
+    }
+
+    // Setter untuk cornerRadius
+    public void setCornerRadius(int cornerRadius) {
+        this.cornerRadius = cornerRadius;
+        repaint(); // Memastikan panel diperbarui dengan cornerRadius baru
     }
 
     // Method untuk menggambar panel dengan sudut melengkung
