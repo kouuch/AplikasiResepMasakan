@@ -26,71 +26,148 @@ public class SayuranView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
-        rectangle4 = new costum.Rectangle();
-        rectangle1 = new costum.Rectangle();
+        jPanel1 = new javax.swing.JPanel();
+        formTitleLabel = new javax.swing.JLabel();
+        formTitleLabel1 = new javax.swing.JLabel();
+        rectangleBack14 = new costum.RectangleBack1();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        rectangleBack13 = new costum.RectangleBack1();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        rectangleBack11 = new costum.RectangleBack1();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
         rectangleBack12 = new costum.RectangleBack1();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setLayout(new java.awt.CardLayout());
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        rectangle4.setBackgroundColor(new java.awt.Color(85, 125, 65));
+        formTitleLabel.setFont(new java.awt.Font("Edwardian Script ITC", 1, 60)); // NOI18N
+        formTitleLabel.setForeground(new java.awt.Color(204, 0, 51));
+        formTitleLabel.setText("Manfaat konsumsi ");
+        jPanel1.add(formTitleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 440, 50));
 
-        javax.swing.GroupLayout rectangle4Layout = new javax.swing.GroupLayout(rectangle4);
-        rectangle4.setLayout(rectangle4Layout);
-        rectangle4Layout.setHorizontalGroup(
-            rectangle4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 320, Short.MAX_VALUE)
-        );
-        rectangle4Layout.setVerticalGroup(
-            rectangle4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 80, Short.MAX_VALUE)
-        );
+        formTitleLabel1.setFont(new java.awt.Font("Edwardian Script ITC", 1, 60)); // NOI18N
+        formTitleLabel1.setForeground(new java.awt.Color(204, 0, 51));
+        formTitleLabel1.setText("sayuran");
+        jPanel1.add(formTitleLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 180, 50));
 
-        jPanel2.add(rectangle4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, 320, 80));
+        rectangleBack14.setFillColor(new java.awt.Color(85, 125, 65));
+        rectangleBack14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout rectangle1Layout = new javax.swing.GroupLayout(rectangle1);
-        rectangle1.setLayout(rectangle1Layout);
-        rectangle1Layout.setHorizontalGroup(
-            rectangle1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
-        );
-        rectangle1Layout.setVerticalGroup(
-            rectangle1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel8.setText("Menyehatkan Tulang");
+        rectangleBack14.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, -1, -1));
 
-        jPanel2.add(rectangle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 170, -1, -1));
+        jLabel9.setText(" meningkatkan kesehatan tulang.");
+        rectangleBack14.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, -1, -1));
 
-        javax.swing.GroupLayout rectangleBack12Layout = new javax.swing.GroupLayout(rectangleBack12);
-        rectangleBack12.setLayout(rectangleBack12Layout);
-        rectangleBack12Layout.setHorizontalGroup(
-            rectangleBack12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 220, Short.MAX_VALUE)
-        );
-        rectangleBack12Layout.setVerticalGroup(
-            rectangleBack12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 90, Short.MAX_VALUE)
-        );
+        jLabel16.setText("Kandungan vitamin K dan kalsium yang");
+        rectangleBack14.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, -1, -1));
 
-        jPanel2.add(rectangleBack12, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, 220, 90));
+        jLabel17.setText(" terdapat pada sayuran menutrisi dan");
+        rectangleBack14.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, -1));
+
+        jPanel1.add(rectangleBack14, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 390, 300, 80));
+
+        rectangleBack13.setFillColor(new java.awt.Color(85, 125, 65));
+        rectangleBack13.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel6.setText("Menjaga Imunitas Tubuh");
+        rectangleBack13.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, -1, -1));
+
+        jLabel7.setText("sitem kekebalan tubuh.");
+        rectangleBack13.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, -1, -1));
+
+        jLabel10.setText("Sayur mengandung serat, vitamin C, mineral");
+        rectangleBack13.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+
+        jLabel11.setText("dan karbohidrat yang bisa membantu menjaga");
+        rectangleBack13.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
+
+        jPanel1.add(rectangleBack13, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 50, 300, 80));
+
+        rectangleBack11.setFillColor(new java.awt.Color(85, 125, 65));
+        rectangleBack11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setText("Melancarkan Pencernaan");
+        rectangleBack11.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, -1, -1));
+
+        jLabel3.setText(" berjalan dengan lancar.");
+        rectangleBack11.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, -1, -1));
+
+        jLabel14.setText("Tubuh manusia membutuhkan asupan serat");
+        rectangleBack11.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
+
+        jLabel15.setText("yang cukup agar sistem pencernaan ");
+        rectangleBack11.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
+
+        jPanel1.add(rectangleBack11, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 280, 300, 80));
+
+        rectangleBack12.setFillColor(new java.awt.Color(85, 125, 65));
+        rectangleBack12.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel4.setText("Mencerahkan Kulit");
+        rectangleBack12.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, -1, -1));
+
+        jLabel5.setText("menjadi lebih sehat, segar, dan cerah. ");
+        rectangleBack12.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, -1));
+
+        jLabel12.setText("Berbagai jenis sayur memiliki kandungan vitamin");
+        rectangleBack12.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+
+        jLabel13.setText("C, likopen, dan antioksidan. Membuat kulit ");
+        rectangleBack12.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
+
+        jPanel1.add(rectangleBack12, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 170, 300, 80));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/backGsayuran.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 792, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, -1));
 
-        add(jPanel2, "card2");
+        add(jPanel1, "card2");
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel formTitleLabel;
+    private javax.swing.JLabel formTitleLabel1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel2;
-    private costum.Rectangle rectangle1;
-    private costum.Rectangle rectangle4;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private costum.RectangleBack1 rectangleBack11;
     private costum.RectangleBack1 rectangleBack12;
+    private costum.RectangleBack1 rectangleBack13;
+    private costum.RectangleBack1 rectangleBack14;
     // End of variables declaration//GEN-END:variables
 }
