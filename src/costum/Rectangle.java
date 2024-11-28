@@ -3,6 +3,7 @@ package costum;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.AlphaComposite;
 import javax.swing.JPanel;
 
 public class Rectangle extends JPanel {
@@ -13,7 +14,8 @@ public class Rectangle extends JPanel {
     // Konstruktor untuk menetapkan nilai default cornerRadius dan backgroundColor
     public Rectangle() {
         this.cornerRadius = 40; // Default cornerRadius
-        this.backgroundColor = Color.CYAN; // Default backgroundColor untuk roundRect
+        this.backgroundColor = new Color(0, 255, 255, 150); // Default backgroundColor dengan transparansi
+        setOpaque(false); // Mengatur panel agar tidak mengisi latar belakang secara penuh
     }
 
     // Getter untuk cornerRadius
@@ -45,7 +47,11 @@ public class Rectangle extends JPanel {
 
         Graphics2D g2d = (Graphics2D) g;
 
-        // Mengatur warna untuk roundRect
+        // Set transparansi dengan AlphaComposite
+        AlphaComposite alphaComposite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f);  // Transparansi 50%
+        g2d.setComposite(alphaComposite);
+
+        // Mengatur warna untuk roundRect dengan transparansi
         g2d.setColor(backgroundColor);  // Menentukan warna untuk isi roundRect
         g2d.fillRoundRect(0, 0, getWidth(), getHeight(), cornerRadius, cornerRadius);  // Gambar roundRect
 
