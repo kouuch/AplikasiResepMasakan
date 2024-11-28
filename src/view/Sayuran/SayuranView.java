@@ -29,6 +29,7 @@ public class SayuranView extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         rectangle4 = new costum.Rectangle();
         rectangle1 = new costum.Rectangle();
+        rectangleBack12 = new costum.RectangleBack1();
         jLabel1 = new javax.swing.JLabel();
 
         setLayout(new java.awt.CardLayout());
@@ -55,7 +56,7 @@ public class SayuranView extends javax.swing.JPanel {
         rectangle1.setLayout(rectangle1Layout);
         rectangle1Layout.setHorizontalGroup(
             rectangle1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 200, Short.MAX_VALUE)
         );
         rectangle1Layout.setVerticalGroup(
             rectangle1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -64,9 +65,22 @@ public class SayuranView extends javax.swing.JPanel {
 
         jPanel2.add(rectangle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 170, -1, -1));
 
+        javax.swing.GroupLayout rectangleBack12Layout = new javax.swing.GroupLayout(rectangleBack12);
+        rectangleBack12.setLayout(rectangleBack12Layout);
+        rectangleBack12Layout.setHorizontalGroup(
+            rectangleBack12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 220, Short.MAX_VALUE)
+        );
+        rectangleBack12Layout.setVerticalGroup(
+            rectangleBack12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 90, Short.MAX_VALUE)
+        );
+
+        jPanel2.add(rectangleBack12, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, 220, 90));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/backGsayuran.png"))); // NOI18N
         jLabel1.setText("jLabel1");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 792, -1));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 792, -1));
 
         add(jPanel2, "card2");
     }// </editor-fold>//GEN-END:initComponents
@@ -77,5 +91,6 @@ public class SayuranView extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private costum.Rectangle rectangle1;
     private costum.Rectangle rectangle4;
+    private costum.RectangleBack1 rectangleBack12;
     // End of variables declaration//GEN-END:variables
 }
