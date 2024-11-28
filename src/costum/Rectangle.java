@@ -8,10 +8,13 @@ import javax.swing.JPanel;
 public class Rectangle extends JPanel {
 
     private int cornerRadius;
+    private Color backgroundColor;
 
-    // Constructor untuk menetapkan nilai default cornerRadius
+    // Konstruktor untuk menetapkan nilai default cornerRadius dan backgroundColor
     public Rectangle() {
-        this.cornerRadius = 40;  // Nilai default cornerRadius
+        this.cornerRadius = 40; // Default cornerRadius
+        this.backgroundColor = Color.CYAN; // Default backgroundColor
+        setBackground(backgroundColor); // Menetapkan warna latar belakang
     }
 
     // Getter untuk cornerRadius
@@ -25,12 +28,26 @@ public class Rectangle extends JPanel {
         repaint(); // Memastikan panel diperbarui dengan cornerRadius baru
     }
 
-    // Method untuk menggambar panel dengan sudut melengkung
+    // Getter untuk backgroundColor
+    public Color getBackgroundColor() {
+        return backgroundColor;
+    }
+
+    // Setter untuk backgroundColor
+    public void setBackgroundColor(Color backgroundColor) {
+        this.backgroundColor = backgroundColor;
+        setBackground(backgroundColor); // Update background panel
+        repaint(); // Memastikan panel diperbarui dengan warna baru
+    }
+
+    // Method untuk menggambar panel dengan sudut melengkung dan backgroundColor
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.CYAN);  // Set warna panel menjadi cyan
+
+        // Set warna sesuai dengan backgroundColor
+        g2d.setColor(backgroundColor);
         g2d.fillRoundRect(0, 0, getWidth(), getHeight(), cornerRadius, cornerRadius); // Gambar dengan sudut melengkung
     }
 }

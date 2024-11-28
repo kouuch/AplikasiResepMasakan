@@ -27,7 +27,7 @@ public class SayuranView extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        rectangle1 = new costum.Rectangle();
+        rectangle2 = new costum.Rectangle();
         jLabel1 = new javax.swing.JLabel();
 
         setLayout(new java.awt.CardLayout());
@@ -35,18 +35,21 @@ public class SayuranView extends javax.swing.JPanel {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout rectangle1Layout = new javax.swing.GroupLayout(rectangle1);
-        rectangle1.setLayout(rectangle1Layout);
-        rectangle1Layout.setHorizontalGroup(
-            rectangle1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 250, Short.MAX_VALUE)
+        rectangle2.setBackground(new java.awt.Color(85, 125, 65));
+        rectangle2.setCornerRadius(20);
+
+        javax.swing.GroupLayout rectangle2Layout = new javax.swing.GroupLayout(rectangle2);
+        rectangle2.setLayout(rectangle2Layout);
+        rectangle2Layout.setHorizontalGroup(
+            rectangle2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 270, Short.MAX_VALUE)
         );
-        rectangle1Layout.setVerticalGroup(
-            rectangle1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        rectangle2Layout.setVerticalGroup(
+            rectangle2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 60, Short.MAX_VALUE)
         );
 
-        jPanel2.add(rectangle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 70, 250, 60));
+        jPanel2.add(rectangle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, 270, 60));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/backGsayuran.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -59,6 +62,6 @@ public class SayuranView extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
-    private costum.Rectangle rectangle1;
+    private costum.Rectangle rectangle2;
     // End of variables declaration//GEN-END:variables
 }

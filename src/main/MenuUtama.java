@@ -25,6 +25,7 @@ import org.apache.batik.transcoder.TranscoderException;
 import theme.FlatLafManager;
 import view.FromMenuutama;
 import view.MasakanRumahan.DaftarMasakan;
+import view.Sayuran.SayuranView;
 /**
  *
  * @author User
@@ -614,7 +615,7 @@ public class MenuUtama extends javax.swing.JFrame {
         pnLine2.setBackground(Color.decode("#FFF5E1"));
         
         pnUtama.removeAll();
-        //pnUtama.add(new FromMenuutama());
+        pnUtama.add(new SayuranView());
         pnUtama.repaint();
         pnUtama.revalidate();
     }//GEN-LAST:event_btnMenuutama4MouseClicked
@@ -634,7 +635,7 @@ public class MenuUtama extends javax.swing.JFrame {
         pnLine3.setBackground(Color.decode("#FFF5E1"));
         
         pnUtama.removeAll();
-        //pnUtama.add(new FromMenuutama());
+        //pnUtama.add(new SayuranView());
         pnUtama.repaint();
         pnUtama.revalidate();
     }//GEN-LAST:event_btnMenuutama5MouseClicked
