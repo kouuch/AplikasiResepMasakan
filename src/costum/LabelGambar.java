@@ -12,7 +12,7 @@ public class LabelGambar extends JLabel {
         // Menggunakan getClass().getResource untuk memuat gambar dengan path relatif
         URL imgURL = getClass().getResource(imagePath);  // Pastikan path relatif yang benar
         if (imgURL != null) {
-            System.out.println("Gambar ditemukan di path: " + imgURL);  // Menampilkan log path gambar
+            System.out.println("Gambar ditemukan di path: " + imgURL.getPath());  // Menampilkan log path gambar
             ImageIcon icon = new ImageIcon(imgURL);
             image = icon.getImage();
         } else {

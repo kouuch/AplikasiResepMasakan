@@ -15,14 +15,14 @@ public class KueView extends javax.swing.JPanel {
      * Creates new form KueView
      */
     public KueView() {
-  initComponents();
+   initComponents();
         
         // Menggunakan layout null untuk kontrol manual
         this.setLayout(null);  // Tidak ada layout manager, kontrol posisi manual
         
         // Membuat LabelGambar dan menambahkan ke panel
-        // Path gambar sesuai dengan tempat Anda menyimpan gambar
-        LabelGambar labelGambar = new LabelGambar("/img/kueView.png");  // Pastikan path gambar relatif yang benar
+        // Menggunakan path relatif untuk gambar yang ada di dalam folder img
+        LabelGambar labelGambar = new LabelGambar("/img/kue.png");  // Path gambar sesuai dengan tempat Anda menyimpan gambar
         
         // Menentukan posisi dan ukuran gambar
         labelGambar.setBounds(0, 0, 794, 526);  // Tentukan posisi dan ukuran gambar sesuai dengan kebutuhan
@@ -33,11 +33,6 @@ public class KueView extends javax.swing.JPanel {
         // Menentukan ukuran panel
         this.setPreferredSize(new java.awt.Dimension(794, 526));  // Ukuran panel sesuai dengan gambar
     }
-
-
-
-    
-
 
 
     /**
@@ -54,24 +49,22 @@ public class KueView extends javax.swing.JPanel {
 
         setLayout(new java.awt.CardLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/kueView.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/kue.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(356, 356, 356)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(2249, Short.MAX_VALUE))
+                .addComponent(jLabel1)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(133, 133, 133)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1045, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         add(jPanel1, "card2");
